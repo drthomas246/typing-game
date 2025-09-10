@@ -1,0 +1,124 @@
+import type {
+  Action,
+  EngineOptions,
+  EngineState,
+  JudgeFn,
+  LearningPhase,
+} from "@/types/index";
+import { useCallback } from "react";
+
+export function useInput(params: {
+  state: EngineState;
+  opts: EngineOptions;
+  dispatch: React.Dispatch<Action>;
+  judgeChar: JudgeFn;
+  speak: (text: string, opts?: { lang?: string }) => void;
+  onMiss: (s: EngineState) => void;
+  onSentenceClear: (s: EngineState) => void;
+  next: () => void;
+  setPhase: (phase: LearningPhase) => void;
+}) {
+  const {
+    state,
+    opts,
+    dispatch,
+    judgeChar,
+    speak,
+    onMiss,
+    onSentenceClear,
+    next,
+    setPhase,
+  } = params;
+
+  const onKey = useCallback(
+    (key: string) => {
+      if (!state.started || state.finished || state.answerEn.length === 0)
+        return;
+
+      if (key === " ") {
+        dispatch({ type: "TALLY_QUESTION" });
+        next();
+        return;
+      }
+
+      if (key === "\t") {
+        const inRecall =
+          !!opts.learningMode &&
+          !!opts.learnThenRecall &&
+          state.learningPhase === "recall";
+        if (!opts.learningMode || inRecall) {
+          if (state.hintStep === 0) {
+            try {
+              speak(state.answerEn, { lang: "en-US" });
+            } catch {
+              speak(state.answerEn, { lang: "en-US" });
+            }
+            dispatch({
+              type: "SET_HINT_STEP",
+              payload: { step: 1, markUsedHint: true },
+            });
+            if (!opts.learningMode) onMiss(state);
+          } else if (state.hintStep === 1) {
+            dispatch({
+              type: "SET_HINT_STEP",
+              payload: { step: 2, showHint: true, markUsedHint: true },
+            });
+            if (!opts.learningMode) onMiss(state);
+          }
+        }
+        return;
+      }
+
+      if (key === "\b") {
+        if (state.typed.length > 0) dispatch({ type: "BACKSPACE" });
+        return;
+      }
+
+      if (key === "\n") return;
+
+      if (state.typed.length >= state.answerEn.length) return;
+
+      const cursor = state.typed.length;
+      const res = judgeChar(state.answerEn, cursor, key);
+      dispatch({ type: "TYPE_CHAR", payload: { key, ok: res.ok } });
+
+      if (!res.ok) {
+        onMiss(state);
+      }
+
+      const willCompleteLen = cursor + 1 === state.answerEn.length;
+      const allPrevCorrect = state.correctMap.every(Boolean);
+      const completesAllCorrect = willCompleteLen && res.ok && allPrevCorrect;
+
+      if (!completesAllCorrect) return;
+
+      if (
+        opts.learningMode &&
+        opts.learnThenRecall &&
+        state.learningPhase === "study"
+      ) {
+        setPhase("recall");
+        return;
+      }
+
+      onSentenceClear(state);
+
+      dispatch({ type: "TALLY_QUESTION" });
+      next();
+    },
+    [
+      state,
+      opts.learningMode,
+      opts.learnThenRecall,
+      dispatch,
+      judgeChar,
+      speak,
+      onMiss,
+      onSentenceClear,
+      next,
+      setPhase,
+    ],
+  );
+
+  return { onKey };
+}
