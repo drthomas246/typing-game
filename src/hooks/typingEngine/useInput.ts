@@ -1,3 +1,4 @@
+import { useBattle } from "@/contexts/PageContext";
 import type {
   Action,
   EngineOptions,
@@ -18,6 +19,7 @@ export function useInput(params: {
   next: () => void;
   setPhase: (phase: LearningPhase) => void;
 }) {
+  const battle = useBattle();
   const {
     state,
     opts,
@@ -43,10 +45,10 @@ export function useInput(params: {
 
       if (key === "\t") {
         const inRecall =
-          !!opts.learningMode &&
+          !!battle &&
           !!opts.learnThenRecall &&
           state.learningPhase === "recall";
-        if (!opts.learningMode || inRecall) {
+        if (!battle || inRecall) {
           if (state.hintStep === 0) {
             try {
               speak(state.answerEn, { lang: "en-US" });
@@ -57,13 +59,13 @@ export function useInput(params: {
               type: "SET_HINT_STEP",
               payload: { step: 1, markUsedHint: true },
             });
-            if (!opts.learningMode) onMiss(state);
+            if (!battle) onMiss(state);
           } else if (state.hintStep === 1) {
             dispatch({
               type: "SET_HINT_STEP",
               payload: { step: 2, showHint: true, markUsedHint: true },
             });
-            if (!opts.learningMode) onMiss(state);
+            if (!battle) onMiss(state);
           }
         }
         return;
@@ -92,11 +94,7 @@ export function useInput(params: {
 
       if (!completesAllCorrect) return;
 
-      if (
-        opts.learningMode &&
-        opts.learnThenRecall &&
-        state.learningPhase === "study"
-      ) {
+      if (battle && opts.learnThenRecall && state.learningPhase === "study") {
         setPhase("recall");
         return;
       }
@@ -108,7 +106,7 @@ export function useInput(params: {
     },
     [
       state,
-      opts.learningMode,
+      battle,
       opts.learnThenRecall,
       dispatch,
       judgeChar,

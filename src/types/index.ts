@@ -47,8 +47,6 @@ export type ResultsDialogProps = {
     usedHintCount: number;
     /** 1問内で一度でもミスがあった問題の個数 */
     mistakeProblemCount: number;
-    /** 学習モードチェック */
-    learningMode: boolean;
   };
 };
 
@@ -99,12 +97,12 @@ export interface EngineOptions {
   sfxEscapeSrc?: string;
   sfxFallDownSrc?: string;
 
-  learningMode?: boolean;
   learnThenRecall?: boolean;
 
   randomOrder?: boolean;
   seed?: number;
   damagePerHit?: number;
+  learningMode?: boolean;
 }
 
 import type { useTypingEngine } from "@/hooks/typingEngine/useTypingEngine";
@@ -112,7 +110,6 @@ export type EngineLike = ReturnType<typeof useTypingEngine>;
 
 export type Settings = {
   language: string;
-  learningMode: boolean;
   learnThenRecall: boolean;
   orderMode: "random" | "sequential";
 };
@@ -227,7 +224,6 @@ export type BattleArenaProps = {
 };
 
 export type HeaderControlsProps = {
-  learningMode: boolean;
   started: boolean;
   finished: boolean;
   onStart: () => void;
@@ -237,7 +233,6 @@ export type HeaderControlsProps = {
 };
 
 export type PhaseNoticeProps = {
-  learningMode: boolean;
   learnThenRecall: boolean;
   phase?: "study" | "recall";
 };

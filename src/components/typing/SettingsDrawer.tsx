@@ -10,7 +10,12 @@ import {
   Stack,
   Switch,
 } from "@chakra-ui/react";
-import { useSound, useSetSound } from "@/contexts/PageContext";
+import {
+  useSound,
+  useSetSound,
+  useBattle,
+  useSetBattle,
+} from "@/contexts/PageContext";
 
 export default function SettingsDrawer({
   open,
@@ -20,6 +25,8 @@ export default function SettingsDrawer({
 }: SettingsDrawerProps) {
   const sound = useSound();
   const setSound = useSetSound();
+  const battle = useBattle();
+  const setBattle = useSetBattle();
   const set = (patch: Partial<Settings>) => onChange({ ...settings, ...patch });
   const setBGMSound = (checked: boolean) => setSound(checked);
   const learnThenRecall = settings.learnThenRecall;
@@ -45,10 +52,8 @@ export default function SettingsDrawer({
                 <Field.Root>
                   <Field.Label>遊び方</Field.Label>
                   <RadioGroup.Root
-                    value={settings.learningMode ? "learning" : "testing"}
-                    onValueChange={(e) =>
-                      set({ learningMode: e.value === "learning" })
-                    }
+                    value={battle ? "learning" : "testing"}
+                    onValueChange={(e) => setBattle(e.value === "learning")}
                   >
                     <HStack gap="6">
                       <RadioGroup.Item value="learning">
@@ -111,7 +116,7 @@ export default function SettingsDrawer({
                   </Field.HelperText>
                 </Field.Root>
 
-                <Field.Root disabled={!settings.learningMode}>
+                <Field.Root disabled={!battle}>
                   <Field.Label>練習→ふく習→次の問題（2だん階）</Field.Label>
                   <Switch.Root
                     checked={learnThenRecall}

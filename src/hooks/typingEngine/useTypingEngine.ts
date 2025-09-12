@@ -10,6 +10,7 @@ import { useSpeech } from "@/hooks/useSpeech";
 import { judgeChar } from "@/lib/judge";
 import type { EngineOptions, QAPair } from "@/types/index";
 import { useCallback, useEffect, useMemo, useReducer, useRef } from "react";
+import { useBattle as useBattleContext } from "@/contexts/PageContext";
 
 export function useTypingEngine(
   opts: EngineOptions,
@@ -19,6 +20,7 @@ export function useTypingEngine(
   setVanishId: React.Dispatch<React.SetStateAction<number>>,
   setVanished: React.Dispatch<React.SetStateAction<boolean>>,
 ) {
+  const battle = useBattleContext();
   const [state, dispatch] = useReducer(reducer, initialState(opts));
 
   const tickMs = Math.max(16, opts.tickMs ?? 100);
@@ -38,7 +40,7 @@ export function useTypingEngine(
 
     initOrder();
 
-    if (!opts.learningMode) sound.playBgm();
+    if (!battle) sound.playBgm();
 
     dispatch({
       type: "START",
@@ -46,13 +48,13 @@ export function useTypingEngine(
         now: Date.now(),
         playerMaxHp: Math.max(1, opts.playerMaxHp ?? 100),
         enemyMaxHp: Math.max(1, opts.enemyMaxHp ?? 100),
-        learning: !!opts.learningMode,
+        learning: !!battle,
         playCount: playCountRef.current,
       },
     });
   }, [
     initOrder,
-    opts.learningMode,
+    battle,
     opts.playerMaxHp,
     opts.enemyMaxHp,
     setVanishId,
@@ -68,7 +70,7 @@ export function useTypingEngine(
         talliedFinalRef.current = true;
       }
 
-      if (reason === "escape" && !opts.learningMode) {
+      if (reason === "escape" && !battle) {
         sound.sfx.escape();
       }
 
@@ -81,7 +83,7 @@ export function useTypingEngine(
       dispatch({ type: "STOP", payload: { victory } });
       playCountRef.current += 1;
     },
-    [opts.learningMode, sound, state.victory],
+    [battle, sound, state.victory],
   );
 
   const next = useCallback(() => {
@@ -97,16 +99,9 @@ export function useTypingEngine(
     const pair = getPair(nextIndex);
     dispatch({
       type: "LOAD_PAIR",
-      payload: { index: nextIndex, pair, learning: !!opts.learningMode },
+      payload: { index: nextIndex, pair, learning: !!battle },
     });
-  }, [
-    state.index,
-    order.length,
-    getPair,
-    sound,
-    state.enemyHp,
-    opts.learningMode,
-  ]);
+  }, [state.index, order.length, getPair, sound, state.enemyHp, battle]);
 
   useSpeechOnce({ state, opts, lang: "en-US" });
 
@@ -138,7 +133,7 @@ export function useTypingEngine(
     const first = getPair(0);
     dispatch({
       type: "LOAD_PAIR",
-      payload: { index: 0, pair: first, learning: !!opts.learningMode },
+      payload: { index: 0, pair: first, learning: !!battle },
     });
   }, [
     state.started,
@@ -146,7 +141,7 @@ export function useTypingEngine(
     state.answerEn,
     order.length,
     getPair,
-    opts.learningMode,
+    battle,
   ]);
 
   const actualTimeSec = useMemo(() => {

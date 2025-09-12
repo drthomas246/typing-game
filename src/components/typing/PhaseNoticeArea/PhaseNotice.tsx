@@ -1,12 +1,13 @@
 import type { PhaseNoticeProps } from "@/types/index";
 import { Badge, HStack, Text } from "@chakra-ui/react";
+import { useBattle } from "@/contexts/PageContext";
 
 export default function PhaseNotice({
-  learningMode,
   learnThenRecall,
   phase,
 }: PhaseNoticeProps) {
-  if (!learningMode) return null;
+  const battle = useBattle();
+  if (!battle) return null;
 
   if (learnThenRecall) {
     const isStudy = phase === "study";

@@ -7,7 +7,7 @@ import {
   Portal,
   Stat,
 } from "@chakra-ui/react";
-import { useSound } from "@/contexts/PageContext";
+import { useSound, useBattle } from "@/contexts/PageContext";
 
 export default function ResultsDialog({
   open,
@@ -17,6 +17,7 @@ export default function ResultsDialog({
   summary,
 }: ResultsDialogProps) {
   const sound = useSound();
+  const battle = useBattle();
   return (
     <Dialog.Root
       open={open}
@@ -49,7 +50,7 @@ export default function ResultsDialog({
                     {summary.timeSec}s
                   </Stat.ValueText>
                 </Stat.Root>
-                {!summary.learningMode && (
+                {!battle && (
                   <Stat.Root>
                     <Stat.Label>ヒントを使った問題数</Stat.Label>
                     <Stat.ValueText fontSize="2xl">

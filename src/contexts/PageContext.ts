@@ -10,6 +10,11 @@ export const UserSetSoundContext = createContext<
   React.Dispatch<React.SetStateAction<boolean>> | undefined
 >(undefined);
 
+export const UserBattleContext = createContext<boolean | undefined>(undefined);
+export const UserSetBattleContext = createContext<
+  React.Dispatch<React.SetStateAction<boolean>> | undefined
+>(undefined);
+
 export function usePage() {
   const v = useContext(UserPageContext);
   if (v === undefined)
@@ -33,5 +38,18 @@ export function useSetSound() {
   const set = useContext(UserSetSoundContext);
   if (set === undefined)
     throw new Error("useSetSound must be used within <PageProvider>");
+  return set;
+}
+
+export function useBattle() {
+  const v = useContext(UserBattleContext);
+  if (v === undefined)
+    throw new Error("useBattle must be used within <PageProvider>");
+  return v;
+}
+export function useSetBattle() {
+  const set = useContext(UserSetBattleContext);
+  if (set === undefined)
+    throw new Error("useSetBattle must be used within <PageProvider>");
   return set;
 }
