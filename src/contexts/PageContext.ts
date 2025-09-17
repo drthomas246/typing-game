@@ -15,6 +15,11 @@ export const UserSetBattleContext = createContext<
   React.Dispatch<React.SetStateAction<boolean>> | undefined
 >(undefined);
 
+export const UserSortContext = createContext<boolean | undefined>(undefined);
+export const UserSetSortContext = createContext<
+  React.Dispatch<React.SetStateAction<boolean>> | undefined
+>(undefined);
+
 export function usePage() {
   const v = useContext(UserPageContext);
   if (v === undefined)
@@ -51,5 +56,18 @@ export function useSetBattle() {
   const set = useContext(UserSetBattleContext);
   if (set === undefined)
     throw new Error("useSetBattle must be used within <PageProvider>");
+  return set;
+}
+
+export function useSort() {
+  const v = useContext(UserSortContext);
+  if (v === undefined)
+    throw new Error("useSort must be used within <PageProvider>");
+  return v;
+}
+export function useSetSort() {
+  const set = useContext(UserSetSortContext);
+  if (set === undefined)
+    throw new Error("useSetSort must be used within <PageProvider>");
   return set;
 }

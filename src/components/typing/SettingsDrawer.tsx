@@ -15,6 +15,8 @@ import {
   useSetSound,
   useBattle,
   useSetBattle,
+  useSort,
+  useSetSort,
 } from "@/contexts/PageContext";
 
 export default function SettingsDrawer({
@@ -27,6 +29,8 @@ export default function SettingsDrawer({
   const setSound = useSetSound();
   const battle = useBattle();
   const setBattle = useSetBattle();
+  const problemSort = useSort();
+  const setProblemSort = useSetSort();
   const set = (patch: Partial<Settings>) => onChange({ ...settings, ...patch });
   const setBGMSound = (checked: boolean) => setSound(checked);
   const learnThenRecall = settings.learnThenRecall;
@@ -76,10 +80,8 @@ export default function SettingsDrawer({
                 <Field.Root>
                   <Field.Label>じゅん番</Field.Label>
                   <RadioGroup.Root
-                    value={settings.orderMode}
-                    onValueChange={(e) =>
-                      set({ orderMode: e.value as "random" | "sequential" })
-                    }
+                    value={problemSort ? "random" : "sequential"}
+                    onValueChange={(e) => setProblemSort(e!.value === "random")}
                   >
                     <HStack gap="6">
                       <RadioGroup.Item value="random">

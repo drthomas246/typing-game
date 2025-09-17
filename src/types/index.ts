@@ -111,7 +111,6 @@ export type EngineLike = ReturnType<typeof useTypingEngine>;
 export type Settings = {
   language: string;
   learnThenRecall: boolean;
-  orderMode: "random" | "sequential";
 };
 
 export type SettingsDrawerProps = {

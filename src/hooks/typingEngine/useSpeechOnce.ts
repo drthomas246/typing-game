@@ -9,7 +9,7 @@ export function useSpeechOnce(params: {
   lang?: string;
 }) {
   const battle = useBattle();
-  const { state, opts, lang = "en-US" } = params;
+  const { state, lang = "en-US" } = params;
   const { speak } = useSpeech();
   const spokenRef = useRef<string>("");
 

@@ -22,7 +22,6 @@ export default function TypingPage({ QA, title }: TypingPageProps) {
   const [settings, setSettings] = useState<Settings>({
     language: "ja",
     learnThenRecall: true,
-    orderMode: "sequential",
   });
 
   const page = usePage();
@@ -37,7 +36,6 @@ export default function TypingPage({ QA, title }: TypingPageProps) {
   const engine = useTypingEngine(
     {
       learnThenRecall: settings.learnThenRecall,
-      randomOrder: settings.orderMode === "random",
       battleMode: true,
       playerMaxHp: 100,
       enemyMaxHp: damagePerHit * QA.length,
