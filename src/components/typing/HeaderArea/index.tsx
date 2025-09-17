@@ -11,7 +11,6 @@ export default function HeaderArea({
   stop,
   state,
   setShouldPlay,
-  settings,
   onOpen,
 }: HeaderAreaProps) {
   const setPage = useSetPage();
@@ -44,7 +43,6 @@ export default function HeaderArea({
         ～{title}～
       </Heading>
       <HeaderControls
-        learningMode={settings.learningMode}
         started={state.started}
         finished={state.finished}
         onStart={handleStart}

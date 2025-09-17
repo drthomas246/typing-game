@@ -17,6 +17,7 @@ export function ConsentDialog({
       onOpenChange={(e) => onOpenChange(e.open)}
       size="sm"
       placement="center"
+      role="alertdialog"
     >
       <Portal>
         <Dialog.Backdrop />

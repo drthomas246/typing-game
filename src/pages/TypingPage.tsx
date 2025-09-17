@@ -15,11 +15,12 @@ import HeaderArea from "@/components/typing/HeaderArea";
 import PhaseNotice from "@/components/typing/PhaseNoticeArea/PhaseNotice";
 import PlayerHpBar from "@/components/typing/PhaseNoticeArea/PlayerHpBar";
 import { usePage, useSound } from "@/contexts/PageContext";
+import { useBattle } from "@/contexts/PageContext";
 
 export default function TypingPage({ QA, title }: TypingPageProps) {
+  const battle = useBattle();
   const [settings, setSettings] = useState<Settings>({
     language: "ja",
-    learningMode: true,
     learnThenRecall: true,
     orderMode: "sequential",
   });
@@ -35,7 +36,6 @@ export default function TypingPage({ QA, title }: TypingPageProps) {
   const damagePerHit = useMemo(() => 10, []);
   const engine = useTypingEngine(
     {
-      learningMode: settings.learningMode,
       learnThenRecall: settings.learnThenRecall,
       randomOrder: settings.orderMode === "random",
       battleMode: true,
@@ -43,6 +43,7 @@ export default function TypingPage({ QA, title }: TypingPageProps) {
       enemyMaxHp: damagePerHit * QA.length,
       damagePerHit: 10,
       damagePerMiss: 5,
+      learningMode: battle,
     },
     QA,
     setSlashId,
@@ -110,7 +111,7 @@ export default function TypingPage({ QA, title }: TypingPageProps) {
               questionText={
                 engine.state.questionJa
                   ? engine.state.questionJa
-                  : settings.learningMode
+                  : battle
                     ? "問題がここに出るよ"
                     : "バトル開始"
               }
@@ -126,16 +127,15 @@ export default function TypingPage({ QA, title }: TypingPageProps) {
               />
             </BattleArea>
 
-            {settings.learningMode && (
+            {battle && (
               <PhaseNotice
-                learningMode={settings.learningMode}
                 learnThenRecall={settings.learnThenRecall}
                 phase={
                   engine.state.learningPhase as "study" | "recall" | undefined
                 }
               />
             )}
-            {!settings.learningMode && (
+            {!battle && (
               <PlayerHpBar
                 current={engine.state.playerHp}
                 max={engine.state.playerMaxHp}
@@ -175,7 +175,6 @@ export default function TypingPage({ QA, title }: TypingPageProps) {
               timeSec: engine.actualTimeSec,
               usedHintCount: engine.state.usedHintCount,
               mistakeProblemCount: engine.state.mistakeProblemCount,
-              learningMode: settings.learningMode,
             }}
           />
         </Container>

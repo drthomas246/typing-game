@@ -1,3 +1,4 @@
+import { useBattle } from "@/contexts/PageContext";
 import { useSpeech } from "@/hooks/useSpeech";
 import type { EngineOptions, EngineState } from "@/types/index";
 import { useEffect, useRef } from "react";
@@ -7,13 +8,14 @@ export function useSpeechOnce(params: {
   opts: EngineOptions;
   lang?: string;
 }) {
+  const battle = useBattle();
   const { state, opts, lang = "en-US" } = params;
   const { speak } = useSpeech();
   const spokenRef = useRef<string>("");
 
   useEffect(() => {
     if (!state.started || state.finished) return;
-    if (!opts.learningMode) return;
+    if (!battle) return;
     if (!state.answerEn) return;
     if (state.learningPhase !== "study") return;
 
@@ -31,5 +33,5 @@ export function useSpeechOnce(params: {
         }
       }
     }
-  }, [state, opts.learningMode, lang, speak]);
+  }, [state, battle, lang, speak]);
 }

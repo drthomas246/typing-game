@@ -1,3 +1,4 @@
+import { useBattle as useBattleContext } from "@/contexts/PageContext";
 import type {
   Action,
   EngineOptions,
@@ -13,6 +14,7 @@ export function useBattle(
   setSlashId: React.Dispatch<React.SetStateAction<number>>,
   dispatch: React.Dispatch<Action>,
 ) {
+  const battle = useBattleContext();
   const battleMode = opts.battleMode ?? true;
   const damagePerMiss = Math.max(1, opts.damagePerMiss ?? 5);
   const damagePerSentence = Math.max(
@@ -24,7 +26,7 @@ export function useBattle(
     (s: EngineState) => {
       setHurtId((n) => n + 1);
       if (!battleMode) return;
-      if (opts.learningMode) return;
+      if (battle) return;
       sound.sfx.punch();
 
       const justDied =
@@ -36,14 +38,14 @@ export function useBattle(
         sound.stopBgm();
       }
     },
-    [battleMode, damagePerMiss, opts.learningMode, dispatch, setHurtId, sound],
+    [battleMode, damagePerMiss, battle, dispatch, setHurtId, sound],
   );
 
   const onSentenceClear = useCallback(
     (s: EngineState) => {
       if (!battleMode) return;
 
-      if (!opts.learningMode) sound.sfx.slash();
+      if (!battle) sound.sfx.slash();
       setSlashId((n) => n + 1);
 
       const killedNow =
@@ -54,18 +56,11 @@ export function useBattle(
       });
 
       if (killedNow) {
-        if (!opts.learningMode) sound.sfx.defeat();
+        if (!battle) sound.sfx.defeat();
         sound.stopBgm();
       }
     },
-    [
-      battleMode,
-      damagePerSentence,
-      opts.learningMode,
-      dispatch,
-      setSlashId,
-      sound,
-    ],
+    [battleMode, damagePerSentence, battle, dispatch, setSlashId, sound],
   );
 
   return { onMiss, onSentenceClear };
