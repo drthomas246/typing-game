@@ -1,5 +1,6 @@
 import type { ResultsDialogProps } from "@/types/index";
 import {
+  Box,
   Button,
   CloseButton,
   Dialog,
@@ -7,7 +8,12 @@ import {
   Portal,
   Stat,
 } from "@chakra-ui/react";
-import { useSound, useBattle } from "@/contexts/PageContext";
+import {
+  useSound,
+  useBattle,
+  useLevel,
+  useSetLevel,
+} from "@/contexts/PageContext";
 
 export default function ResultsDialog({
   open,
@@ -16,6 +22,8 @@ export default function ResultsDialog({
   setShouldBgmPlay,
   summary,
 }: ResultsDialogProps) {
+  const level = useLevel();
+  const setLevel = useSetLevel();
   const sound = useSound();
   const battle = useBattle();
   return (
@@ -28,6 +36,7 @@ export default function ResultsDialog({
         if (sound) {
           setShouldBgmPlay(true);
         }
+        if (summary.killedNow) setLevel(level + 1);
         setOpen(false);
       }}
     >
@@ -66,6 +75,11 @@ export default function ResultsDialog({
                   </Stat.ValueText>
                 </Stat.Root>
               </HStack>
+              {summary.killedNow && (
+                <Box>
+                  レベルが{level}から{level + 1}に上がった
+                </Box>
+              )}
             </Dialog.Body>
 
             <Dialog.Footer gap="2">

@@ -8,6 +8,8 @@ import {
   UserSetBattleContext,
   UserSortContext,
   UserSetSortContext,
+  UserLevelContext,
+  UserSetLevelContext,
 } from "./PageContext";
 
 import { useLiveQuery } from "dexie-react-hooks";
@@ -21,13 +23,14 @@ export default function PageProvider({ children }: { children: ReactNode }) {
   const snap = useLiveQuery(() => db.app.get("app"), [], undefined);
 
   const battle = useMemo(
-    () => (snap?.state?.settings?.mode ?? "study") === "study",
+    () => (snap?.state?.settings?.mode ?? "battle") === "battle",
     [snap],
   );
   const sort = useMemo(
-    () => (snap?.state?.settings?.sort ?? "reverse") === "random",
+    () => (snap?.state?.settings?.sort ?? "random") === "reverse",
     [snap],
   );
+  const level = useMemo(() => snap?.state?.progress?.level ?? 1, [snap]);
 
   const setBattle = useCallback(
     (v: boolean | ((prev: boolean) => boolean)) => {
@@ -35,12 +38,16 @@ export default function PageProvider({ children }: { children: ReactNode }) {
       const next = typeof v === "function" ? v(current) : v;
       void saveApp({
         settings: {
-          mode: next ? "study" : "battle",
-          sort: sort ? "random" : "reverse",
+          mode: next ? "battle" : "study",
+          sort: sort ? "reverse" : "random",
+        },
+        progress: {
+          level,
+          lastOpenedAt: Date.now(),
         },
       });
     },
-    [battle, sort],
+    [battle, sort, level],
   );
 
   const setSort = useCallback(
@@ -49,12 +56,34 @@ export default function PageProvider({ children }: { children: ReactNode }) {
       const next = typeof v === "function" ? v(current) : v;
       void saveApp({
         settings: {
-          mode: battle ? "study" : "battle",
-          sort: next ? "random" : "reverse",
+          mode: battle ? "battle" : "study",
+          sort: next ? "reverse" : "random",
+        },
+        progress: {
+          level,
+          lastOpenedAt: Date.now(),
         },
       });
     },
-    [battle, sort],
+    [battle, sort, level],
+  );
+
+  const setLevel = useCallback(
+    (v: number | ((prev: number) => number)) => {
+      const current = level;
+      const next = typeof v === "function" ? v(current) : v;
+      void saveApp({
+        settings: {
+          mode: battle ? "battle" : "study",
+          sort: sort ? "reverse" : "random",
+        },
+        progress: {
+          level: next,
+          lastOpenedAt: Date.now(),
+        },
+      });
+    },
+    [battle, sort, level],
   );
 
   return (
@@ -66,7 +95,11 @@ export default function PageProvider({ children }: { children: ReactNode }) {
               <UserSetBattleContext.Provider value={setBattle}>
                 <UserSortContext.Provider value={sort}>
                   <UserSetSortContext.Provider value={setSort}>
-                    {children}
+                    <UserLevelContext.Provider value={level}>
+                      <UserSetLevelContext.Provider value={setLevel}>
+                        {children}
+                      </UserSetLevelContext.Provider>
+                    </UserLevelContext.Provider>
                   </UserSetSortContext.Provider>
                 </UserSortContext.Provider>
               </UserSetBattleContext.Provider>

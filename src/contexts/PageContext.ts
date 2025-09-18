@@ -20,6 +20,11 @@ export const UserSetSortContext = createContext<
   React.Dispatch<React.SetStateAction<boolean>> | undefined
 >(undefined);
 
+export const UserLevelContext = createContext<number | undefined>(undefined);
+export const UserSetLevelContext = createContext<
+  React.Dispatch<React.SetStateAction<number>> | undefined
+>(undefined);
+
 export function usePage() {
   const v = useContext(UserPageContext);
   if (v === undefined)
@@ -69,5 +74,18 @@ export function useSetSort() {
   const set = useContext(UserSetSortContext);
   if (set === undefined)
     throw new Error("useSetSort must be used within <PageProvider>");
+  return set;
+}
+
+export function useLevel() {
+  const v = useContext(UserLevelContext);
+  if (v === undefined)
+    throw new Error("useLevel must be used within <PageProvider>");
+  return v;
+}
+export function useSetLevel() {
+  const set = useContext(UserSetLevelContext);
+  if (set === undefined)
+    throw new Error("useSetLevel must be used within <PageProvider>");
   return set;
 }

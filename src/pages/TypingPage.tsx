@@ -14,10 +14,11 @@ import BattleArea from "@/components/typing/BattleArea/index";
 import HeaderArea from "@/components/typing/HeaderArea";
 import PhaseNotice from "@/components/typing/PhaseNoticeArea/PhaseNotice";
 import PlayerHpBar from "@/components/typing/PhaseNoticeArea/PlayerHpBar";
-import { usePage, useSound } from "@/contexts/PageContext";
+import { useLevel, usePage, useSound } from "@/contexts/PageContext";
 import { useBattle } from "@/contexts/PageContext";
 
 export default function TypingPage({ QA, title }: TypingPageProps) {
+  const level = useLevel();
   const battle = useBattle();
   const [settings, setSettings] = useState<Settings>({
     language: "ja",
@@ -37,7 +38,7 @@ export default function TypingPage({ QA, title }: TypingPageProps) {
     {
       learnThenRecall: settings.learnThenRecall,
       battleMode: true,
-      playerMaxHp: 100,
+      playerMaxHp: 100 + (level - 1) * 10,
       enemyMaxHp: damagePerHit * QA.length,
       damagePerHit: 10,
       damagePerMiss: 5,
@@ -173,6 +174,7 @@ export default function TypingPage({ QA, title }: TypingPageProps) {
               timeSec: engine.actualTimeSec,
               usedHintCount: engine.state.usedHintCount,
               mistakeProblemCount: engine.state.mistakeProblemCount,
+              killedNow: engine.state.enemyHp === 0 && battle !== true,
             }}
           />
         </Container>

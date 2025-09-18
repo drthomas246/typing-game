@@ -15,7 +15,7 @@ export async function saveApp(partial: Partial<AppSnapshot["state"]>) {
     updatedAt: 0,
     state: {
       settings: { mode: "battle", sort: "reverse" },
-      progress: { clearedStageIds: [], lastOpenedAt: 0 },
+      progress: { level: 1, lastOpenedAt: 0 },
     },
   };
   const next: AppSnapshot = {

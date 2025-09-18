@@ -1,14 +1,16 @@
 import type { PlayerHpBarProps } from "@/types/index";
 import { Badge, Box, HStack, Text } from "@chakra-ui/react";
+import { useLevel } from "@/contexts/PageContext";
 
 export default function PlayerHpBar({ current, max, pct }: PlayerHpBarProps) {
+  const level = useLevel();
   return (
     <HStack gap="3" align="center" h="24px">
       <Badge colorPalette="blue" variant="solid">
         あなたのLv
       </Badge>
       <Text w="2em" textAlign="left">
-        1
+        {level}
       </Text>
       <Badge colorPalette="blue" variant="solid">
         あなたのHP

@@ -47,6 +47,8 @@ export type ResultsDialogProps = {
     usedHintCount: number;
     /** 1問内で一度でもミスがあった問題の個数 */
     mistakeProblemCount: number;
+    /** 敵を倒したかどうか */
+    killedNow: boolean;
   };
 };
 
