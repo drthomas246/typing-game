@@ -7,7 +7,7 @@ export type AppSnapshot = {
   updatedAt: number; // Date.now()
   state: {
     settings: { mode: "study" | "battle"; sort: "random" | "reverse" };
-    progress: { clearedStageIds: number[]; lastOpenedAt: number };
+    progress: { level: number; lastOpenedAt: number };
     // 他にも必要な slice をホワイトリストで
   };
 };
