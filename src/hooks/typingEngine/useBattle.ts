@@ -56,7 +56,12 @@ export function useBattle(
       });
 
       if (killedNow) {
-        if (!battle) sound.sfx.defeat();
+        if (!battle) {
+          sound.sfx.defeat();
+          setTimeout(() => {
+            sound.sfx.levelUp();
+          }, 2500);
+        }
         sound.stopBgm();
       }
     },

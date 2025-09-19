@@ -41,13 +41,9 @@ export type ResultsDialogProps = {
   onRetry: () => void;
   setShouldBgmPlay: React.Dispatch<React.SetStateAction<boolean | undefined>>;
   summary: {
-    /** 実測プレイ時間（秒） */
     timeSec: number;
-    /** ヒント（Tab/学習ヒントなど）を使った問題の個数 */
     usedHintCount: number;
-    /** 1問内で一度でもミスがあった問題の個数 */
     mistakeProblemCount: number;
-    /** 敵を倒したかどうか */
     killedNow: boolean;
   };
 };
@@ -60,22 +56,15 @@ export interface QAPair {
 
 export type JudgeResult = { ok: boolean; expected: string; received: string };
 
-/** 発話オプション（useSpeech.ts 用） */
 export type SpeakOpts = {
   lang?: string;
   rate?: number;
   pitch?: number;
   voiceHint?: string;
-  /** 同一テキストの短時間重複呼び出しを抑止する間隔(ms)。既定 500ms */
   dedupeMs?: number;
-  /** デデュープを無効化（常に発話）したい時は true */
   noDedupe?: boolean;
 };
 
-/**
- * 唯一のオプション型
- * - 経過時間のみ運用; 制限時間関連は含めない。
- */
 export interface EngineOptions {
   tickMs?: number;
 
@@ -98,6 +87,8 @@ export interface EngineOptions {
   sfxDefeatSrc?: string;
   sfxEscapeSrc?: string;
   sfxFallDownSrc?: string;
+  sfxLevelUpSrc?: string;
+  sfxKeyOnSrc?: string;
 
   learnThenRecall?: boolean;
 
@@ -330,6 +321,8 @@ export type SoundCtl = {
     defeat: () => void;
     escape: () => void;
     fallDown: () => void;
+    levelUp: () => void;
+    keyOn: () => void;
   };
 };
 

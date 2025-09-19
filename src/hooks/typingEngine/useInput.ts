@@ -5,6 +5,7 @@ import type {
   EngineState,
   JudgeFn,
   LearningPhase,
+  SoundCtl,
 } from "@/types/index";
 import { useCallback } from "react";
 
@@ -13,6 +14,7 @@ export function useInput(params: {
   opts: EngineOptions;
   dispatch: React.Dispatch<Action>;
   judgeChar: JudgeFn;
+  sound: SoundCtl;
   speak: (text: string, opts?: { lang?: string }) => void;
   onMiss: (s: EngineState) => void;
   onSentenceClear: (s: EngineState) => void;
@@ -29,6 +31,7 @@ export function useInput(params: {
     onMiss,
     onSentenceClear,
     next,
+    sound,
     setPhase,
   } = params;
 
@@ -87,7 +90,7 @@ export function useInput(params: {
       if (!res.ok) {
         onMiss(state);
       }
-
+      sound.sfx.keyOn();
       const willCompleteLen = cursor + 1 === state.answerEn.length;
       const allPrevCorrect = state.correctMap.every(Boolean);
       const completesAllCorrect = willCompleteLen && res.ok && allPrevCorrect;
