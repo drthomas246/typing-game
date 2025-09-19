@@ -108,6 +108,7 @@ export function useInput(params: {
       next();
     },
     [
+      sound,
       state,
       battle,
       opts.learnThenRecall,
