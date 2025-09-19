@@ -65,7 +65,7 @@ The images in this app here are courtesy of [いらすとや](https://www.irasut
 
 The monster and background images used here were created using [Gemini](https://gemini.google.com/).
 
-The sound in this app here are courtesy of [効果音ラボ](https://soundeffect-lab.info/) and [OtoLogic](https://otologic.jp/).
+The sound in this app here are courtesy of [効果音ラボ](https://soundeffect-lab.info/) and [OtoLogic](https://otologic.jp/), [ポケットサウンド/効果音素材](https://pocket-se.info/).
 
 ---
 

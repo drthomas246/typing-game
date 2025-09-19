@@ -122,6 +122,7 @@ export function useTypingEngine(
     onMiss,
     onSentenceClear,
     next,
+    sound,
     setPhase,
   });
 

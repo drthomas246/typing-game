@@ -51,7 +51,17 @@ export function useSound(opts: EngineOptions): SoundCtl {
     defeat: HowlOrNull;
     escape: HowlOrNull;
     fallDown: HowlOrNull;
-  }>({ slash: null, punch: null, defeat: null, escape: null, fallDown: null });
+    levelUp: HowlOrNull;
+    keyOn: HowlOrNull;
+  }>({
+    slash: null,
+    punch: null,
+    defeat: null,
+    escape: null,
+    fallDown: null,
+    levelUp: null,
+    keyOn: null,
+  });
 
   const src = {
     slash: opts.sfxSlashSrc ?? "./music/soundEffects/killInSword.mp3",
@@ -59,6 +69,8 @@ export function useSound(opts: EngineOptions): SoundCtl {
     defeat: opts.sfxDefeatSrc ?? "./music/soundEffects/defeat.mp3",
     escape: opts.sfxEscapeSrc ?? "./music/soundEffects/escape.mp3",
     fallDown: opts.sfxFallDownSrc ?? "./music/soundEffects/fallDown.mp3",
+    levelUp: opts.sfxLevelUpSrc ?? "./music/soundEffects/lvup.mp3",
+    keyOn: opts.sfxKeyOnSrc ?? "./music/soundEffects/keyon.mp3",
   };
 
   const ensure = (k: keyof typeof ref.current, path: string) => {
@@ -66,7 +78,7 @@ export function useSound(opts: EngineOptions): SoundCtl {
       ref.current[k] = new Howl({
         src: [path],
         volume: sfxVolume,
-        html5: true,
+        html5: false,
       });
     }
   };
@@ -109,12 +121,24 @@ export function useSound(opts: EngineOptions): SoundCtl {
       } catch {
         /* ignore */
       }
+      try {
+        ref.current.levelUp?.unload();
+      } catch {
+        /* ignore */
+      }
+      try {
+        ref.current.keyOn?.unload();
+      } catch {
+        /* ignore */
+      }
       ref.current = {
         slash: null,
         punch: null,
         defeat: null,
         escape: null,
         fallDown: null,
+        levelUp: null,
+        keyOn: null,
       };
     };
   }, [stopBgm]);
@@ -128,6 +152,8 @@ export function useSound(opts: EngineOptions): SoundCtl {
       defeat: () => play("defeat", src.defeat),
       escape: () => play("escape", src.escape),
       fallDown: () => play("fallDown", src.fallDown),
+      levelUp: () => play("levelUp", src.levelUp),
+      keyOn: () => play("keyOn", src.keyOn),
     },
   };
 }
