@@ -2,7 +2,7 @@ import type {
   Tooltip as ChakraTooltip,
   IconButtonProps,
 } from "@chakra-ui/react";
-import { useAnimation } from "framer-motion";
+import type { useAnimation } from "framer-motion";
 import type { ThemeProviderProps } from "next-themes";
 
 export type ColorModeButtonProps = Omit<IconButtonProps, "aria-label">;

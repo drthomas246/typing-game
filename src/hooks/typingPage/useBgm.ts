@@ -17,7 +17,7 @@ export function useBgm(opts: {
 
   useEffect(() => {
     if (shouldPlay) {
-      if (bgmRef.current && bgmRef.current.playing()) return;
+      if (bgmRef.current?.playing()) return;
 
       if (!bgmRef.current) {
         bgmRef.current = new Howl({

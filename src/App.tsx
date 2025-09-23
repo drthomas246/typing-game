@@ -42,9 +42,7 @@ export default function App({ played = true }: AppProps) {
   const setIsBgmOn = useSetSound();
 
   const [consentOpen, setConsentOpen] = useState<boolean>(firstPlayed);
-  const [showTooltip, setShowTooltip] = useState<boolean>(
-    played ? false : true,
-  );
+  const [showTooltip, setShowTooltip] = useState<boolean>(!played);
 
   const { ensurePlaying, fadeOutStop } = useBgm(
     "./music/bgm/mainTheme.mp3",

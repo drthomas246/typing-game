@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export function useRandomAssets(playCount: number) {
+export function useRandomAssets() {
   const [enemyImg, setEnemyImg] = useState("");
   const [backgroundImg, setBackgroundImg] = useState("");
 
@@ -11,7 +11,7 @@ export function useRandomAssets(playCount: number) {
 
     const b = Math.floor(Math.random() * 3);
     setBackgroundImg(`./images/background/${b}.png`);
-  }, [playCount]);
+  }, []);
 
   return { enemyImg, backgroundImg };
 }

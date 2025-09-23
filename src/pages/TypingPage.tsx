@@ -51,7 +51,7 @@ export default function TypingPage({ QA, title }: TypingPageProps) {
     setVanished,
   );
 
-  const { enemyImg, backgroundImg } = useRandomAssets(engine.state.playCount);
+  const { enemyImg, backgroundImg } = useRandomAssets();
 
   const { setShouldPlay } = useBgm({
     src: "./music/bgm/waitScreen.mp3",

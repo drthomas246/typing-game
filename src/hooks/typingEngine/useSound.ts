@@ -12,7 +12,7 @@ export function useSound(opts: EngineOptions): SoundCtl {
 
   const playBgm = useCallback(() => {
     if (!bgmEnabled) return;
-    if (bgmRef.current && bgmRef.current.playing()) return;
+    if (bgmRef.current?.playing()) return;
     if (bgmRef.current) {
       try {
         bgmRef.current.stop();

@@ -18,13 +18,13 @@ export function useSpeech() {
   useEffect(() => {
     const load = () => {
       const v = speechSynthesis.getVoices();
-      if (v && v.length) {
+      if (v?.length) {
         setVoices(v);
         readyRef.current = true;
         setIsReady(true);
 
         if (readyWaiters.current.length) {
-          readyWaiters.current.forEach((resolve) => resolve());
+          readyWaiters.current.map((resolve) => resolve());
           readyWaiters.current = [];
         }
       }
