@@ -1,4 +1,3 @@
-import type { ResultsDialogProps } from "@/types/index";
 import {
 	Box,
 	Button,
@@ -9,11 +8,12 @@ import {
 	Stat,
 } from "@chakra-ui/react";
 import {
-	useSound,
 	useBattle,
 	useLevel,
 	useSetLevel,
+	useSound,
 } from "@/contexts/PageContext";
+import type { ResultsDialogProps } from "@/types/index";
 
 export default function ResultsDialog({
 	open,

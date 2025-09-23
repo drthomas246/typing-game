@@ -1,6 +1,6 @@
-import type { HeaderControlsProps } from "@/types/index";
 import { Button, HStack } from "@chakra-ui/react";
 import { useBattle } from "@/contexts/PageContext";
+import type { HeaderControlsProps } from "@/types/index";
 
 export default function HeaderControls({
 	started,

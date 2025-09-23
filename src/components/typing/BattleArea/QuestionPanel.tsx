@@ -1,5 +1,5 @@
-import type { QuestionPanelProps } from "@/types/index";
 import { AspectRatio, Box, Image, Skeleton, Text } from "@chakra-ui/react";
+import type { QuestionPanelProps } from "@/types/index";
 
 export default function QuestionPanel({
 	questionText,

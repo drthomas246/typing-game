@@ -1,6 +1,6 @@
+import { useCallback, useState } from "react";
 import { shuffle } from "@/hooks/typingEngine/rng";
 import type { EngineOptions, QAPair } from "@/types/index";
-import { useCallback, useState } from "react";
 
 export function useSequence(QA: QAPair[], opts: EngineOptions) {
 	const [order, setOrder] = useState<number[]>([]);

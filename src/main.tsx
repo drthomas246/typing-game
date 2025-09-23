@@ -6,15 +6,15 @@ import PageProvider from "@/contexts/PageProvider";
 
 const el = document.getElementById("root");
 if (!(el instanceof HTMLElement)) {
-  throw new Error('Root element "#root" not found');
+	throw new Error('Root element "#root" not found');
 }
 
 ReactDOM.createRoot(el).render(
-  <React.StrictMode>
-    <Provider>
-      <PageProvider>
-        <App />
-      </PageProvider>
-    </Provider>
-  </React.StrictMode>,
+	<React.StrictMode>
+		<Provider>
+			<PageProvider>
+				<App />
+			</PageProvider>
+		</Provider>
+	</React.StrictMode>,
 );

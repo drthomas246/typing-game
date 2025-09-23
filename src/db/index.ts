@@ -1,14 +1,12 @@
 import Dexie, { type Table } from "dexie";
 
-// 「アプリ全体の状態」をバージョン付きで保存
 export type AppSnapshot = {
-	id: "app"; // 常に "app" （単一スナップショット運用）
-	version: number; // スキーマ版
-	updatedAt: number; // Date.now()
+	id: "app";
+	version: number;
+	updatedAt: number;
 	state: {
 		settings: { mode: "study" | "battle"; sort: "random" | "reverse" };
 		progress: { level: number; lastOpenedAt: number };
-		// 他にも必要な slice をホワイトリストで
 	};
 };
 
@@ -19,13 +17,6 @@ class AppDB extends Dexie {
 		this.version(1).stores({
 			app: "id, updatedAt",
 		});
-		// 例：2版で state に新フィールドを追加したら
-		// this.version(2).stores({ app: "id, updatedAt" }).upgrade(tx => {
-		//   return tx.table<AppSnapshot>("app").toCollection().modify(row => {
-		//     row.version = 2;
-		//     row.state.settings ??= { sound: true, bgmVolume: 0.4, theme: "light" };
-		//   });
-		// });
 	}
 }
 export const db = new AppDB();

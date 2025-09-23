@@ -1,7 +1,7 @@
-import type { BattleArenaProps } from "@/types/index";
 import { Box, HStack } from "@chakra-ui/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { forwardRef } from "react";
+import type { BattleArenaProps } from "@/types/index";
 import DamageMotion from "./DamageMotion";
 import EnemyHpBar from "./EnemyHpBar";
 import EnemyLayer from "./EnemyLayer";

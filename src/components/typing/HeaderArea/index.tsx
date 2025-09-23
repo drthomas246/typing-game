@@ -1,9 +1,8 @@
-import HeaderControls from "@/components/typing/HeaderArea/HeaderControls";
-import type { HeaderAreaProps } from "@/types/index";
-import { HStack, Heading, Text } from "@chakra-ui/react";
-import { useSetPage } from "@/contexts/PageContext";
+import { Heading, HStack, Text } from "@chakra-ui/react";
 import { flushSync } from "react-dom";
-import { useSound } from "@/contexts/PageContext";
+import HeaderControls from "@/components/typing/HeaderArea/HeaderControls";
+import { useSetPage, useSound } from "@/contexts/PageContext";
+import type { HeaderAreaProps } from "@/types/index";
 
 export default function HeaderArea({
 	title,

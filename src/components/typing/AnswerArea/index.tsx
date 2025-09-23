@@ -1,7 +1,7 @@
+import { Box, Text } from "@chakra-ui/react";
 import AnswerInputView from "@/components/typing/AnswerArea/AnswerInputView";
 import InputCapture from "@/components/typing/AnswerArea/InputCapture";
 import type { AnswerPanelProps } from "@/types/index";
-import { Box, Text } from "@chakra-ui/react";
 
 export default function AnswerPanel({
 	typed,

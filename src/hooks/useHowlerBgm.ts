@@ -1,7 +1,7 @@
-import type { useHowlerBgmOpts } from "@/types/index";
 import type { Howl } from "howler";
 import { Howler, Howl as HowlerHowl } from "howler";
 import { useCallback, useEffect, useRef } from "react";
+import type { useHowlerBgmOpts } from "@/types/index";
 
 function clamp01(v: number) {
 	return Math.max(0, Math.min(1, v));

@@ -1,7 +1,7 @@
+import { useEffect, useRef } from "react";
 import { useBattle } from "@/contexts/PageContext";
 import { useSpeech } from "@/hooks/useSpeech";
 import type { EngineOptions, EngineState } from "@/types/index";
-import { useEffect, useRef } from "react";
 
 export function useSpeechOnce(params: {
 	state: EngineState;

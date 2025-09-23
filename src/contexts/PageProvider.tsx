@@ -1,20 +1,19 @@
-import { useCallback, useMemo, useState, type ReactNode } from "react";
-import {
-	UserPageContext,
-	UserSetPageContext,
-	UserSoundContext,
-	UserSetSoundContext,
-	UserBattleContext,
-	UserSetBattleContext,
-	UserSortContext,
-	UserSetSortContext,
-	UserLevelContext,
-	UserSetLevelContext,
-} from "./PageContext";
-
 import { useLiveQuery } from "dexie-react-hooks";
+import { type ReactNode, useCallback, useMemo, useState } from "react";
 import { db } from "@/db";
 import { saveApp } from "@/repositories/appStateRepository";
+import {
+	UserBattleContext,
+	UserLevelContext,
+	UserPageContext,
+	UserSetBattleContext,
+	UserSetLevelContext,
+	UserSetPageContext,
+	UserSetSortContext,
+	UserSetSoundContext,
+	UserSortContext,
+	UserSoundContext,
+} from "./PageContext";
 
 export default function PageProvider({ children }: { children: ReactNode }) {
 	const [page, setPage] = useState<number>(0);

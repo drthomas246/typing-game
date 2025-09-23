@@ -1,5 +1,5 @@
-import type { ColorMode, UseColorModeReturn } from "@/types/index";
 import { useTheme } from "next-themes";
+import type { ColorMode, UseColorModeReturn } from "@/types/index";
 
 export function useColorMode(): UseColorModeReturn {
 	const { resolvedTheme, setTheme, forcedTheme } = useTheme();

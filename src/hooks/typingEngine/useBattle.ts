@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { useBattle as useBattleContext } from "@/contexts/PageContext";
 import type {
 	Action,
@@ -5,7 +6,6 @@ import type {
 	EngineState,
 	SoundCtl,
 } from "@/types/index";
-import { useCallback } from "react";
 
 export function useBattle(
 	opts: EngineOptions,

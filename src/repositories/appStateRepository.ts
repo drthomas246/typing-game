@@ -1,4 +1,4 @@
-import { db, type AppSnapshot } from "@/db";
+import { type AppSnapshot, db } from "@/db";
 
 const ID = "app";
 const SNAPSHOT_VERSION = 1;

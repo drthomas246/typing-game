@@ -1,7 +1,7 @@
-import type { DamageMotionProps } from "@/types/index";
 import { Box } from "@chakra-ui/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import type { DamageMotionProps } from "@/types/index";
 
 export default function DamageMotion({
 	arenaRef,

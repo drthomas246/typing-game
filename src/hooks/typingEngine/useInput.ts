@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { useBattle } from "@/contexts/PageContext";
 import type {
 	Action,
@@ -7,7 +8,6 @@ import type {
 	LearningPhase,
 	SoundCtl,
 } from "@/types/index";
-import { useCallback } from "react";
 
 export function useInput(params: {
 	state: EngineState;

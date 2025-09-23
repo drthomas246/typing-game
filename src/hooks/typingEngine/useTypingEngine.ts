@@ -1,3 +1,5 @@
+import { useCallback, useEffect, useMemo, useReducer, useRef } from "react";
+import { useBattle as useBattleContext } from "@/contexts/PageContext";
 import { initialState, reducer } from "@/hooks/typingEngine//reducer";
 import { useBattle } from "@/hooks/typingEngine//useBattle";
 import { useInput } from "@/hooks/typingEngine//useInput";
@@ -9,8 +11,6 @@ import { useTimer } from "@/hooks/typingEngine//useTimer";
 import { useSpeech } from "@/hooks/useSpeech";
 import { judgeChar } from "@/lib/judge";
 import type { EngineOptions, QAPair } from "@/types/index";
-import { useCallback, useEffect, useMemo, useReducer, useRef } from "react";
-import { useBattle as useBattleContext } from "@/contexts/PageContext";
 
 export function useTypingEngine(
 	opts: EngineOptions,

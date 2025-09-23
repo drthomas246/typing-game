@@ -1,6 +1,6 @@
-import type { PhaseNoticeProps } from "@/types/index";
 import { Badge, HStack, Text } from "@chakra-ui/react";
 import { useBattle } from "@/contexts/PageContext";
+import type { PhaseNoticeProps } from "@/types/index";
 
 export default function PhaseNotice({
 	learnThenRecall,

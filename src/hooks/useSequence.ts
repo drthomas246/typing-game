@@ -1,8 +1,8 @@
+import { useAnimation } from "framer-motion";
+import { useCallback, useState } from "react";
 import { nextFrame, sleep } from "@/lib/nextFrame";
 import { preloadImage } from "@/lib/preloadImage";
 import type { Controls, useSequenceVisuals } from "@/types/index";
-import { useAnimation } from "framer-motion";
-import { useCallback, useState } from "react";
 
 export function useSequence(opts: {
 	firstPlayed: boolean;

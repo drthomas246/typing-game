@@ -1,6 +1,6 @@
-import type { TitleOverlayProps } from "@/types/index";
 import { Image } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import type { TitleOverlayProps } from "@/types/index";
 
 const MotionImage = motion(Image);
 

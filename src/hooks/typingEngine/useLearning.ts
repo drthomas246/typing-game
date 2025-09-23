@@ -1,3 +1,4 @@
+import { useCallback, useEffect } from "react";
 import { useBattle } from "@/contexts/PageContext";
 import type {
 	Action,
@@ -5,7 +6,6 @@ import type {
 	EngineState,
 	LearningPhase,
 } from "@/types/index";
-import { useCallback, useEffect } from "react";
 
 export function useLearning(params: {
 	state: EngineState;

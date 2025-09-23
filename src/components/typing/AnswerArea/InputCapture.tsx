@@ -1,5 +1,5 @@
-import type { InputCaptureProps } from "@/types/index";
 import { useEffect } from "react";
+import type { InputCaptureProps } from "@/types/index";
 
 export default function InputCapture({
 	onKey,

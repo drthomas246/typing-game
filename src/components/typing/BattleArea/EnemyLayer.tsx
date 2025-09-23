@@ -1,6 +1,6 @@
-import type { EnemyLayerProps } from "@/types/index";
 import { Image } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import type { EnemyLayerProps } from "@/types/index";
 
 const MotionImg = motion.img;
 

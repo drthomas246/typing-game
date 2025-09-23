@@ -1,5 +1,5 @@
-import type { TitleProps } from "@/types/index";
 import { Box, Image } from "@chakra-ui/react";
+import type { TitleProps } from "@/types/index";
 
 export function Title({ containRect }: TitleProps) {
 	if (!containRect || containRect.w === 0 || containRect.h === 0) return null;

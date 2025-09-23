@@ -1,5 +1,5 @@
-import type { EnemyHpBarProps } from "@/types/index";
 import { Badge, Box, HStack, Text } from "@chakra-ui/react";
+import type { EnemyHpBarProps } from "@/types/index";
 
 export default function EnemyHpBar({ current, max, pct }: EnemyHpBarProps) {
 	return (

@@ -1,5 +1,5 @@
-import * as BGM from "@/lib/bgmManager";
 import { useCallback, useEffect } from "react";
+import * as BGM from "@/lib/bgmManager";
 
 export function useBgm(src: string, defaultVolume = 0.5) {
 	useEffect(() => {
