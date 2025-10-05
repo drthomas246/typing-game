@@ -20,9 +20,16 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
+    "types": ["vitest/globals", "vite/client", "node"],
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src"]
+  "include": [
+    "src",
+    "tests",
+    "vitest.setup.ts",
+    "vite.config.ts",
+    "vitest.config.ts"
+  ]
 }
