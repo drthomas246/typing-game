@@ -6,11 +6,14 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "check": "biome check ./src",
     "preview": "vite preview",
     "test": "vitest",
     "test:run": "vitest run",
-    "test:cov": "vitest run --coverage --reporter=verbose"
+    "test:cov": "vitest run --coverage --reporter=verbose",
+    "format": "biome format --write ./src",
+    "lint": "biome check ./src",
+    "docs:build": "typedoc",
+    "docs:check": "typedoc --treatWarningsAsErrors --showConfig"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.24.2",
@@ -44,6 +47,8 @@
     "fake-indexeddb": "^6.2.2",
     "globals": "^16.3.0",
     "jsdom": "^27.0.0",
+    "typedoc": "^0.28.13",
+    "typedoc-plugin-markdown": "^4.9.0",
     "typescript": "~5.8.3",
     "vite": "^7.1.0",
     "vite-tsconfig-paths": "^5.1.4",
