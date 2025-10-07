@@ -23,9 +23,12 @@ import Typing from "@/pages/TypingPage";
 import type { AppProps, MapPoint } from "@/types/index";
 
 /**
- * サウンドコンテキストをユーザー操作で再開する。
+ * HowlerのAudioContextが停止状態（suspended）の場合、ユーザー操作に応じて再開（resume）します。
+ * 多くのブラウザで音声の自動再生が制限されているため、最初のユーザーインタラクションで呼び出す必要があります。
+ * @returns {Promise<void>} Contextの再開が完了するか、不要であれば解決するPromise。
  */
-function resumeHowlerContextIfNeeded() {
+function resumeHowlerContextIfNeeded(): Promise<void> {
+  // Howlerの内部Contextにアクセスするための型アサーション
   const h = Howler as unknown as { ctx?: AudioContext };
   const ctx = h.ctx;
   if (ctx && ctx.state === "suspended") {
@@ -35,9 +38,13 @@ function resumeHowlerContextIfNeeded() {
 }
 
 /**
- * アプリ全体のページ遷移とサウンド制御を行うコンポーネント。
+ * アプリケーションのメインコンポーネント。
+ * ページ遷移、BGM/サウンドエフェクト（SE）の制御、初回アクセス時の同意ダイアログとタイトルシーケンスを管理します。
+ * @param {AppProps} props - コンポーネントのプロパティ。
+ * @param {boolean} [props.played=true] - 過去に一度アプリをプレイしたことがあるかどうかのフラグ。
+ * @returns {JSX.Element} 現在のページ（マップまたはタイピング）を表示するJSX要素。
  */
-export default function App({ played = true }: AppProps) {
+export default function App({ played = true }: AppProps): React.ReactElement {
   const page = usePage();
   const setPage = useSetPage();
 
@@ -140,6 +147,7 @@ export default function App({ played = true }: AppProps) {
               />
             ))}
           </MapPage>
+
           {firstPlayed && (
             <>
               <TitleOverlay
@@ -178,7 +186,7 @@ export default function App({ played = true }: AppProps) {
         <Typing
           QA={TYPING_ROUTE_POINTS[page - 1].QA}
           title={TYPING_ROUTE_POINTS[page - 1].title}
-          sound={isBgmOn}
+          sound={isBgmOn} // BGMのオン/オフ状態を渡す
         />
       )}
     </>

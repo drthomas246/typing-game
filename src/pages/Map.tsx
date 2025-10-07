@@ -5,7 +5,14 @@ import { tiles, worldSize } from "@/components/map/mapData";
 import { TYPING_ROUTE_POINTS } from "@/data/points";
 
 /**
- * マップ画面を描画しポイントを配置するページ。
+ * マップ画面を描写し、ゲームの進行状況に応じたポイントを配置するページコンポーネント。
+ * `MapView`コンポーネントをラップし、ツールチップの表示状態やKonvaステージへの参照を提供します。
+ *
+ * @param {object} props - このコンポーネントが受け取るプロパティ。
+ * @param {boolean} props.showTooltip - マップ上のポイントにツールチップを表示するかどうかを制御するフラグ。
+ * @param {React.RefObject<KonvaStage | null>} props.stageRef - Konvaステージ要素への参照オブジェクト。
+ * @param {React.ReactNode} props.children - マップビュー内にレンダリングされる子要素。
+ * @returns {JSX.Element} マップ画面のUI要素。
  */
 export default function MapPage({
   showTooltip,

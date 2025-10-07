@@ -13,6 +13,7 @@
     "moduleDetection": "force",
     "noEmit": true,
     "jsx": "react-jsx",
+    "types": ["vite/client"],
 
     "strict": true,
     "noUnusedLocals": true,
@@ -20,16 +21,9 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-    "types": ["vitest/globals", "vite/client", "node"],
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": [
-    "src",
-    "tests",
-    "vitest.setup.ts",
-    "vite.config.ts",
-    "vitest.config.ts"
-  ]
+  "include": ["src"]
 }

@@ -6,7 +6,15 @@ import QA_WEEK from "@/data/texts/qa_week";
 import type { MapPoint } from "@/types/index";
 
 /**
- * マップ上のポイントと対応する問題セット。
+ * タイピングゲームのマップ上に表示される各ポイントのデータ配列。
+ * 各ポイントは、特定の場所 (`x`, `y`座標) と、そこに対応するタイピング問題セット (`QA`) を持っています。
+ *
+ * @type {MapPoint[]}
+ * @property {number} id - ポイントの一意な識別子。
+ * @property {number} x - マップ上のX座標。
+ * @property {number} y - マップ上のY座標。
+ * @property {string} title - マップ上に表示されるポイントのタイトル（例: "1～10までの数字"）。
+ * @property {QAPair[]} QA - そのポイントで出題される問題の配列。
  */
 export const TYPING_ROUTE_POINTS: MapPoint[] = [
   { id: 1, x: 2724, y: 1768, title: "1～10までの数字", QA: QA_NUMBER },

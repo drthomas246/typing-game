@@ -4,14 +4,16 @@ import App from "@/App";
 import { Provider } from "@/components/ui/provider";
 import PageProvider from "@/contexts/PageProvider";
 
-/**
- * ルート要素にアプリをマウントするエントリーポイント。
- */
 const el = document.getElementById("root");
+
 if (!(el instanceof HTMLElement)) {
   throw new Error('Root element "#root" not found');
 }
 
+/**
+ * ReactDOMのクライアントAPIを使用して、ReactアプリケーションをDOMにレンダリングします。
+ * @param el - アプリケーションがマウントされるDOM要素。
+ */
 ReactDOM.createRoot(el).render(
   <React.StrictMode>
     <Provider>

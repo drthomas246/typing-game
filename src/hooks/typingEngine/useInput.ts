@@ -10,7 +10,22 @@ import type {
 } from "@/types/index";
 
 /**
- * 入力文字を判定し状態遷移させるフック。
+ * ユーザーのキーボード入力を処理し、タイピングエンジンの状態を更新するためのカスタムフック。
+ * タイプされた文字の判定、ヒントの表示、ダメージ処理、問題のクリア、フェーズ遷移などを管理します。
+ *
+ * @param {object} params - このフックが受け取るパラメータオブジェクト。
+ * @param {EngineState} params.state - 現在のタイピングエンジンの状態。
+ * @param {EngineOptions} params.opts - エンジンのオプション設定。
+ * @param {React.Dispatch<Action>} params.dispatch - タイピングエンジンの状態を更新するためのディスパッチ関数。
+ * @param {JudgeFn} params.judgeChar - 入力文字の正誤を判定する関数。
+ * @param {SoundCtl} params.sound - サウンド制御オブジェクト。効果音の再生に使用されます。
+ * @param {(text: string, opts?: { lang?: string }) => void} params.speak - テキストを音声で読み上げる関数。
+ * @param {(s: EngineState) => void} params.onMiss - タイプミス時に呼び出されるコールバック関数。
+ * @param {(s: EngineState) => void} params.onSentenceClear - 問題がクリアされたときに呼び出されるコールバック関数。
+ * @param {() => void} params.next - 次の問題へ進むための関数。
+ * @param {(phase: LearningPhase) => void} params.setPhase - 学習フェーズを設定する関数。
+ * @returns {{ onKey: (key: string) => void }} キー入力イベントを処理するコールバック関数を含むオブジェクト。
+ * @returns {function(key: string): void} .onKey - キーが押されたときに呼び出される関数。
  */
 export function useInput(params: {
   state: EngineState;

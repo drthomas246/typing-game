@@ -16,7 +16,20 @@ import {
 import type { ResultsDialogProps } from "@/types/index";
 
 /**
- * タイピング結果を表示し再挑戦を促すダイアログ。
+ * タイピングゲームの結果を表示し、再挑戦やダイアログを閉じるアクションを提供するUIコンポーネント。
+ *
+ * @param {ResultsDialogProps} props - このコンポーネントが受け取るプロパティ。
+ * @param {boolean} props.open - ダイアログが開いているかどうかを制御するフラグ。
+ * @param {(open: boolean) => void} props.setOpen - ダイアログの開閉状態を更新する関数。
+ * @param {() => void} props.onRetry - 「もう一度やる」ボタンがクリックされたときに実行されるコールバック関数。
+ * @param {(play: boolean) => void} props.setShouldBgmPlay - BGMの再生状態を制御する関数。
+ * @param {object} props.summary - タイピングゲームの結果のサマリーデータ。
+ * @param {number} props.summary.timeSec - ゲームにかかった時間（秒）。
+ * @param {number} props.summary.usedHintCount - ヒントを使用した問題の数。
+ * @param {number} props.summary.mistakeProblemCount - 間違えた問題の数。
+ * @param {boolean} props.summary.killedNow - プレイヤーがレベルアップしたかどうかを示すフラグ。
+ *
+ * @returns {JSX.Element} 結果表示用のダイアログ。
  */
 export default function ResultsDialog({
   open,
@@ -96,7 +109,7 @@ export default function ResultsDialog({
                 <Button
                   variant="outline"
                   onClick={() => {
-                    if (sound) setShouldBgmPlay(true); // waitScreen.mp3 を再生
+                    if (sound) setShouldBgmPlay(true);
                   }}
                 >
                   とじる

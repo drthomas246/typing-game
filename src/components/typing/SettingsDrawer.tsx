@@ -20,7 +20,16 @@ import {
 import type { Settings, SettingsDrawerProps } from "@/types/index";
 
 /**
- * 遊び方やサウンド設定をまとめて調整するドロワー。
+ * 遊び方（練習/バトル）、問題の並び順（ランダム/シーケンシャル）、効果音のオン/オフ、
+ * および練習から復習への移行設定を調整するための設定ドロワーコンポーネント。
+ *
+ * @param {SettingsDrawerProps} props - このコンポーネントが受け取るプロパティ。
+ * @param {boolean} props.open - ドロワーが開いているかどうかを制御するフラグ。
+ * @param {() => void} props.onClose - ドロワーが閉じられたときに実行されるコールバック関数。
+ * @param {Settings} props.settings - 現在の設定オブジェクト。
+ * @param {(settings: Settings) => void} props.onChange - 設定が変更されたときに呼び出される関数。
+ *
+ * @returns {JSX.Element} 設定ドロワー。
  */
 export default function SettingsDrawer({
   open,
