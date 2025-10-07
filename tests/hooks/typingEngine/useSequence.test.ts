@@ -2,6 +2,9 @@ import { act, renderHook } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { EngineOptions, QAPair } from "@/types/index";
 
+/**
+ * useSequence フックの出題順制御を検証するテスト。
+ */
 const h = vi.hoisted(() => {
   const shuffle = vi.fn<(arr: number[], seed: number) => number[]>(
     (arr: number[]) => [...arr].slice().reverse(),

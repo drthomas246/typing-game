@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import type { InputCaptureProps } from "@/types/index";
 
+/**
+ * キーボード入力を横取りしてハンドラーへ渡す。
+ */
 export default function InputCapture({
 	onKey,
 	enabled = true,

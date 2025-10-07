@@ -16,6 +16,9 @@ import { useBgm } from "@/hooks/typingPage/useBgm";
 import { useRandomAssets } from "@/hooks/typingPage/useRandomAssets";
 import type { Settings, TypingPageProps } from "@/types/index";
 
+/**
+ * タイピングバトル画面全体を構成するページ。
+ */
 export default function TypingPage({ QA, title }: TypingPageProps) {
 	const level = useLevel();
 	const battle = useBattle();

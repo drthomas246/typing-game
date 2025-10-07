@@ -3,10 +3,16 @@ import { type AppSnapshot, db } from "@/db";
 const ID = "app";
 const SNAPSHOT_VERSION = 1;
 
+/**
+ * 保存されたアプリ状態を読み込む。
+ */
 export async function loadApp(): Promise<AppSnapshot | undefined> {
-	return db.app.get(ID);
+        return db.app.get(ID);
 }
 
+/**
+ * 状態の一部をマージして保存する。
+ */
 export async function saveApp(partial: Partial<AppSnapshot["state"]>) {
 	const current = (await db.app.get(ID)) ?? {
 		id: ID,
@@ -27,6 +33,9 @@ export async function saveApp(partial: Partial<AppSnapshot["state"]>) {
 	return next;
 }
 
+/**
+ * 状態全体を置き換えて保存する。
+ */
 export async function overwriteApp(full: AppSnapshot["state"]) {
 	const next: AppSnapshot = {
 		id: ID,

@@ -3,18 +3,21 @@ import { type ReactNode, useCallback, useMemo, useState } from "react";
 import { db } from "@/db";
 import { saveApp } from "@/repositories/appStateRepository";
 import {
-	UserBattleContext,
-	UserLevelContext,
-	UserPageContext,
+        UserBattleContext,
+        UserLevelContext,
+        UserPageContext,
 	UserSetBattleContext,
 	UserSetLevelContext,
 	UserSetPageContext,
 	UserSetSortContext,
 	UserSetSoundContext,
 	UserSortContext,
-	UserSoundContext,
+        UserSoundContext,
 } from "./PageContext";
 
+/**
+ * ページ遷移や設定の状態を提供するプロバイダー。
+ */
 export default function PageProvider({ children }: { children: ReactNode }) {
 	const [page, setPage] = useState<number>(0);
 	const [sound, setSound] = useState<boolean>(false);

@@ -1,6 +1,9 @@
 import { useCallback, useEffect } from "react";
 import * as BGM from "@/lib/bgmManager";
 
+/**
+ * BGM の再生制御を行うフック。
+ */
 export function useBgm(src: string, defaultVolume = 0.5) {
 	useEffect(() => {
 		BGM.init(src, defaultVolume, true);

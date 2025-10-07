@@ -4,6 +4,9 @@ import type { TitleOverlayProps } from "@/types/index";
 
 const MotionImage = motion(Image);
 
+/**
+ * タイトル画像をアニメーション付きで表示するオーバーレイ。
+ */
 export function TitleOverlay({ src, visible, animateCtrl }: TitleOverlayProps) {
 	if (!visible) return null;
 

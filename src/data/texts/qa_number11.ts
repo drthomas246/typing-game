@@ -1,5 +1,8 @@
 import type { QAPair } from "@/types/index";
 
+/**
+ * 11から20までの数字問題を収録したデータ。
+ */
 const QA_NUMBER11: QAPair[] = [
 	{ ja: "11", en: "eleven", img: "./images/number11/number_11.png" },
 	{ ja: "12", en: "twelve", img: "./images/number11/number_12.png" },

@@ -1,6 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { SpeakOpts } from "@/types/index";
 
+/**
+ * Web Speech API を利用した音声読み上げを扱うフック。
+ */
 export function useSpeech() {
 	const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
 	const [isReady, setIsReady] = useState(false);

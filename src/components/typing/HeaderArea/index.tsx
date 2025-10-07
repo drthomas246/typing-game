@@ -4,6 +4,9 @@ import HeaderControls from "@/components/typing/HeaderArea/HeaderControls";
 import { useSetPage, useSound } from "@/contexts/PageContext";
 import type { HeaderAreaProps } from "@/types/index";
 
+/**
+ * タイトルと操作ボタンをまとめたヘッダー領域。
+ */
 export default function HeaderArea({
 	title,
 	start,

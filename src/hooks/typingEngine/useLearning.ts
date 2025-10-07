@@ -1,16 +1,19 @@
 import { useCallback, useEffect } from "react";
 import { useBattle } from "@/contexts/PageContext";
 import type {
-	Action,
-	EngineOptions,
-	EngineState,
-	LearningPhase,
+  Action,
+  EngineOptions,
+  EngineState,
+  LearningPhase,
 } from "@/types/index";
 
+/**
+ * 学習フェーズの状態を制御するフック。
+ */
 export function useLearning(params: {
-	state: EngineState;
-	dispatch: React.Dispatch<Action>;
-	opts: EngineOptions;
+        state: EngineState;
+        dispatch: React.Dispatch<Action>;
+        opts: EngineOptions;
 }) {
 	const battle = useBattle();
 	const { state, dispatch, opts } = params;

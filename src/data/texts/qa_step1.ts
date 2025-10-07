@@ -1,5 +1,8 @@
 import type { QAPair } from "@/types/index";
 
+/**
+ * ステップ1の語彙問題を収録したデータ。
+ */
 const QA_STEP1: QAPair[] = [
 	{
 		ja: "～について（の）/およそ、約",

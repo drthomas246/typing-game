@@ -4,6 +4,9 @@ import type { SlideOverlayProps } from "@/types/index";
 
 const MotionImage = motion(Image);
 
+/**
+ * タイトル画面のスライド演出を描画するオーバーレイ。
+ */
 export function SlideOverlay({
   side,
   src,

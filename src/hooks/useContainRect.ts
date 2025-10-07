@@ -1,6 +1,9 @@
 import { type RefObject, useCallback, useEffect, useState } from "react";
 import type { ContainRect } from "@/types/index";
 
+/**
+ * 画像を枠内に収める矩形情報を計算するフック。
+ */
 export function useContainRect(
 	imgRef: RefObject<HTMLImageElement | null>,
 	wrapRef: RefObject<HTMLDivElement | null>,

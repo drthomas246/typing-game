@@ -4,13 +4,16 @@ import { useCallback, useEffect, useRef } from "react";
 import type { useHowlerBgmOpts } from "@/types/index";
 
 function clamp01(v: number) {
-	return Math.max(0, Math.min(1, v));
+        return Math.max(0, Math.min(1, v));
 }
 
+/**
+ * Howler.js を使ってBGMを制御するフック。
+ */
 export function useHowlerBgm({
-	src,
-	defaultVolume = 0.5,
-	loop = true,
+        src,
+        defaultVolume = 0.5,
+        loop = true,
 }: useHowlerBgmOpts) {
 	const howlRef = useRef<Howl | null>(null);
 	const targetRef = useRef(clamp01(defaultVolume));

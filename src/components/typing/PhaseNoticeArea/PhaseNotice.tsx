@@ -2,6 +2,9 @@ import { Badge, HStack, Text } from "@chakra-ui/react";
 import { useBattle } from "@/contexts/PageContext";
 import type { PhaseNoticeProps } from "@/types/index";
 
+/**
+ * 現在の学習フェーズをバッジで知らせる。
+ */
 export default function PhaseNotice({
 	learnThenRecall,
 	phase,

@@ -2,6 +2,9 @@ import { useCallback, useState } from "react";
 import { shuffle } from "@/hooks/typingEngine/rng";
 import type { EngineOptions, QAPair } from "@/types/index";
 
+/**
+ * 問題の出題順を決定し取得するフック。
+ */
 export function useSequence(QA: QAPair[], opts: EngineOptions) {
 	const [order, setOrder] = useState<number[]>([]);
 

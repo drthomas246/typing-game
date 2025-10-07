@@ -5,6 +5,9 @@ import type {
 import type { useAnimation } from "framer-motion";
 import type { ThemeProviderProps } from "next-themes";
 
+/**
+ * アプリ全体で共有する型定義をまとめたモジュール。
+ */
 export type ColorModeButtonProps = Omit<IconButtonProps, "aria-label">;
 
 export interface TooltipProps extends ChakraTooltip.RootProps {

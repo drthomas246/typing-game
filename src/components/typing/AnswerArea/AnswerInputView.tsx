@@ -3,6 +3,9 @@
 import { Box } from "@chakra-ui/react";
 import type { AnswerInputViewProps } from "@/types/index";
 
+/**
+ * 入力文字とヒントを色分け表示するビュー。
+ */
 export default function AnswerInputView({
 	typed,
 	correctMap,

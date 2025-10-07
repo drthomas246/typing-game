@@ -3,6 +3,9 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { useSpeechOnce } from "@/hooks/typingEngine/useSpeechOnce";
 import type { EngineOptions, EngineState } from "@/types/index";
 
+/**
+ * useSpeechOnce フックの読み上げ条件を検証するテスト。
+ */
 let battleFlag = true;
 vi.mock("@/contexts/PageContext", () => ({
   useBattle: () => battleFlag,

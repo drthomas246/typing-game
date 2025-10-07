@@ -22,6 +22,9 @@ import MapPage from "@/pages/Map";
 import Typing from "@/pages/TypingPage";
 import type { AppProps, MapPoint } from "@/types/index";
 
+/**
+ * サウンドコンテキストをユーザー操作で再開する。
+ */
 function resumeHowlerContextIfNeeded() {
   const h = Howler as unknown as { ctx?: AudioContext };
   const ctx = h.ctx;
@@ -31,6 +34,9 @@ function resumeHowlerContextIfNeeded() {
   return Promise.resolve();
 }
 
+/**
+ * アプリ全体のページ遷移とサウンド制御を行うコンポーネント。
+ */
 export default function App({ played = true }: AppProps) {
   const page = usePage();
   const setPage = useSetPage();

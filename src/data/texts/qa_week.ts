@@ -1,5 +1,8 @@
 import type { QAPair } from "@/types/index";
 
+/**
+ * 曜日の名称を扱う問題データ。
+ */
 const QA_WEEK: QAPair[] = [
 	{ ja: "日曜日", en: "sunday", img: "./images/week/weekmark7.png" },
 	{ ja: "月曜日", en: "monday", img: "./images/week/weekmark1.png" },

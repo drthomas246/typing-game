@@ -15,6 +15,9 @@ import {
 } from "@/contexts/PageContext";
 import type { ResultsDialogProps } from "@/types/index";
 
+/**
+ * タイピング結果を表示し再挑戦を促すダイアログ。
+ */
 export default function ResultsDialog({
   open,
   setOpen,

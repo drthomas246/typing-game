@@ -3,6 +3,9 @@ import AnswerInputView from "@/components/typing/AnswerArea/AnswerInputView";
 import InputCapture from "@/components/typing/AnswerArea/InputCapture";
 import type { AnswerPanelProps } from "@/types/index";
 
+/**
+ * 入力欄とキーボード操作をまとめた回答パネル。
+ */
 export default function AnswerPanel({
 	typed,
 	correctMap,

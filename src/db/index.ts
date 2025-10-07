@@ -1,8 +1,8 @@
 import Dexie, { type Table } from "dexie";
 
 export type AppSnapshot = {
-	id: "app";
-	version: number;
+        id: "app";
+        version: number;
 	updatedAt: number;
 	state: {
 		settings: { mode: "study" | "battle"; sort: "random" | "reverse" };
@@ -10,11 +10,14 @@ export type AppSnapshot = {
 	};
 };
 
+/**
+ * アプリ状態を保持するDexieデータベース。
+ */
 class AppDB extends Dexie {
-	app!: Table<AppSnapshot, string>;
-	constructor() {
-		super("my-app-db");
-		this.version(1).stores({
+        app!: Table<AppSnapshot, string>;
+        constructor() {
+                super("my-app-db");
+                this.version(1).stores({
 			app: "id, updatedAt",
 		});
 	}

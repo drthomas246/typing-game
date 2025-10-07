@@ -12,6 +12,9 @@ import { useSpeech } from "@/hooks/useSpeech";
 import { judgeChar } from "@/lib/judge";
 import type { EngineOptions, QAPair } from "@/types/index";
 
+/**
+ * タイピングバトル全体を管理するエンジンフック。
+ */
 export function useTypingEngine(
 	opts: EngineOptions,
 	QA: QAPair[],

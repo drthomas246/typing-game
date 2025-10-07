@@ -22,11 +22,14 @@ const EPS = 0.005;
 const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
 
 function attachFadeOnce(h: Howl, cb: Listener) {
-	if (S.onFade) h.off("fade", S.onFade);
-	S.onFade = cb;
-	h.once("fade", cb);
+        if (S.onFade) h.off("fade", S.onFade);
+        S.onFade = cb;
+        h.once("fade", cb);
 }
 
+/**
+ * BGM を初期化しHowlerインスタンスを準備する。
+ */
 export function init(src: string, defaultVolume = 0.5, loop = true) {
 	if (Howler.volume() === 0) Howler.volume(1.0);
 
@@ -54,17 +57,26 @@ export function init(src: string, defaultVolume = 0.5, loop = true) {
 	});
 }
 
+/**
+ * 目標ボリュームを設定する。
+ */
 export function setTargetVolume(v: number) {
-	S.targetVolume = clamp01(v);
-	if (S.howl && !S.isFading) {
-		S.howl.volume(S.targetVolume);
-	}
+        S.targetVolume = clamp01(v);
+        if (S.howl && !S.isFading) {
+                S.howl.volume(S.targetVolume);
+        }
 }
 
+/**
+ * 現在の目標ボリュームを取得する。
+ */
 export function getTargetVolume() {
-	return S.targetVolume;
+        return S.targetVolume;
 }
 
+/**
+ * BGM をフェードインしながら再生する。
+ */
 export function ensurePlaying(ms = 800, to?: number) {
 	const h = S.howl;
 	if (!h) return;
@@ -99,6 +111,9 @@ export function ensurePlaying(ms = 800, to?: number) {
 	}
 }
 
+/**
+ * BGM をフェードアウトして停止する。
+ */
 export function fadeOutStop(ms = 500) {
 	const h = S.howl;
 	if (!h || !h.playing()) return;
@@ -117,6 +132,9 @@ export function fadeOutStop(ms = 500) {
 	h.fade(cur, 0, ms);
 }
 
+/**
+ * 即座にBGMを停止する。
+ */
 export function stopNow() {
 	const h = S.howl;
 	if (!h) return;

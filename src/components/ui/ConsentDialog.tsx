@@ -1,5 +1,8 @@
 import { Button, Dialog, Portal } from "@chakra-ui/react";
 
+/**
+ * 音声利用の許諾を確認するダイアログ。
+ */
 export function ConsentDialog({
 	onYes,
 	onNo,

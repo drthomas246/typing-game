@@ -1,5 +1,8 @@
 import type { Tile } from "@/types/index";
 
+/**
+ * マップ画像タイルの配置情報を定義する。
+ */
 export const TILE_W = 1308;
 export const TILE_H = 736;
 

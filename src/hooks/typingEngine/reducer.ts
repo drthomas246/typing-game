@@ -3,6 +3,9 @@ import type { Action, EngineOptions, EngineState } from "@/types/index";
 const clamp = (v: number, lo: number, hi: number) =>
   Math.min(hi, Math.max(lo, v));
 
+/**
+ * エンジン状態の初期値を生成する。
+ */
 export function initialState(opts: EngineOptions): EngineState {
   const playerMaxHp = Math.max(1, opts.playerMaxHp ?? 100);
   const enemyMaxHp = Math.max(1, opts.enemyMaxHp ?? 100);
@@ -39,6 +42,9 @@ export function initialState(opts: EngineOptions): EngineState {
   };
 }
 
+/**
+ * タイピングエンジンの状態遷移を扱うリデューサー。
+ */
 export function reducer(s: EngineState, a: Action): EngineState {
   switch (a.type) {
     case "START": {

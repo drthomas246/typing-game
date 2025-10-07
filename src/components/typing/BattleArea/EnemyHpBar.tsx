@@ -1,6 +1,9 @@
 import { Badge, Box, HStack, Text } from "@chakra-ui/react";
 import type { EnemyHpBarProps } from "@/types/index";
 
+/**
+ * 敵の残りHPを表示するバー。
+ */
 export default function EnemyHpBar({ current, max, pct }: EnemyHpBarProps) {
 	return (
 		<HStack gap="3" align="center">

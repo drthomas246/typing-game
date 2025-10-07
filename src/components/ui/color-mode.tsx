@@ -9,21 +9,30 @@ import type {
 } from "@/types/index";
 import { useColorMode } from "./use-color-mode";
 
+/**
+ * テーマ切り替え用のプロバイダーを提供する。
+ */
 export function ColorModeProvider(props: ColorModeProviderProps) {
-	return (
-		<ThemeProvider attribute="class" disableTransitionOnChange {...props} />
-	);
+        return (
+                <ThemeProvider attribute="class" disableTransitionOnChange {...props} />
+        );
 }
 
+/**
+ * 現在のテーマに合わせたアイコンを返す。
+ */
 export function ColorModeIcon(props: React.ComponentProps<typeof LuSun>) {
-	const { colorMode } = useColorMode();
-	const Icon = colorMode === "dark" ? LuMoon : LuSun;
-	return <Icon {...props} />;
+        const { colorMode } = useColorMode();
+        const Icon = colorMode === "dark" ? LuMoon : LuSun;
+        return <Icon {...props} />;
 }
 
+/**
+ * テーマをワンクリックで切り替えるボタン。
+ */
 export const ColorModeButton = React.forwardRef<
-	HTMLButtonElement,
-	ColorModeButtonProps
+        HTMLButtonElement,
+        ColorModeButtonProps
 >(function ColorModeButton(props, ref) {
 	const { toggleColorMode } = useColorMode();
 	return (
@@ -39,12 +48,15 @@ export const ColorModeButton = React.forwardRef<
 				<ColorModeIcon size={20} />
 			</IconButton>
 		</ClientOnly>
-	);
+        );
 });
 
+/**
+ * ライトモード専用のラッパー要素。
+ */
 export const LightMode = React.forwardRef<HTMLSpanElement, SpanProps>(
-	function LightMode(props, ref) {
-		return (
+        function LightMode(props, ref) {
+                return (
 			<Span
 				color="fg"
 				display="contents"
@@ -55,12 +67,15 @@ export const LightMode = React.forwardRef<HTMLSpanElement, SpanProps>(
 				{...props}
 			/>
 		);
-	},
+        },
 );
 
+/**
+ * ダークモード専用のラッパー要素。
+ */
 export const DarkMode = React.forwardRef<HTMLSpanElement, SpanProps>(
-	function DarkMode(props, ref) {
-		return (
+        function DarkMode(props, ref) {
+                return (
 			<Span
 				color="fg"
 				display="contents"

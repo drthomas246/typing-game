@@ -2,6 +2,9 @@ import { Button, HStack } from "@chakra-ui/react";
 import { useBattle } from "@/contexts/PageContext";
 import type { HeaderControlsProps } from "@/types/index";
 
+/**
+ * ヘッダー内の各種操作ボタンをまとめたコンポーネント。
+ */
 export default function HeaderControls({
 	started,
 	finished,

@@ -1,12 +1,15 @@
 import { useCallback } from "react";
 import { useBattle as useBattleContext } from "@/contexts/PageContext";
 import type {
-	Action,
-	EngineOptions,
-	EngineState,
-	SoundCtl,
+  Action,
+  EngineOptions,
+  EngineState,
+  SoundCtl,
 } from "@/types/index";
 
+/**
+ * バトル時の攻撃・被弾処理を提供するフック。
+ */
 export function useBattle(
 	opts: EngineOptions,
 	sound: SoundCtl,

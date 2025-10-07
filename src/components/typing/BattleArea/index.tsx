@@ -9,6 +9,9 @@ import QuestionPanel from "./QuestionPanel";
 
 const MotionDiv = motion.div;
 
+/**
+ * 敵表示と問題表示を含むバトルエリア。
+ */
 const BattleArena = forwardRef<HTMLDivElement, BattleArenaProps>(
 	(
 		{

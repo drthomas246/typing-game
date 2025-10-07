@@ -1,5 +1,8 @@
 import type { DecodableImage } from "@/types/index";
 
+/**
+ * 画像を事前に読み込みPromiseで完了を返す。
+ */
 export async function preloadImage(src: string): Promise<void> {
 	await new Promise<void>((resolve) => {
 		const img: DecodableImage = document.createElement("img");

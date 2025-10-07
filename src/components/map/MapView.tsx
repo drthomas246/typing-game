@@ -15,11 +15,17 @@ import type { MapPoint, Tile } from "@/types/index";
 const VIEW_W = 1744;
 const VIEW_H = 981;
 
+/**
+ * 1枚のマップタイルをKonvaで描画する。
+ */
 function TileImage({ src, x, y }: { src: string; x: number; y: number }) {
   const [img] = useImage(src, "anonymous");
   return <KonvaImage image={img ?? undefined} x={x} y={y} />;
 }
 
+/**
+ * 固定サイズのビューポートでマップを表示するコンポーネント。
+ */
 export default function MapViewFixedViewport({
   tiles,
   points,

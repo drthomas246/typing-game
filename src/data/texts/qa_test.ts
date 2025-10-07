@@ -1,5 +1,8 @@
 import type { QAPair } from "@/types/index";
 
+/**
+ * テスト用のQAペアを集めたデータ。
+ */
 const QA_PAIRS: QAPair[] = [
 	{ ja: "リンゴ", en: "apple", img: "./images/test/1.png" },
 	{ ja: "オレンジ", en: "orange", img: "./images/test/2.png" },

@@ -1,5 +1,8 @@
 import type { QAPair } from "@/types/index";
 
+/**
+ * 12か月の名称を扱う問題データ。
+ */
 const QA_MONTH: QAPair[] = [
 	{ ja: "1月", en: "january", img: "./images/month/tsuki_title01.png" },
 	{ ja: "2月", en: "february", img: "./images/month/tsuki_title02.png" },

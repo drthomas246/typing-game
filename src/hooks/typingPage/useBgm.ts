@@ -1,9 +1,12 @@
 import { Howl } from "howler";
 import { useEffect, useRef, useState } from "react";
 
+/**
+ * タイピング画面用BGMの再生可否を制御するフック。
+ */
 export function useBgm(opts: {
-	src: string;
-	loop?: boolean;
+        src: string;
+        loop?: boolean;
 	volume?: number;
 	enabled: boolean | undefined;
 }) {

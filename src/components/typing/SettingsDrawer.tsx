@@ -19,6 +19,9 @@ import {
 } from "@/contexts/PageContext";
 import type { Settings, SettingsDrawerProps } from "@/types/index";
 
+/**
+ * 遊び方やサウンド設定をまとめて調整するドロワー。
+ */
 export default function SettingsDrawer({
   open,
   onClose,

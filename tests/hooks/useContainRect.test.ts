@@ -3,6 +3,10 @@ import React from "react";
 import { beforeEach, describe, expect, it } from "vitest";
 import { useContainRect } from "@/hooks/useContainRect";
 
+/**
+ * useContainRect フックの矩形計算を確認するテスト。
+ */
+
 function setClientSize(el: HTMLElement, w: number, h: number) {
   Object.defineProperty(el, "clientWidth", { value: w, configurable: true });
   Object.defineProperty(el, "clientHeight", { value: h, configurable: true });

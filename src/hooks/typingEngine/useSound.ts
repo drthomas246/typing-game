@@ -3,6 +3,9 @@ import { useCallback, useEffect, useRef } from "react";
 import { useSound as useBGMSound } from "@/contexts/PageContext";
 import type { EngineOptions, HowlOrNull, SoundCtl } from "@/types/index";
 
+/**
+ * BGM と効果音の再生をまとめて扱うフック。
+ */
 export function useSound(opts: EngineOptions): SoundCtl {
 	const sound = useBGMSound();
 	const bgmEnabled = sound;

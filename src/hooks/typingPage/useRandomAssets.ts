@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 
+/**
+ * バトル画面の敵と背景をランダムに選ぶフック。
+ */
 export function useRandomAssets() {
 	const [enemyImg, setEnemyImg] = useState("");
 	const [backgroundImg, setBackgroundImg] = useState("");

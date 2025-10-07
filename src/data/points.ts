@@ -5,6 +5,9 @@ import QA_STEP1 from "@/data/texts/qa_step1";
 import QA_WEEK from "@/data/texts/qa_week";
 import type { MapPoint } from "@/types/index";
 
+/**
+ * マップ上のポイントと対応する問題セット。
+ */
 export const TYPING_ROUTE_POINTS: MapPoint[] = [
   { id: 1, x: 2724, y: 1768, title: "1～10までの数字", QA: QA_NUMBER },
   { id: 2, x: 2224, y: 1976, title: "11～20までの数字", QA: QA_NUMBER11 },

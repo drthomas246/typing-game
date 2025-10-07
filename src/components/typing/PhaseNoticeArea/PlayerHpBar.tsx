@@ -2,6 +2,9 @@ import { Badge, Box, HStack, Text } from "@chakra-ui/react";
 import { useLevel } from "@/contexts/PageContext";
 import type { PlayerHpBarProps } from "@/types/index";
 
+/**
+ * プレイヤーのレベルとHPを表示するバー。
+ */
 export default function PlayerHpBar({ current, max, pct }: PlayerHpBarProps) {
 	const level = useLevel();
 	return (

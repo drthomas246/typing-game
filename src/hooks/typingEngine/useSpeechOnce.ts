@@ -3,6 +3,9 @@ import { useBattle } from "@/contexts/PageContext";
 import { useSpeech } from "@/hooks/useSpeech";
 import type { EngineOptions, EngineState } from "@/types/index";
 
+/**
+ * 学習フェーズで単語を一度だけ読み上げるフック。
+ */
 export function useSpeechOnce(params: {
 	state: EngineState;
 	opts: EngineOptions;

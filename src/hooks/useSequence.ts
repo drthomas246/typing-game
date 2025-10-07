@@ -4,10 +4,13 @@ import { nextFrame, sleep } from "@/lib/nextFrame";
 import { preloadImage } from "@/lib/preloadImage";
 import type { Controls, useSequenceVisuals } from "@/types/index";
 
+/**
+ * タイトル表示のアニメーションシーケンスを制御するフック。
+ */
 export function useSequence(opts: {
-	firstPlayed: boolean;
-	titleSrc: string;
-	onFinishFirst: () => void;
+        firstPlayed: boolean;
+        titleSrc: string;
+        onFinishFirst: () => void;
 }) {
 	const titleCtrl = useAnimation();
 	const topCtrl = useAnimation();

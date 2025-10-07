@@ -4,6 +4,9 @@ import MapView from "@/components/map/MapView";
 import { tiles, worldSize } from "@/components/map/mapData";
 import { TYPING_ROUTE_POINTS } from "@/data/points";
 
+/**
+ * マップ画面を描画しポイントを配置するページ。
+ */
 export default function MapPage({
   showTooltip,
   stageRef,

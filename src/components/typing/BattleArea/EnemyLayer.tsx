@@ -4,6 +4,9 @@ import type { EnemyLayerProps } from "@/types/index";
 
 const MotionImg = motion.img;
 
+/**
+ * 背景と敵キャラクターの表示を担当するレイヤー。
+ */
 export default function EnemyLayer({
 	backgroundImg,
 	enemyImg,

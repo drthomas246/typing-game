@@ -1,6 +1,9 @@
 import { AspectRatio, Box, Image, Skeleton, Text } from "@chakra-ui/react";
 import type { QuestionPanelProps } from "@/types/index";
 
+/**
+ * 出題文と関連画像を表示するパネル。
+ */
 export default function QuestionPanel({
 	questionText,
 	questionImg,

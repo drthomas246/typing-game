@@ -13,6 +13,9 @@ import type {
 import { makeSoundMock } from "../../__mocks__/makeSoundMock";
 import { renderHookWithProviders } from "../../utils/renderWithProviders";
 
+/**
+ * useInput フックのキー入力処理を検証するテスト。
+ */
 const mkState = (patch?: Partial<EngineState>): EngineState => ({
   started: true,
   finished: false,

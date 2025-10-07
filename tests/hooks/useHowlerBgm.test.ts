@@ -9,6 +9,9 @@ import {
   vi,
 } from "vitest";
 
+/**
+ * useHowlerBgm フックのフェード処理を検証するテスト。
+ */
 const hoisted = vi.hoisted(() => {
   type FadeListener = () => void;
 

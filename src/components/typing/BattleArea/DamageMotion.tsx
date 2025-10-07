@@ -3,6 +3,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import type { DamageMotionProps } from "@/types/index";
 
+/**
+ * 斬撃や被弾時の演出を制御するコンポーネント。
+ */
 export default function DamageMotion({
 	arenaRef,
 	slashId,

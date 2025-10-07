@@ -8,10 +8,13 @@ import {
 } from "@chakra-ui/react";
 
 const toaster = createToaster({
-	placement: "bottom-end",
-	pauseOnPageIdle: true,
+        placement: "bottom-end",
+        pauseOnPageIdle: true,
 });
 
+/**
+ * グローバルなトースト通知を描画するコンポーネント。
+ */
 export const Toaster = () => {
 	return (
 		<Portal>

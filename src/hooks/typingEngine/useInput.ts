@@ -9,6 +9,9 @@ import type {
   SoundCtl,
 } from "@/types/index";
 
+/**
+ * 入力文字を判定し状態遷移させるフック。
+ */
 export function useInput(params: {
   state: EngineState;
   opts: EngineOptions;
