@@ -3,6 +3,9 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { useSound } from "@/hooks/typingEngine/useSound";
 import type { EngineOptions, SoundCtl } from "@/types/index";
 
+/**
+ * useSound フックのBGM/SFX制御を検証するテスト。
+ */
 vi.mock("@/contexts/PageContext", () => ({
   useSound: () => true,
 }));

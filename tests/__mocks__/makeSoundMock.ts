@@ -1,6 +1,9 @@
 import { vi } from "vitest";
 import type { SoundCtl } from "@/types";
 
+/**
+ * SoundCtl を模倣するテスト用モックを生成する。
+ */
 export const makeSoundMock = (): SoundCtl => {
   const sfx = {
     slash: vi.fn(),

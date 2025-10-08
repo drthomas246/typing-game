@@ -2,6 +2,9 @@ import { act, renderHook } from "@testing-library/react";
 import { beforeEach, describe, expect, it, type Mock, vi } from "vitest";
 import { useBgm } from "@/hooks/useBgm";
 
+/**
+ * useBgm フックが bgmManager を呼び出す様子を検証するテスト。
+ */
 const mockBGM = vi.hoisted(() => ({
   init: vi.fn<(src: string, defaultVolume?: number, loop?: boolean) => void>(),
   ensurePlaying: vi.fn<(fadeMs?: number, targetVolume?: number) => void>(),

@@ -2,6 +2,9 @@ import { act, renderHook } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { useTimer } from "@/hooks/typingEngine/useTimer";
 
+/**
+ * useTimer フックのインターバル更新を検証するテスト。
+ */
 describe("useTimer", () => {
   const TICK = 1000;
 

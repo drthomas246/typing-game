@@ -15,6 +15,9 @@ import type {
   SoundCtl,
 } from "@/types/index";
 
+/**
+ * useTypingEngine フックの総合挙動を検証するテスト。
+ */
 let battleContext = false;
 vi.mock("@/contexts/PageContext", () => ({
   useBattle: () => battleContext,

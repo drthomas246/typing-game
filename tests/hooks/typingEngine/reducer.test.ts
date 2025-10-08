@@ -2,6 +2,9 @@ import { describe, expect, it } from "vitest";
 import { initialState, reducer } from "@/hooks/typingEngine/reducer";
 import type { EngineOptions, QAPair } from "@/types/index";
 
+/**
+ * タイピングエンジンのリデューサー動作を検証するテスト。
+ */
 type ReducerAction = Parameters<typeof reducer>[1];
 
 type StartPayload = Extract<ReducerAction, { type: "START" }>["payload"];

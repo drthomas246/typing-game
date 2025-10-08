@@ -1,5 +1,8 @@
 import { vi } from "vitest";
 
+/**
+ * Howler.js を模倣する軽量モック実装。
+ */
 export type HowlOptions = {
   src: string[];
   loop?: boolean;

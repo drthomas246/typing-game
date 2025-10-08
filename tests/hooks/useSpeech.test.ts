@@ -10,6 +10,9 @@ import {
   vi,
 } from "vitest";
 
+/**
+ * useSpeech フックの音声読み上げ挙動を検証するテスト。
+ */
 const h = vi.hoisted(() => {
   class MockUtterance {
     text: string;

@@ -3,6 +3,9 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { useRandomAssets } from "@/hooks/typingPage/useRandomAssets";
 
+/**
+ * useRandomAssets フックの乱数選択を検証するテスト。
+ */
 function mockRandomSequence(seq: number[]) {
   let i = 0;
   return vi.spyOn(Math, "random").mockImplementation(() => {

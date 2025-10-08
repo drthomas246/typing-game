@@ -2,6 +2,9 @@ import { act, renderHook } from "@testing-library/react";
 import { beforeEach, describe, expect, it, type Mock, vi } from "vitest";
 import { useHowlerOneShot } from "@/hooks/useHowlerOneShot";
 
+/**
+ * useHowlerOneShot フックの効果音再生を検証するテスト。
+ */
 type HowlOpts = {
   src: string[];
   volume?: number;

@@ -2,6 +2,9 @@ import { act, renderHook } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { useHowlerBgmOpts } from "@/types/index";
 
+/**
+ * useBgm フックの再生制御を確認するテスト。
+ */
 const h = vi.hoisted(() => {
   type HowlOpts = {
     src: string[];

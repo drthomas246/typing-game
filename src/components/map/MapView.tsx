@@ -12,14 +12,60 @@ import useImage from "use-image";
 import { Title } from "@/components/map/Title";
 import type { MapPoint, Tile } from "@/types/index";
 
+/**
+ * ビューポートの固定幅。
+ * このコンポーネントは、この幅を基準にアスペクト比を維持してスケーリングします。
+ */
 const VIEW_W = 1744;
+/**
+ * ビューポートの固定高さ。
+ * このコンポーネントは、この高さを基準にアスペクト比を維持してスケーリングします。
+ */
 const VIEW_H = 981;
 
+/**
+ * 1枚のマップタイルをKonvaで描画するコンポーネント。
+ *
+ * @param props - コンポーネントのプロパティ。
+ * @param props.src - 画像ソースのURL。
+ * @param props.x - タイルのx座標。
+ * @param props.y - タイルのy座標。
+ * @returns KonvaのImageコンポーネント。
+ */
 function TileImage({ src, x, y }: { src: string; x: number; y: number }) {
   const [img] = useImage(src, "anonymous");
   return <KonvaImage image={img ?? undefined} x={x} y={y} />;
 }
 
+/**
+ * {@link MapViewFixedViewport} コンポーネントのプロパティ。
+ */
+type MapViewFixedViewportProps = PropsWithChildren<{
+  /** マップを構成するタイルの配列。 */
+  tiles: ReadonlyArray<Tile>;
+  /** マップ上に表示されるポイントの配列。 */
+  points: ReadonlyArray<MapPoint>;
+  /** ワールド全体のサイズ。ドラッグ範囲の計算に使用されます。 */
+  worldSize: { width: number; height: number };
+  /**
+   * マップの初期表示位置（ワールド座標系の中心）。
+   * @default ワールドの右下隅
+   */
+  initialCenter?: { x: number; y: number };
+  /**
+   * ポイントのツールチップを表示するかどうか。
+   * @default false
+   */
+  showTooltip: boolean;
+  /** KonvaのStageオブジェクトへの外部参照。 */
+  stageRef: React.RefObject<KonvaStage | null>;
+}>;
+
+/**
+ * 固定サイズのビューポートでマップを表示し、ドラッグによる移動が可能なコンポーネント。
+ * 親要素のサイズに合わせて、ビューポートのアスペクト比を維持しながらスケールします。
+ * @param props - コンポーネントのプロパティ。
+ */
 export default function MapViewFixedViewport({
   tiles,
   points,
@@ -31,14 +77,7 @@ export default function MapViewFixedViewport({
   showTooltip = false,
   stageRef,
   children,
-}: PropsWithChildren<{
-  tiles: ReadonlyArray<Tile>;
-  points: ReadonlyArray<MapPoint>;
-  worldSize: { width: number; height: number };
-  initialCenter?: { x: number; y: number };
-  showTooltip: boolean;
-  stageRef: React.RefObject<KonvaStage | null>;
-}>) {
+}: MapViewFixedViewportProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [container, setContainer] = useState({ w: 1308, h: 736 });
 
@@ -48,13 +87,18 @@ export default function MapViewFixedViewport({
       y: -(initialCenter.y - VIEW_H / 2),
     };
   });
-
   const scale = Math.min(container.w / VIEW_W, container.h / VIEW_H);
+
   const offset = {
     x: (container.w - VIEW_W * scale) / 2,
     y: (container.h - VIEW_H * scale) / 2,
   };
 
+  /**
+   * 現在のビューポートに表示されるべきタイルのみをフィルタリングします。
+   * ビューポート外のタイルを描画しないことで、パフォーマンスを向上させます。
+   * @remarks `useMemo` を使用して、`tiles` または `stagePos` が変更された場合にのみ再計算します。
+   */
   const visibleTiles = useMemo(() => {
     const view = {
       left: -stagePos.x,
@@ -73,6 +117,11 @@ export default function MapViewFixedViewport({
     );
   }, [tiles, stagePos]);
 
+  /**
+   * ドラッグ時の移動範囲をワールドの境界内に制限する関数。
+   * @param p - ドラッグによって更新されたKonva Stageの座標。
+   * @returns 境界内に補正された座標。
+   */
   const dragBoundFunc = (p: { x: number; y: number }) => {
     const minWorldX = Math.min(0, VIEW_W - worldSize.width);
     const minWorldY = Math.min(0, VIEW_H - worldSize.height);
@@ -82,6 +131,11 @@ export default function MapViewFixedViewport({
     };
   };
 
+  /**
+   * ワールド座標系のポイントを、現在の表示スケールと位置に合わせてスクリーン座標系に変換します。
+   * ツールチップの表示位置計算に使用されます。
+   * @remarks `useMemo` を使用して、依存する値が変更された場合にのみ再計算します。
+   */
   const screenPoints = useMemo(
     () =>
       points.map((p) => {
@@ -105,7 +159,14 @@ export default function MapViewFixedViewport({
   }, []);
 
   return (
-    <Box ref={containerRef} w="100%" h="100%" bg="#222" position="relative">
+    <Box
+      ref={containerRef}
+      w="100%"
+      h="100%"
+      bg="#222"
+      position="relative"
+      overflow="hidden"
+    >
       <Stage
         ref={stageRef}
         width={container.w}
@@ -125,6 +186,7 @@ export default function MapViewFixedViewport({
           const sy = (e.target.y() - offset.y) / scale;
           const bounded = dragBoundFunc({ x: sx, y: sy });
           setStagePos(bounded);
+          e.target.position(bounded);
         }}
         style={{ background: "#000" }}
       >

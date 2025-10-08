@@ -7,6 +7,9 @@ import type {
   LearningPhase,
 } from "@/types/index";
 
+/**
+ * useLearning フックのフェーズ切り替えを検証するテスト。
+ */
 let battleContext = false;
 vi.mock("@/contexts/PageContext", () => ({
   useBattle: () => battleContext,

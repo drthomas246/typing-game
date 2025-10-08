@@ -4,6 +4,9 @@ import { describe, expect, it, vi } from "vitest";
 import { useBattle } from "@/hooks/typingEngine/useBattle";
 import type { Action, EngineOptions, EngineState, SoundCtl } from "@/types";
 
+/**
+ * useBattle フックの攻撃・被弾処理を検証するテスト。
+ */
 vi.mock("@/contexts/PageContext", () => ({
   useBattle: () => false,
 }));

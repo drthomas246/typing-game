@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
 import { mulberry32, shuffle } from "@/hooks/typingEngine/rng";
 
+/**
+ * 乱数ユーティリティの再現性を検証するテスト。
+ */
 describe("mulberry32", () => {
   it("同じシードで同じ系列を生成する（再現性テスト）", () => {
     const seed = 123456;

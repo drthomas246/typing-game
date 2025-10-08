@@ -9,6 +9,9 @@ import {
   vi,
 } from "vitest";
 
+/**
+ * useSequence フックのアニメーション挙動を確認するテスト。
+ */
 const hoisted = vi.hoisted(() => {
   type AnyObj = Record<string, unknown>;
 
