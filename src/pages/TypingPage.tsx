@@ -10,7 +10,13 @@ import PhaseNotice from "@/components/typing/PhaseNoticeArea/PhaseNotice";
 import PlayerHpBar from "@/components/typing/PhaseNoticeArea/PlayerHpBar";
 import ResultsDialog from "@/components/typing/ResultsDialog";
 import SettingsDrawer from "@/components/typing/SettingsDrawer";
-import { useBattle, useLevel, usePage, useSound } from "@/contexts/PageContext";
+import {
+  useBattle,
+  useLevel,
+  usePage,
+  useSound,
+  useSort,
+} from "@/contexts/PageContext";
 import { useTypingEngine } from "@/hooks/typingEngine/useTypingEngine";
 import { useBgm } from "@/hooks/typingPage/useBgm";
 import { useRandomAssets } from "@/hooks/typingPage/useRandomAssets";
@@ -29,6 +35,7 @@ import type { Settings, TypingPageProps } from "@/types/index";
 export default function TypingPage({ QA, title }: TypingPageProps) {
   const level = useLevel();
   const battle = useBattle();
+  const problemSort = useSort();
   const [settings, setSettings] = useState<Settings>({
     language: "ja",
     learnThenRecall: true,
@@ -52,6 +59,7 @@ export default function TypingPage({ QA, title }: TypingPageProps) {
       damagePerHit: 10,
       damagePerMiss: 5,
       learningMode: battle,
+      randomOrder: problemSort,
     },
     QA,
     setSlashId,
