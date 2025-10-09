@@ -11,37 +11,34 @@ import type { PhaseNoticeProps } from "@/types/index";
  * @param {'study' | 'recall'} props.phase - 現在の学習フェーズを示します。`study`は練習、`recall`は復習フェーズです。
  * @returns {JSX.Element | null} 学習フェーズを示すUI。battleコンテキストが存在しない場合は`null`を返します。
  */
-export default function PhaseNotice({
-  learnThenRecall,
-  phase,
-}: PhaseNoticeProps) {
-  const battle = useBattle();
-  if (!battle) return null;
+export default function PhaseNotice({ learnThenRecall, phase }: PhaseNoticeProps) {
+	const battle = useBattle();
+	if (!battle) return null;
 
-  if (learnThenRecall) {
-    const isStudy = phase === "study";
-    return (
-      <HStack h="24px">
-        <Badge colorScheme={isStudy ? "blue" : "purple"} variant="solid">
-          {isStudy
-            ? "練習（スペル＋音声）"
-            : "ふく習（Tabキーでヒント。1回目で音声・2回目でスペル）"}
-        </Badge>
-        <Text fontSize="sm" color="fg.muted">
-          学習で正かい → ふく習へ ふく習で正かいすると次の問題に進みます。
-        </Text>
-      </HStack>
-    );
-  }
+	if (learnThenRecall) {
+		const isStudy = phase === "study";
+		return (
+			<HStack h="24px">
+				<Badge colorScheme={isStudy ? "blue" : "purple"} variant="solid">
+					{isStudy
+						? "練習（スペル＋音声）"
+						: "ふく習（Tabキーでヒント。1回目で音声・2回目でスペル）"}
+				</Badge>
+				<Text fontSize="sm" color="fg.muted">
+					学習で正かい → ふく習へ ふく習で正かいすると次の問題に進みます。
+				</Text>
+			</HStack>
+		);
+	}
 
-  return (
-    <HStack h="24px">
-      <Badge colorScheme="blue" variant="solid">
-        練習（スペル＋音声）
-      </Badge>
-      <Text fontSize="sm" color="fg.muted">
-        学習で正かい → 次の問題に進みます。
-      </Text>
-    </HStack>
-  );
+	return (
+		<HStack h="24px">
+			<Badge colorScheme="blue" variant="solid">
+				練習（スペル＋音声）
+			</Badge>
+			<Text fontSize="sm" color="fg.muted">
+				学習で正かい → 次の問題に進みます。
+			</Text>
+		</HStack>
+	);
 }

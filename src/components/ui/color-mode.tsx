@@ -3,10 +3,7 @@ import { ClientOnly, IconButton, Skeleton, Span } from "@chakra-ui/react";
 import { ThemeProvider } from "next-themes";
 import * as React from "react";
 import { LuMoon, LuSun } from "react-icons/lu";
-import type {
-  ColorModeButtonProps,
-  ColorModeProviderProps,
-} from "@/types/index";
+import type { ColorModeButtonProps, ColorModeProviderProps } from "@/types/index";
 import { useColorMode } from "./use-color-mode";
 
 /**
@@ -18,9 +15,7 @@ import { useColorMode } from "./use-color-mode";
  * @returns {JSX.Element} テーマプロバイダーのラッパーコンポーネント。
  */
 export function ColorModeProvider(props: ColorModeProviderProps) {
-  return (
-    <ThemeProvider attribute="class" disableTransitionOnChange {...props} />
-  );
+	return <ThemeProvider attribute="class" disableTransitionOnChange {...props} />;
 }
 
 /**
@@ -31,9 +26,9 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
  * @returns {JSX.Element} 現在のカラーモードに対応するアイコンコンポーネント。
  */
 export function ColorModeIcon(props: React.ComponentProps<typeof LuSun>) {
-  const { colorMode } = useColorMode();
-  const Icon = colorMode === "dark" ? LuMoon : LuSun;
-  return <Icon {...props} />;
+	const { colorMode } = useColorMode();
+	const Icon = colorMode === "dark" ? LuMoon : LuSun;
+	return <Icon {...props} />;
 }
 
 /**
@@ -45,26 +40,25 @@ export function ColorModeIcon(props: React.ComponentProps<typeof LuSun>) {
  * @param {ColorModeButtonProps} props - このコンポーネントが受け取るプロパティ。`IconButton`に渡されます。\n * @param {React.Ref<HTMLButtonElement>} ref - ボタン要素への参照。
  * @returns {JSX.Element} カラーモード切り替えボタン。
  */
-export const ColorModeButton = React.forwardRef<
-  HTMLButtonElement,
-  ColorModeButtonProps
->(function ColorModeButton(props, ref) {
-  const { toggleColorMode } = useColorMode();
-  return (
-    <ClientOnly fallback={<Skeleton boxSize="8" />}>
-      <IconButton
-        onClick={toggleColorMode}
-        variant="ghost"
-        aria-label="Toggle color mode"
-        size="sm"
-        ref={ref}
-        {...props}
-      >
-        <ColorModeIcon size={20} />
-      </IconButton>
-    </ClientOnly>
-  );
-});
+export const ColorModeButton = React.forwardRef<HTMLButtonElement, ColorModeButtonProps>(
+	function ColorModeButton(props, ref) {
+		const { toggleColorMode } = useColorMode();
+		return (
+			<ClientOnly fallback={<Skeleton boxSize="8" />}>
+				<IconButton
+					onClick={toggleColorMode}
+					variant="ghost"
+					aria-label="Toggle color mode"
+					size="sm"
+					ref={ref}
+					{...props}
+				>
+					<ColorModeIcon size={20} />
+				</IconButton>
+			</ClientOnly>
+		);
+	},
+);
 
 /**
  * アプリケーションを強制的にライトモードでレンダリングするためのラッパーコンポーネントです。
@@ -76,19 +70,19 @@ export const ColorModeButton = React.forwardRef<
  * @returns {JSX.Element} ライトモード専用のラッパー要素。
  */
 export const LightMode = React.forwardRef<HTMLSpanElement, SpanProps>(
-  function LightMode(props, ref) {
-    return (
-      <Span
-        color="fg"
-        display="contents"
-        className="chakra-theme light"
-        colorPalette="gray"
-        colorScheme="light"
-        ref={ref}
-        {...props}
-      />
-    );
-  },
+	function LightMode(props, ref) {
+		return (
+			<Span
+				color="fg"
+				display="contents"
+				className="chakra-theme light"
+				colorPalette="gray"
+				colorScheme="light"
+				ref={ref}
+				{...props}
+			/>
+		);
+	},
 );
 
 /**
@@ -100,18 +94,16 @@ export const LightMode = React.forwardRef<HTMLSpanElement, SpanProps>(
  * @param {React.Ref<HTMLSpanElement>} ref - `Span`要素への参照。
  * @returns {JSX.Element} ダークモード専用のラッパー要素。
  */
-export const DarkMode = React.forwardRef<HTMLSpanElement, SpanProps>(
-  function DarkMode(props, ref) {
-    return (
-      <Span
-        color="fg"
-        display="contents"
-        className="chakra-theme dark"
-        colorPalette="gray"
-        colorScheme="dark"
-        ref={ref}
-        {...props}
-      />
-    );
-  },
-);
+export const DarkMode = React.forwardRef<HTMLSpanElement, SpanProps>(function DarkMode(props, ref) {
+	return (
+		<Span
+			color="fg"
+			display="contents"
+			className="chakra-theme dark"
+			colorPalette="gray"
+			colorScheme="dark"
+			ref={ref}
+			{...props}
+		/>
+	);
+});

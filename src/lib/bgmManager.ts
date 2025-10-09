@@ -9,27 +9,27 @@ type Listener = () => void;
  * BGMマネージャーの内部状態を定義する型。
  */
 type State = {
-  /** Howler.jsのHowlインスタンス。BGM音源を管理します。 */
-  howl: Howl | null;
-  /** 現在ロードされているBGMの音源パス。 */
-  src: string | null;
-  /** 目標とするBGMの音量（0.0～1.0）。フェード処理の目標値や非フェード時の音量として使用されます。 */
-  targetVolume: number;
-  /** BGMが現在フェード中かどうかを示すフラグ。 */
-  isFading: boolean;
-  /** フェード処理が完了したときに一度だけ呼び出されるリスナー関数。 */
-  onFade?: Listener;
+	/** Howler.jsのHowlインスタンス。BGM音源を管理します。 */
+	howl: Howl | null;
+	/** 現在ロードされているBGMの音源パス。 */
+	src: string | null;
+	/** 目標とするBGMの音量（0.0～1.0）。フェード処理の目標値や非フェード時の音量として使用されます。 */
+	targetVolume: number;
+	/** BGMが現在フェード中かどうかを示すフラグ。 */
+	isFading: boolean;
+	/** フェード処理が完了したときに一度だけ呼び出されるリスナー関数。 */
+	onFade?: Listener;
 };
 
 /**
  * BGMマネージャーの現在の状態を保持するオブジェクト。
  */
 const S: State = {
-  howl: null,
-  src: null,
-  targetVolume: 0.5,
-  isFading: false,
-  onFade: undefined,
+	howl: null,
+	src: null,
+	targetVolume: 0.5,
+	isFading: false,
+	onFade: undefined,
 };
 
 /**
@@ -47,9 +47,9 @@ const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
  * @param {Listener} cb - フェード完了時に呼び出されるコールバック関数。
  */
 function attachFadeOnce(h: Howl, cb: Listener) {
-  if (S.onFade) h.off("fade", S.onFade);
-  S.onFade = cb;
-  h.once("fade", cb);
+	if (S.onFade) h.off("fade", S.onFade);
+	S.onFade = cb;
+	h.once("fade", cb);
 }
 
 /**
@@ -62,30 +62,30 @@ function attachFadeOnce(h: Howl, cb: Listener) {
  * @param {boolean} [loop=true] - BGMをループ再生するかどうか。
  */
 export function init(src: string, defaultVolume = 0.5, loop = true) {
-  if (Howler.volume() === 0) Howler.volume(1.0);
+	if (Howler.volume() === 0) Howler.volume(1.0);
 
-  if (S.howl && S.src === src) {
-    S.targetVolume = clamp01(defaultVolume);
-    if (!S.isFading) S.howl.volume(S.targetVolume);
-    return;
-  }
+	if (S.howl && S.src === src) {
+		S.targetVolume = clamp01(defaultVolume);
+		if (!S.isFading) S.howl.volume(S.targetVolume);
+		return;
+	}
 
-  if (S.howl) {
-    S.howl.stop();
-    S.howl.unload();
-  }
-  S.src = src;
-  S.targetVolume = clamp01(defaultVolume);
-  S.isFading = false;
-  S.onFade = undefined;
+	if (S.howl) {
+		S.howl.stop();
+		S.howl.unload();
+	}
+	S.src = src;
+	S.targetVolume = clamp01(defaultVolume);
+	S.isFading = false;
+	S.onFade = undefined;
 
-  S.howl = new Howl({
-    src: [src],
-    loop,
-    volume: S.targetVolume,
-    preload: true,
-    html5: false,
-  });
+	S.howl = new Howl({
+		src: [src],
+		loop,
+		volume: S.targetVolume,
+		preload: true,
+		html5: false,
+	});
 }
 
 /**
@@ -95,10 +95,10 @@ export function init(src: string, defaultVolume = 0.5, loop = true) {
  * @param {number} v - 設定する目標音量（0.0から1.0）。範囲外の値はクランプされます。
  */
 export function setTargetVolume(v: number) {
-  S.targetVolume = clamp01(v);
-  if (S.howl && !S.isFading) {
-    S.howl.volume(S.targetVolume);
-  }
+	S.targetVolume = clamp01(v);
+	if (S.howl && !S.isFading) {
+		S.howl.volume(S.targetVolume);
+	}
 }
 
 /**
@@ -108,7 +108,7 @@ export function setTargetVolume(v: number) {
  * @returns {number} 現在の目標音量（0.0から1.0）。
  */
 export function getTargetVolume() {
-  return S.targetVolume;
+	return S.targetVolume;
 }
 
 /**
@@ -120,37 +120,37 @@ export function getTargetVolume() {
  * @param {number} [to] - フェードの目標音量（0.0から1.0）。指定しない場合は`S.targetVolume`が使用されます。
  */
 export function ensurePlaying(ms = 800, to?: number) {
-  const h = S.howl;
-  if (!h) return;
-  const target = clamp01(to ?? S.targetVolume);
-  const cur = h.volume();
+	const h = S.howl;
+	if (!h) return;
+	const target = clamp01(to ?? S.targetVolume);
+	const cur = h.volume();
 
-  if (!h.playing()) {
-    h.volume(0);
-    h.play();
-    if (ms > 0) {
-      S.isFading = true;
-      attachFadeOnce(h, () => {
-        S.isFading = false;
-      });
-      h.fade(0, target, ms);
-    } else {
-      h.volume(target);
-    }
-    return;
-  }
+	if (!h.playing()) {
+		h.volume(0);
+		h.play();
+		if (ms > 0) {
+			S.isFading = true;
+			attachFadeOnce(h, () => {
+				S.isFading = false;
+			});
+			h.fade(0, target, ms);
+		} else {
+			h.volume(target);
+		}
+		return;
+	}
 
-  if (Math.abs(cur - target) > EPS) {
-    if (ms > 0) {
-      S.isFading = true;
-      attachFadeOnce(h, () => {
-        S.isFading = false;
-      });
-      h.fade(cur, target, ms);
-    } else {
-      h.volume(target);
-    }
-  }
+	if (Math.abs(cur - target) > EPS) {
+		if (ms > 0) {
+			S.isFading = true;
+			attachFadeOnce(h, () => {
+				S.isFading = false;
+			});
+			h.fade(cur, target, ms);
+		} else {
+			h.volume(target);
+		}
+	}
 }
 
 /**
@@ -161,21 +161,21 @@ export function ensurePlaying(ms = 800, to?: number) {
  * @param {number} [ms=500] - フェードアウトにかける時間（ミリ秒）。デフォルトは`500`ミリ秒。
  */
 export function fadeOutStop(ms = 500) {
-  const h = S.howl;
-  if (!h || !h.playing()) return;
-  const cur = h.volume();
-  if (cur <= EPS) {
-    h.stop();
-    h.volume(S.targetVolume);
-    return;
-  }
-  S.isFading = true;
-  attachFadeOnce(h, () => {
-    h.stop();
-    h.volume(S.targetVolume);
-    S.isFading = false;
-  });
-  h.fade(cur, 0, ms);
+	const h = S.howl;
+	if (!h || !h.playing()) return;
+	const cur = h.volume();
+	if (cur <= EPS) {
+		h.stop();
+		h.volume(S.targetVolume);
+		return;
+	}
+	S.isFading = true;
+	attachFadeOnce(h, () => {
+		h.stop();
+		h.volume(S.targetVolume);
+		S.isFading = false;
+	});
+	h.fade(cur, 0, ms);
 }
 
 /**
@@ -183,8 +183,8 @@ export function fadeOutStop(ms = 500) {
  * フェード処理を無視し、BGMが再生中であれば直ちに停止し、音量を目標音量にリセットします。
  */
 export function stopNow() {
-  const h = S.howl;
-  if (!h) return;
-  h.stop();
-  h.volume(S.targetVolume);
+	const h = S.howl;
+	if (!h) return;
+	h.stop();
+	h.volume(S.targetVolume);
 }

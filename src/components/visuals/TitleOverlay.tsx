@@ -15,22 +15,22 @@ const MotionImage = motion(Image);
  * @returns {JSX.Element | null} タイトル画像オーバーレイ、または`visible`が`false`の場合は`null`。
  */
 export function TitleOverlay({ src, visible, animateCtrl }: TitleOverlayProps) {
-  if (!visible) return null;
+	if (!visible) return null;
 
-  return (
-    <MotionImage
-      src={src}
-      alt="タイトル"
-      pos="absolute"
-      inset="0"
-      w="100%"
-      h="100%"
-      objectFit="contain"
-      zIndex={60}
-      animate={animateCtrl}
-      initial={{ scale: 0, opacity: 0, display: "block" }}
-      pointerEvents="none"
-      style={{ willChange: "transform, opacity", backfaceVisibility: "hidden" }}
-    />
-  );
+	return (
+		<MotionImage
+			src={src}
+			alt="タイトル"
+			pos="absolute"
+			inset="0"
+			w="100%"
+			h="100%"
+			objectFit="contain"
+			zIndex={60}
+			animate={animateCtrl}
+			initial={{ scale: 0, opacity: 0, display: "block" }}
+			pointerEvents="none"
+			style={{ willChange: "transform, opacity", backfaceVisibility: "hidden" }}
+		/>
+	);
 }

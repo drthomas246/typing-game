@@ -15,27 +15,21 @@ const MotionImage = motion(Image);
  * @param {import('framer-motion').AnimationControls} props.animateCtrl - `framer-motion`の`AnimationControls`インスタンスで、オーバーレイのアニメーションを制御します。
  * @returns {JSX.Element | null} オーバーレイ画像、または`visible`が`false`の場合は`null`。
  */
-export function SlideOverlay({
-  side,
-  src,
-  visible,
-  animateCtrl,
-}: SlideOverlayProps) {
-  if (!visible) return null;
-  const zIndex =
-    side === "top" ? 50 : side === "bottom" ? 40 : side === "right" ? 30 : 20;
+export function SlideOverlay({ side, src, visible, animateCtrl }: SlideOverlayProps) {
+	if (!visible) return null;
+	const zIndex = side === "top" ? 50 : side === "bottom" ? 40 : side === "right" ? 30 : 20;
 
-  return (
-    <MotionImage
-      src={src}
-      alt={side}
-      pos="absolute"
-      inset="0"
-      w="100%"
-      h="100%"
-      zIndex={zIndex}
-      animate={animateCtrl}
-      pointerEvents="none"
-    />
-  );
+	return (
+		<MotionImage
+			src={src}
+			alt={side}
+			pos="absolute"
+			inset="0"
+			w="100%"
+			h="100%"
+			zIndex={zIndex}
+			animate={animateCtrl}
+			pointerEvents="none"
+		/>
+	);
 }

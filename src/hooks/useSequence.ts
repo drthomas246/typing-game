@@ -32,117 +32,117 @@ import type { Controls, useSequenceVisuals } from "@/types/index";
  * @returns {function(): Promise<void>} .reset - アニメーションの状態を初期位置にリセットする非同期関数。
  */
 export function useSequence(opts: {
-  firstPlayed: boolean;
-  titleSrc: string;
-  onFinishFirst: () => void;
+	firstPlayed: boolean;
+	titleSrc: string;
+	onFinishFirst: () => void;
 }) {
-  const titleCtrl = useAnimation();
-  const topCtrl = useAnimation();
-  const bottomCtrl = useAnimation();
-  const rightCtrl = useAnimation();
-  const leftCtrl = useAnimation();
+	const titleCtrl = useAnimation();
+	const topCtrl = useAnimation();
+	const bottomCtrl = useAnimation();
+	const rightCtrl = useAnimation();
+	const leftCtrl = useAnimation();
 
-  const [vis, setVis] = useState<useSequenceVisuals>({
-    title: true,
-    top: true,
-    bottom: true,
-    right: true,
-    left: true,
-  });
+	const [vis, setVis] = useState<useSequenceVisuals>({
+		title: true,
+		top: true,
+		bottom: true,
+		right: true,
+		left: true,
+	});
 
-  /**
-   * 全てのアニメーションコントロールを停止し、各オーバーレイの表示状態と位置を初期値にリセットする非同期関数。
-   *
-   * @returns {Promise<void>}
-   */
-  const reset = useCallback(async () => {
-    titleCtrl.stop();
-    topCtrl.stop();
-    bottomCtrl.stop();
-    rightCtrl.stop();
-    leftCtrl.stop();
+	/**
+	 * 全てのアニメーションコントロールを停止し、各オーバーレイの表示状態と位置を初期値にリセットする非同期関数。
+	 *
+	 * @returns {Promise<void>}
+	 */
+	const reset = useCallback(async () => {
+		titleCtrl.stop();
+		topCtrl.stop();
+		bottomCtrl.stop();
+		rightCtrl.stop();
+		leftCtrl.stop();
 
-    setVis({ title: true, top: true, bottom: true, right: true, left: true });
+		setVis({ title: true, top: true, bottom: true, right: true, left: true });
 
-    await Promise.all([
-      titleCtrl.set({ scale: 0, opacity: 0, display: "block" }),
-      topCtrl.set({ x: 0, y: 0 }),
-      bottomCtrl.set({ x: 0, y: 0 }),
-      rightCtrl.set({ x: 0, y: 0 }),
-      leftCtrl.set({ x: 0, y: 0 }),
-    ]);
-  }, [titleCtrl, topCtrl, bottomCtrl, rightCtrl, leftCtrl]);
+		await Promise.all([
+			titleCtrl.set({ scale: 0, opacity: 0, display: "block" }),
+			topCtrl.set({ x: 0, y: 0 }),
+			bottomCtrl.set({ x: 0, y: 0 }),
+			rightCtrl.set({ x: 0, y: 0 }),
+			leftCtrl.set({ x: 0, y: 0 }),
+		]);
+	}, [titleCtrl, topCtrl, bottomCtrl, rightCtrl, leftCtrl]);
 
-  /**
-   * アニメーションシーケンスを開始する非同期関数。
-   * 初回プレイ時のみ実行され、タイトル画像の表示、フェードアウト、
-   * そして各スライドオーバーレイの移動アニメーションを順次実行します。
-   * アニメーション完了後、ツールチップの表示をトリガーします。
-   *
-   * @param {React.Dispatch<React.SetStateAction<boolean>>} setShowTooltip - ツールチップの表示状態を更新するための関数。
-   * @returns {Promise<void>}
-   */
-  const start = useCallback(
-    async (setShowTooltip: React.Dispatch<React.SetStateAction<boolean>>) => {
-      await reset();
-      if (!opts.firstPlayed) return;
+	/**
+	 * アニメーションシーケンスを開始する非同期関数。
+	 * 初回プレイ時のみ実行され、タイトル画像の表示、フェードアウト、
+	 * そして各スライドオーバーレイの移動アニメーションを順次実行します。
+	 * アニメーション完了後、ツールチップの表示をトリガーします。
+	 *
+	 * @param {React.Dispatch<React.SetStateAction<boolean>>} setShowTooltip - ツールチップの表示状態を更新するための関数。
+	 * @returns {Promise<void>}
+	 */
+	const start = useCallback(
+		async (setShowTooltip: React.Dispatch<React.SetStateAction<boolean>>) => {
+			await reset();
+			if (!opts.firstPlayed) return;
 
-      await preloadImage(opts.titleSrc);
-      await nextFrame();
+			await preloadImage(opts.titleSrc);
+			await nextFrame();
 
-      await titleCtrl.start({
-        scale: 1,
-        opacity: 1,
-        transition: { duration: 0.9, ease: "easeOut" },
-      });
+			await titleCtrl.start({
+				scale: 1,
+				opacity: 1,
+				transition: { duration: 0.9, ease: "easeOut" },
+			});
 
-      await sleep(2000);
+			await sleep(2000);
 
-      await titleCtrl.start({
-        opacity: 0,
-        transition: { duration: 0.8, ease: "easeInOut" },
-      });
-      await titleCtrl.set({ display: "none" });
-      setVis((v) => ({ ...v, title: false }));
+			await titleCtrl.start({
+				opacity: 0,
+				transition: { duration: 0.8, ease: "easeInOut" },
+			});
+			await titleCtrl.set({ display: "none" });
+			setVis((v) => ({ ...v, title: false }));
 
-      await topCtrl.start({
-        y: "-100%",
-        transition: { duration: 1.5, ease: "easeInOut" },
-      });
-      setVis((v) => ({ ...v, top: false }));
+			await topCtrl.start({
+				y: "-100%",
+				transition: { duration: 1.5, ease: "easeInOut" },
+			});
+			setVis((v) => ({ ...v, top: false }));
 
-      await bottomCtrl.start({
-        y: "100%",
-        transition: { duration: 1.0, ease: "easeInOut" },
-      });
-      setVis((v) => ({ ...v, bottom: false }));
+			await bottomCtrl.start({
+				y: "100%",
+				transition: { duration: 1.0, ease: "easeInOut" },
+			});
+			setVis((v) => ({ ...v, bottom: false }));
 
-      await rightCtrl.start({
-        x: "100%",
-        transition: { duration: 1.0, ease: "easeInOut" },
-      });
-      setVis((v) => ({ ...v, right: false }));
+			await rightCtrl.start({
+				x: "100%",
+				transition: { duration: 1.0, ease: "easeInOut" },
+			});
+			setVis((v) => ({ ...v, right: false }));
 
-      await leftCtrl.start({
-        x: "-100%",
-        transition: { duration: 1.0, ease: "easeInOut" },
-      });
-      setVis((v) => ({ ...v, left: false }));
+			await leftCtrl.start({
+				x: "-100%",
+				transition: { duration: 1.0, ease: "easeInOut" },
+			});
+			setVis((v) => ({ ...v, left: false }));
 
-      setShowTooltip(true);
+			setShowTooltip(true);
 
-      opts.onFinishFirst();
-    },
-    [opts, reset, titleCtrl, topCtrl, bottomCtrl, rightCtrl, leftCtrl],
-  );
+			opts.onFinishFirst();
+		},
+		[opts, reset, titleCtrl, topCtrl, bottomCtrl, rightCtrl, leftCtrl],
+	);
 
-  return {
-    title: { visible: vis.title, ctrl: titleCtrl as Controls },
-    top: { visible: vis.top, ctrl: topCtrl as Controls },
-    bottom: { visible: vis.bottom, ctrl: bottomCtrl as Controls },
-    right: { visible: vis.right, ctrl: rightCtrl as Controls },
-    left: { visible: vis.left, ctrl: leftCtrl as Controls },
-    start,
-    reset,
-  };
+	return {
+		title: { visible: vis.title, ctrl: titleCtrl as Controls },
+		top: { visible: vis.top, ctrl: topCtrl as Controls },
+		bottom: { visible: vis.bottom, ctrl: bottomCtrl as Controls },
+		right: { visible: vis.right, ctrl: rightCtrl as Controls },
+		left: { visible: vis.left, ctrl: leftCtrl as Controls },
+		start,
+		reset,
+	};
 }

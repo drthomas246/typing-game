@@ -17,7 +17,7 @@ const SNAPSHOT_VERSION = 1;
  * @returns {Promise<AppSnapshot | undefined>} 保存されたアプリケーション状態、または見つからない場合は`undefined`を返すPromise。
  */
 export async function loadApp(): Promise<AppSnapshot | undefined> {
-  return db.app.get(ID);
+	return db.app.get(ID);
 }
 
 /**
@@ -29,23 +29,23 @@ export async function loadApp(): Promise<AppSnapshot | undefined> {
  * @returns {Promise<AppSnapshot>} 更新されたアプリケーション状態を返すPromise。
  */
 export async function saveApp(partial: Partial<AppSnapshot["state"]>) {
-  const current = (await db.app.get(ID)) ?? {
-    id: ID,
-    version: SNAPSHOT_VERSION,
-    updatedAt: 0,
-    state: {
-      settings: { mode: "battle", sort: "reverse" },
-      progress: { level: 1, lastOpenedAt: 0 },
-    },
-  };
-  const next: AppSnapshot = {
-    ...current,
-    version: SNAPSHOT_VERSION,
-    updatedAt: Date.now(),
-    state: { ...current.state, ...partial }, // 上書きマージ
-  };
-  await db.app.put(next);
-  return next;
+	const current = (await db.app.get(ID)) ?? {
+		id: ID,
+		version: SNAPSHOT_VERSION,
+		updatedAt: 0,
+		state: {
+			settings: { mode: "battle", sort: "reverse" },
+			progress: { level: 1, lastOpenedAt: 0 },
+		},
+	};
+	const next: AppSnapshot = {
+		...current,
+		version: SNAPSHOT_VERSION,
+		updatedAt: Date.now(),
+		state: { ...current.state, ...partial }, // 上書きマージ
+	};
+	await db.app.put(next);
+	return next;
 }
 
 /**
@@ -57,12 +57,12 @@ export async function saveApp(partial: Partial<AppSnapshot["state"]>) {
  * @returns {Promise<AppSnapshot>} 新しく保存された`AppSnapshot`オブジェクトを返すPromise。
  */
 export async function overwriteApp(full: AppSnapshot["state"]) {
-  const next: AppSnapshot = {
-    id: ID,
-    version: SNAPSHOT_VERSION,
-    updatedAt: Date.now(),
-    state: full,
-  };
-  await db.app.put(next);
-  return next;
+	const next: AppSnapshot = {
+		id: ID,
+		version: SNAPSHOT_VERSION,
+		updatedAt: Date.now(),
+		state: full,
+	};
+	await db.app.put(next);
+	return next;
 }

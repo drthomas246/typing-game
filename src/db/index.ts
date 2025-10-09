@@ -16,13 +16,13 @@ import Dexie, { type Table } from "dexie";
  * @property {number} state.progress.lastOpenedAt - アプリケーションが最後に開かれたUNIXタイムスタンプ。
  */
 export type AppSnapshot = {
-  id: "app";
-  version: number;
-  updatedAt: number;
-  state: {
-    settings: { mode: "study" | "battle"; sort: "random" | "reverse" };
-    progress: { level: number; lastOpenedAt: number };
-  };
+	id: "app";
+	version: number;
+	updatedAt: number;
+	state: {
+		settings: { mode: "study" | "battle"; sort: "random" | "reverse" };
+		progress: { level: number; lastOpenedAt: number };
+	};
 };
 
 /**
@@ -32,21 +32,21 @@ export type AppSnapshot = {
  * @extends Dexie
  */
 class AppDB extends Dexie {
-  /**
-   * `AppSnapshot`オブジェクトを格納するテーブル。
-   */
-  app!: Table<AppSnapshot, string>;
+	/**
+	 * `AppSnapshot`オブジェクトを格納するテーブル。
+	 */
+	app!: Table<AppSnapshot, string>;
 
-  /**
-   * AppDBのコンストラクタ。
-   * データベース名"my-app-db"で初期化し、バージョン1のスキーマを定義します。
-   * `app`テーブルには`id`がプライマリキーとして、`updatedAt`がインデックスとして設定されます。
-   */
-  constructor() {
-    super("my-app-db");
-    this.version(1).stores({
-      app: "id, updatedAt",
-    });
-  }
+	/**
+	 * AppDBのコンストラクタ。
+	 * データベース名"my-app-db"で初期化し、バージョン1のスキーマを定義します。
+	 * `app`テーブルには`id`がプライマリキーとして、`updatedAt`がインデックスとして設定されます。
+	 */
+	constructor() {
+		super("my-app-db");
+		this.version(1).stores({
+			app: "id, updatedAt",
+		});
+	}
 }
 export const db = new AppDB();

@@ -15,29 +15,29 @@ import * as BGM from "@/lib/bgmManager";
  * @returns {function(): number} .getTargetVolume - 現在設定されているBGMの目標音量を取得する関数。
  */
 export function useBgm(src: string, defaultVolume = 0.5) {
-  useEffect(() => {
-    BGM.init(src, defaultVolume, true);
-  }, [src, defaultVolume]);
+	useEffect(() => {
+		BGM.init(src, defaultVolume, true);
+	}, [src, defaultVolume]);
 
-  const ensurePlaying = useCallback((ms?: number, to?: number) => {
-    BGM.ensurePlaying(ms, to);
-  }, []);
-  const fadeOutStop = useCallback((ms?: number) => {
-    BGM.fadeOutStop(ms);
-  }, []);
-  const stopNow = useCallback(() => {
-    BGM.stopNow();
-  }, []);
-  const setTargetVolume = useCallback((v: number) => {
-    BGM.setTargetVolume(v);
-  }, []);
-  const getTargetVolume = useCallback(() => BGM.getTargetVolume(), []);
+	const ensurePlaying = useCallback((ms?: number, to?: number) => {
+		BGM.ensurePlaying(ms, to);
+	}, []);
+	const fadeOutStop = useCallback((ms?: number) => {
+		BGM.fadeOutStop(ms);
+	}, []);
+	const stopNow = useCallback(() => {
+		BGM.stopNow();
+	}, []);
+	const setTargetVolume = useCallback((v: number) => {
+		BGM.setTargetVolume(v);
+	}, []);
+	const getTargetVolume = useCallback(() => BGM.getTargetVolume(), []);
 
-  return {
-    ensurePlaying,
-    fadeOutStop,
-    stopNow,
-    setTargetVolume,
-    getTargetVolume,
-  };
+	return {
+		ensurePlaying,
+		fadeOutStop,
+		stopNow,
+		setTargetVolume,
+		getTargetVolume,
+	};
 }

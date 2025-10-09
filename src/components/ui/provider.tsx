@@ -12,9 +12,9 @@ import { ColorModeProvider } from "./color-mode";
  * @returns {JSX.Element} Chakra UIとカラーモードプロバイダーが適用された要素。
  */
 export function Provider(props: ColorModeProviderProps) {
-  return (
-    <ChakraProvider value={defaultSystem}>
-      <ColorModeProvider {...props} />
-    </ChakraProvider>
-  );
+	return (
+		<ChakraProvider value={defaultSystem}>
+			<ColorModeProvider {...props} />
+		</ChakraProvider>
+	);
 }

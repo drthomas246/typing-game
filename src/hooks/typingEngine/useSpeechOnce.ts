@@ -13,35 +13,31 @@ import type { EngineOptions, EngineState } from "@/types/index";
  * @param {EngineOptions} params.opts - エンジンのオプション設定（現在は直接使用されていないが、将来的な拡張のために含まれる可能性あり）。
  * @param {string} [params.lang="en-US"] - 音声読み上げに使用する言語コード。デフォルトは"en-US"（英語）。
  */
-export function useSpeechOnce(params: {
-  state: EngineState;
-  opts: EngineOptions;
-  lang?: string;
-}) {
-  const battle = useBattle();
-  const { state, lang = "en-US" } = params;
-  const { speak } = useSpeech();
-  const spokenRef = useRef<string>("");
+export function useSpeechOnce(params: { state: EngineState; opts: EngineOptions; lang?: string }) {
+	const battle = useBattle();
+	const { state, lang = "en-US" } = params;
+	const { speak } = useSpeech();
+	const spokenRef = useRef<string>("");
 
-  useEffect(() => {
-    if (!state.started || state.finished) return;
-    if (!battle) return;
-    if (!state.answerEn) return;
-    if (state.learningPhase !== "study") return;
+	useEffect(() => {
+		if (!state.started || state.finished) return;
+		if (!battle) return;
+		if (!state.answerEn) return;
+		if (state.learningPhase !== "study") return;
 
-    const key = `${state.index}:${state.answerEn}`;
-    if (spokenRef.current !== key) {
-      spokenRef.current = key;
-      try {
-        speak(state.answerEn, { lang });
-      } catch {
-        try {
-          /* @ts-expect-error Compatible call */
-          speak(state.answerEn, lang);
-        } catch {
-          /* ignore */
-        }
-      }
-    }
-  }, [state, battle, lang, speak]);
+		const key = `${state.index}:${state.answerEn}`;
+		if (spokenRef.current !== key) {
+			spokenRef.current = key;
+			try {
+				speak(state.answerEn, { lang });
+			} catch {
+				try {
+					/* @ts-expect-error Compatible call */
+					speak(state.answerEn, lang);
+				} catch {
+					/* ignore */
+				}
+			}
+		}
+	}, [state, battle, lang, speak]);
 }

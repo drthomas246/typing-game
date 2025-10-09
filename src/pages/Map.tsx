@@ -15,25 +15,25 @@ import { TYPING_ROUTE_POINTS } from "@/data/points";
  * @returns {JSX.Element} マップ画面のUI要素。
  */
 export default function MapPage({
-  showTooltip,
-  stageRef,
-  children,
+	showTooltip,
+	stageRef,
+	children,
 }: PropsWithChildren<{
-  showTooltip: boolean;
-  stageRef: React.RefObject<KonvaStage | null>;
+	showTooltip: boolean;
+	stageRef: React.RefObject<KonvaStage | null>;
 }>) {
-  return (
-    <div style={{ width: "100vw", height: "100vh" }}>
-      <MapView
-        tiles={tiles}
-        points={TYPING_ROUTE_POINTS}
-        worldSize={worldSize}
-        initialCenter={{ x: 2990, y: 1640 }}
-        showTooltip={showTooltip}
-        stageRef={stageRef}
-      >
-        {children}
-      </MapView>
-    </div>
-  );
+	return (
+		<div style={{ width: "100vw", height: "100vh" }}>
+			<MapView
+				tiles={tiles}
+				points={TYPING_ROUTE_POINTS}
+				worldSize={worldSize}
+				initialCenter={{ x: 2990, y: 1640 }}
+				showTooltip={showTooltip}
+				stageRef={stageRef}
+			>
+				{children}
+			</MapView>
+		</div>
+	);
 }
