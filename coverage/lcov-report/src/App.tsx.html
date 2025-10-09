@@ -249,7 +249,15 @@
 <a name='L184'></a><a href='#L184'>184</a>
 <a name='L185'></a><a href='#L185'>185</a>
 <a name='L186'></a><a href='#L186'>186</a>
-<a name='L187'></a><a href='#L187'>187</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L187'></a><a href='#L187'>187</a>
+<a name='L188'></a><a href='#L188'>188</a>
+<a name='L189'></a><a href='#L189'>189</a>
+<a name='L190'></a><a href='#L190'>190</a>
+<a name='L191'></a><a href='#L191'>191</a>
+<a name='L192'></a><a href='#L192'>192</a>
+<a name='L193'></a><a href='#L193'>193</a>
+<a name='L194'></a><a href='#L194'>194</a>
+<a name='L195'></a><a href='#L195'>195</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -276,6 +284,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -283,7 +295,10 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -391,6 +406,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -460,9 +476,12 @@ import type { Stage as KonvaStage } from "konva/lib/Stage";
 import type { AppProps, MapPoint } from "@/types/index";
 &nbsp;
 /**
- * サウンドコンテキストをユーザー操作で再開する。
+ * HowlerのAudioContextが停止状態（suspended）の場合、ユーザー操作に応じて再開（resume）します。
+ * 多くのブラウザで音声の自動再生が制限されているため、最初のユーザーインタラクションで呼び出す必要があります。
+ * @returns {Promise&lt;void&gt;} Contextの再開が完了するか、不要であれば解決するPromise。
  */
-<span class="cstat-no" title="statement not covered" >function resumeHowlerContextIfNeeded() {</span>
+<span class="cstat-no" title="statement not covered" >function resumeHowlerContextIfNeeded(): Promise&lt;void&gt; {</span>
+  // Howlerの内部Contextにアクセスするための型アサーション
 <span class="cstat-no" title="statement not covered" >  const h = Howler as unknown as { ctx?: AudioContext };</span>
 <span class="cstat-no" title="statement not covered" >  const ctx = h.ctx;</span>
 <span class="cstat-no" title="statement not covered" >  if (ctx &amp;&amp; ctx.state === "suspended") {</span>
@@ -472,9 +491,13 @@ import type { AppProps, MapPoint } from "@/types/index";
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;
 /**
- * アプリ全体のページ遷移とサウンド制御を行うコンポーネント。
+ * アプリケーションのメインコンポーネント。
+ * ページ遷移、BGM/サウンドエフェクト（SE）の制御、初回アクセス時の同意ダイアログとタイトルシーケンスを管理します。
+ * @param {AppProps} props - コンポーネントのプロパティ。
+ * @param {boolean} [props.played=true] - 過去に一度アプリをプレイしたことがあるかどうかのフラグ。
+ * @returns {JSX.Element} 現在のページ（マップまたはタイピング）を表示するJSX要素。
  */
-<span class="cstat-no" title="statement not covered" >export default function App({ played = true }: AppProps) {</span>
+<span class="cstat-no" title="statement not covered" >export default function App({ played = true }: AppProps): React.ReactElement {</span>
 <span class="cstat-no" title="statement not covered" >  const page = usePage();</span>
 <span class="cstat-no" title="statement not covered" >  const setPage = useSetPage();</span>
 &nbsp;
@@ -577,6 +600,7 @@ import type { AppProps, MapPoint } from "@/types/index";
 <span class="cstat-no" title="statement not covered" >              /&gt;</span>
 <span class="cstat-no" title="statement not covered" >            ))}</span>
 <span class="cstat-no" title="statement not covered" >          &lt;/MapPage&gt;</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >          {firstPlayed &amp;&amp; (</span>
 <span class="cstat-no" title="statement not covered" >            &lt;&gt;</span>
 <span class="cstat-no" title="statement not covered" >              &lt;TitleOverlay</span>
@@ -615,7 +639,7 @@ import type { AppProps, MapPoint } from "@/types/index";
 <span class="cstat-no" title="statement not covered" >        &lt;Typing</span>
 <span class="cstat-no" title="statement not covered" >          QA={TYPING_ROUTE_POINTS[page - 1].QA}</span>
 <span class="cstat-no" title="statement not covered" >          title={TYPING_ROUTE_POINTS[page - 1].title}</span>
-<span class="cstat-no" title="statement not covered" >          sound={isBgmOn}</span>
+<span class="cstat-no" title="statement not covered" >          sound={isBgmOn} // BGMのオン/オフ状態を渡す</span>
 <span class="cstat-no" title="statement not covered" >        /&gt;</span>
       )}
 <span class="cstat-no" title="statement not covered" >    &lt;/&gt;</span>
@@ -628,7 +652,7 @@ import type { AppProps, MapPoint } from "@/types/index";
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-07T04:34:44.850Z
+                at 2025-10-09T12:07:46.855Z
             </div>
         <script src="../prettify.js"></script>
         <script>

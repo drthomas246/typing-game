@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/160</span>
+                <span class='fraction'>0/162</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/160</span>
+                <span class='fraction'>0/162</span>
             </div>
         
             
@@ -251,7 +251,22 @@
 <a name='L186'></a><a href='#L186'>186</a>
 <a name='L187'></a><a href='#L187'>187</a>
 <a name='L188'></a><a href='#L188'>188</a>
-<a name='L189'></a><a href='#L189'>189</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L189'></a><a href='#L189'>189</a>
+<a name='L190'></a><a href='#L190'>190</a>
+<a name='L191'></a><a href='#L191'>191</a>
+<a name='L192'></a><a href='#L192'>192</a>
+<a name='L193'></a><a href='#L193'>193</a>
+<a name='L194'></a><a href='#L194'>194</a>
+<a name='L195'></a><a href='#L195'>195</a>
+<a name='L196'></a><a href='#L196'>196</a>
+<a name='L197'></a><a href='#L197'>197</a>
+<a name='L198'></a><a href='#L198'>198</a>
+<a name='L199'></a><a href='#L199'>199</a>
+<a name='L200'></a><a href='#L200'>200</a>
+<a name='L201'></a><a href='#L201'>201</a>
+<a name='L202'></a><a href='#L202'>202</a>
+<a name='L203'></a><a href='#L203'>203</a>
+<a name='L204'></a><a href='#L204'>204</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -264,9 +279,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -275,6 +288,22 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -288,6 +317,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -451,181 +481,196 @@
 <span class="cstat-no" title="statement not covered" >import PlayerHpBar from "@/components/typing/PhaseNoticeArea/PlayerHpBar";</span>
 <span class="cstat-no" title="statement not covered" >import ResultsDialog from "@/components/typing/ResultsDialog";</span>
 <span class="cstat-no" title="statement not covered" >import SettingsDrawer from "@/components/typing/SettingsDrawer";</span>
-<span class="cstat-no" title="statement not covered" >import { useBattle, useLevel, usePage, useSound } from "@/contexts/PageContext";</span>
+<span class="cstat-no" title="statement not covered" >import {</span>
+  useBattle,
+  useLevel,
+  usePage,
+  useSound,
+  useSort,
+} from "@/contexts/PageContext";
 <span class="cstat-no" title="statement not covered" >import { useTypingEngine } from "@/hooks/typingEngine/useTypingEngine";</span>
 <span class="cstat-no" title="statement not covered" >import { useBgm } from "@/hooks/typingPage/useBgm";</span>
 <span class="cstat-no" title="statement not covered" >import { useRandomAssets } from "@/hooks/typingPage/useRandomAssets";</span>
 import type { Settings, TypingPageProps } from "@/types/index";
 &nbsp;
 /**
- * タイピングバトル画面全体を構成するページ。
+ * タイピングバトル画面全体を構成するページコンポーネント。
+ * このページは、タイピングゲームのロジック、UI要素（HPバー、問題表示、バトルエリアなど）、
+ * 設定ドロワー、結果ダイアログなどを統合して提供します。
+ *
+ * @param {object} props - このコンポーネントが受け取るプロパティ。
+ * @param {QAPair[]} props.QA - タイピングゲームで出題される問題の`QAPair`配列。
+ * @param {string} props.title - 現在のゲームステージのタイトル。
+ * @returns {JSX.Element} タイピングバトル画面のUI。
  */
 <span class="cstat-no" title="statement not covered" >export default function TypingPage({ QA, title }: TypingPageProps) {</span>
-<span class="cstat-no" title="statement not covered" >	const level = useLevel();</span>
-<span class="cstat-no" title="statement not covered" >	const battle = useBattle();</span>
-<span class="cstat-no" title="statement not covered" >	const [settings, setSettings] = useState&lt;Settings&gt;({</span>
-<span class="cstat-no" title="statement not covered" >		language: "ja",</span>
-<span class="cstat-no" title="statement not covered" >		learnThenRecall: true,</span>
-<span class="cstat-no" title="statement not covered" >	});</span>
+<span class="cstat-no" title="statement not covered" >  const level = useLevel();</span>
+<span class="cstat-no" title="statement not covered" >  const battle = useBattle();</span>
+<span class="cstat-no" title="statement not covered" >  const problemSort = useSort();</span>
+<span class="cstat-no" title="statement not covered" >  const [settings, setSettings] = useState&lt;Settings&gt;({</span>
+<span class="cstat-no" title="statement not covered" >    language: "ja",</span>
+<span class="cstat-no" title="statement not covered" >    learnThenRecall: true,</span>
+<span class="cstat-no" title="statement not covered" >  });</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	const page = usePage();</span>
-<span class="cstat-no" title="statement not covered" >	const isBgmOn = useSound();</span>
+<span class="cstat-no" title="statement not covered" >  const page = usePage();</span>
+<span class="cstat-no" title="statement not covered" >  const isBgmOn = useSound();</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	const [slashId, setSlashId] = useState(0);</span>
-<span class="cstat-no" title="statement not covered" >	const [hurtId, setHurtId] = useState(0);</span>
-<span class="cstat-no" title="statement not covered" >	const [vanishId, setVanishId] = useState(0);</span>
-<span class="cstat-no" title="statement not covered" >	const [vanished, setVanished] = useState(false);</span>
+<span class="cstat-no" title="statement not covered" >  const [slashId, setSlashId] = useState(0);</span>
+<span class="cstat-no" title="statement not covered" >  const [hurtId, setHurtId] = useState(0);</span>
+<span class="cstat-no" title="statement not covered" >  const [vanishId, setVanishId] = useState(0);</span>
+<span class="cstat-no" title="statement not covered" >  const [vanished, setVanished] = useState(false);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	const damagePerHit = useMemo(() =&gt; 10, []);</span>
-<span class="cstat-no" title="statement not covered" >	const engine = useTypingEngine(</span>
-<span class="cstat-no" title="statement not covered" >		{</span>
-<span class="cstat-no" title="statement not covered" >			learnThenRecall: settings.learnThenRecall,</span>
-<span class="cstat-no" title="statement not covered" >			battleMode: true,</span>
-<span class="cstat-no" title="statement not covered" >			playerMaxHp: 100 + (level - 1) * 10,</span>
-<span class="cstat-no" title="statement not covered" >			enemyMaxHp: damagePerHit * QA.length,</span>
-<span class="cstat-no" title="statement not covered" >			damagePerHit: 10,</span>
-<span class="cstat-no" title="statement not covered" >			damagePerMiss: 5,</span>
-<span class="cstat-no" title="statement not covered" >			learningMode: battle,</span>
-<span class="cstat-no" title="statement not covered" >		},</span>
-<span class="cstat-no" title="statement not covered" >		QA,</span>
-<span class="cstat-no" title="statement not covered" >		setSlashId,</span>
-<span class="cstat-no" title="statement not covered" >		setHurtId,</span>
-<span class="cstat-no" title="statement not covered" >		setVanishId,</span>
-<span class="cstat-no" title="statement not covered" >		setVanished,</span>
-<span class="cstat-no" title="statement not covered" >	);</span>
+<span class="cstat-no" title="statement not covered" >  const damagePerHit = useMemo(() =&gt; 10, []);</span>
+<span class="cstat-no" title="statement not covered" >  const engine = useTypingEngine(</span>
+<span class="cstat-no" title="statement not covered" >    {</span>
+<span class="cstat-no" title="statement not covered" >      learnThenRecall: settings.learnThenRecall,</span>
+<span class="cstat-no" title="statement not covered" >      battleMode: true,</span>
+<span class="cstat-no" title="statement not covered" >      playerMaxHp: 100 + (level - 1) * 10,</span>
+<span class="cstat-no" title="statement not covered" >      enemyMaxHp: damagePerHit * QA.length,</span>
+<span class="cstat-no" title="statement not covered" >      damagePerHit: 10,</span>
+<span class="cstat-no" title="statement not covered" >      damagePerMiss: 5,</span>
+<span class="cstat-no" title="statement not covered" >      learningMode: battle,</span>
+<span class="cstat-no" title="statement not covered" >      randomOrder: problemSort,</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+<span class="cstat-no" title="statement not covered" >    QA,</span>
+<span class="cstat-no" title="statement not covered" >    setSlashId,</span>
+<span class="cstat-no" title="statement not covered" >    setHurtId,</span>
+<span class="cstat-no" title="statement not covered" >    setVanishId,</span>
+<span class="cstat-no" title="statement not covered" >    setVanished,</span>
+<span class="cstat-no" title="statement not covered" >  );</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	const { enemyImg, backgroundImg } = useRandomAssets();</span>
+<span class="cstat-no" title="statement not covered" >  const { enemyImg, backgroundImg } = useRandomAssets();</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	const { setShouldPlay } = useBgm({</span>
-<span class="cstat-no" title="statement not covered" >		src: "./music/bgm/waitScreen.mp3",</span>
-<span class="cstat-no" title="statement not covered" >		loop: true,</span>
-<span class="cstat-no" title="statement not covered" >		volume: 0.4,</span>
-<span class="cstat-no" title="statement not covered" >		enabled: isBgmOn,</span>
-<span class="cstat-no" title="statement not covered" >	});</span>
+<span class="cstat-no" title="statement not covered" >  const { setShouldPlay } = useBgm({</span>
+<span class="cstat-no" title="statement not covered" >    src: "./music/bgm/waitScreen.mp3",</span>
+<span class="cstat-no" title="statement not covered" >    loop: true,</span>
+<span class="cstat-no" title="statement not covered" >    volume: 0.4,</span>
+<span class="cstat-no" title="statement not covered" >    enabled: isBgmOn,</span>
+<span class="cstat-no" title="statement not covered" >  });</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	const settingsDisc = useDisclosure();</span>
-<span class="cstat-no" title="statement not covered" >	const [resultOpen, setResultOpen] = useState(false);</span>
+<span class="cstat-no" title="statement not covered" >  const settingsDisc = useDisclosure();</span>
+<span class="cstat-no" title="statement not covered" >  const [resultOpen, setResultOpen] = useState(false);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	useEffect(() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >		if (engine.state.started &amp;&amp; engine.state.finished) {</span>
-<span class="cstat-no" title="statement not covered" >			if (engine.state.enemyHp === 0) {</span>
-<span class="cstat-no" title="statement not covered" >				setVanishId((n) =&gt; n + 1);</span>
-<span class="cstat-no" title="statement not covered" >			}</span>
-<span class="cstat-no" title="statement not covered" >			const id = setTimeout(() =&gt; setResultOpen(true), 0);</span>
-<span class="cstat-no" title="statement not covered" >			return () =&gt; clearTimeout(id);</span>
-<span class="cstat-no" title="statement not covered" >		}</span>
-<span class="cstat-no" title="statement not covered" >	}, [engine.state.started, engine.state.finished, engine.state.enemyHp]);</span>
+<span class="cstat-no" title="statement not covered" >  useEffect(() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    if (engine.state.started &amp;&amp; engine.state.finished) {</span>
+<span class="cstat-no" title="statement not covered" >      if (engine.state.enemyHp === 0) {</span>
+<span class="cstat-no" title="statement not covered" >        setVanishId((n) =&gt; n + 1);</span>
+<span class="cstat-no" title="statement not covered" >      }</span>
+<span class="cstat-no" title="statement not covered" >      const id = setTimeout(() =&gt; setResultOpen(true), 0);</span>
+<span class="cstat-no" title="statement not covered" >      return () =&gt; clearTimeout(id);</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >  }, [engine.state.started, engine.state.finished, engine.state.enemyHp]);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	const enemyHpPct = useMemo(</span>
-<span class="cstat-no" title="statement not covered" >		() =&gt; Math.round((engine.state.enemyHp / engine.state.enemyMaxHp) * 100),</span>
-<span class="cstat-no" title="statement not covered" >		[engine.state.enemyHp, engine.state.enemyMaxHp],</span>
-<span class="cstat-no" title="statement not covered" >	);</span>
-<span class="cstat-no" title="statement not covered" >	const playerHpPct = useMemo(</span>
-<span class="cstat-no" title="statement not covered" >		() =&gt; Math.round((engine.state.playerHp / engine.state.playerMaxHp) * 100),</span>
-<span class="cstat-no" title="statement not covered" >		[engine.state.playerHp, engine.state.playerMaxHp],</span>
-<span class="cstat-no" title="statement not covered" >	);</span>
+<span class="cstat-no" title="statement not covered" >  const enemyHpPct = useMemo(</span>
+<span class="cstat-no" title="statement not covered" >    () =&gt; Math.round((engine.state.enemyHp / engine.state.enemyMaxHp) * 100),</span>
+<span class="cstat-no" title="statement not covered" >    [engine.state.enemyHp, engine.state.enemyMaxHp],</span>
+<span class="cstat-no" title="statement not covered" >  );</span>
+<span class="cstat-no" title="statement not covered" >  const playerHpPct = useMemo(</span>
+<span class="cstat-no" title="statement not covered" >    () =&gt; Math.round((engine.state.playerHp / engine.state.playerMaxHp) * 100),</span>
+<span class="cstat-no" title="statement not covered" >    [engine.state.playerHp, engine.state.playerMaxHp],</span>
+<span class="cstat-no" title="statement not covered" >  );</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	const arenaRef = useRef&lt;HTMLDivElement | null&gt;(null);</span>
+<span class="cstat-no" title="statement not covered" >  const arenaRef = useRef&lt;HTMLDivElement | null&gt;(null);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	return (</span>
-<span class="cstat-no" title="statement not covered" >		&lt;&gt;</span>
-<span class="cstat-no" title="statement not covered" >			{page !== 0 ? (</span>
-<span class="cstat-no" title="statement not covered" >				&lt;Container p="6" maxW="container.md"&gt;</span>
-<span class="cstat-no" title="statement not covered" >					&lt;Stack gap="6"&gt;</span>
-<span class="cstat-no" title="statement not covered" >						&lt;HeaderArea</span>
-<span class="cstat-no" title="statement not covered" >							title={title}</span>
-<span class="cstat-no" title="statement not covered" >							start={engine.start}</span>
-<span class="cstat-no" title="statement not covered" >							stop={engine.stop}</span>
-<span class="cstat-no" title="statement not covered" >							state={engine.state}</span>
-<span class="cstat-no" title="statement not covered" >							setShouldPlay={setShouldPlay}</span>
-<span class="cstat-no" title="statement not covered" >							settings={settings}</span>
-<span class="cstat-no" title="statement not covered" >							onOpen={settingsDisc.onOpen}</span>
-<span class="cstat-no" title="statement not covered" >						/&gt;</span>
-<span class="cstat-no" title="statement not covered" >						&lt;BattleArea</span>
-<span class="cstat-no" title="statement not covered" >							ref={arenaRef}</span>
-<span class="cstat-no" title="statement not covered" >							enemyImg={enemyImg}</span>
-<span class="cstat-no" title="statement not covered" >							backgroundImg={backgroundImg}</span>
-<span class="cstat-no" title="statement not covered" >							hurtId={hurtId}</span>
-<span class="cstat-no" title="statement not covered" >							vanishId={vanishId}</span>
-<span class="cstat-no" title="statement not covered" >							vanished={vanished}</span>
-<span class="cstat-no" title="statement not covered" >							onVanishDone={() =&gt; setVanished(true)}</span>
-<span class="cstat-no" title="statement not covered" >							slashId={slashId}</span>
-<span class="cstat-no" title="statement not covered" >							questionText={</span>
-<span class="cstat-no" title="statement not covered" >								engine.state.questionJa</span>
-<span class="cstat-no" title="statement not covered" >									? engine.state.questionJa</span>
-<span class="cstat-no" title="statement not covered" >									: battle</span>
-<span class="cstat-no" title="statement not covered" >										? "問題がここに出るよ"</span>
-<span class="cstat-no" title="statement not covered" >										: "バトル開始"</span>
-							}
-<span class="cstat-no" title="statement not covered" >							questionImg={engine.state.questionImg}</span>
-<span class="cstat-no" title="statement not covered" >							state={engine.state}</span>
-<span class="cstat-no" title="statement not covered" >							enemyHpPct={enemyHpPct}</span>
-<span class="cstat-no" title="statement not covered" >							arenaRef={arenaRef.current}</span>
-						&gt;
-<span class="cstat-no" title="statement not covered" >							&lt;DamageMotion</span>
-<span class="cstat-no" title="statement not covered" >								arenaRef={arenaRef.current}</span>
-<span class="cstat-no" title="statement not covered" >								slashId={slashId}</span>
-<span class="cstat-no" title="statement not covered" >								hurtId={hurtId}</span>
-<span class="cstat-no" title="statement not covered" >							/&gt;</span>
-<span class="cstat-no" title="statement not covered" >						&lt;/BattleArea&gt;</span>
+<span class="cstat-no" title="statement not covered" >  return (</span>
+<span class="cstat-no" title="statement not covered" >    &lt;&gt;</span>
+<span class="cstat-no" title="statement not covered" >      {page !== 0 ? (</span>
+<span class="cstat-no" title="statement not covered" >        &lt;Container p="6" maxW="container.md"&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;Stack gap="6"&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;HeaderArea</span>
+<span class="cstat-no" title="statement not covered" >              title={title}</span>
+<span class="cstat-no" title="statement not covered" >              start={engine.start}</span>
+<span class="cstat-no" title="statement not covered" >              stop={engine.stop}</span>
+<span class="cstat-no" title="statement not covered" >              state={engine.state}</span>
+<span class="cstat-no" title="statement not covered" >              setShouldPlay={setShouldPlay}</span>
+<span class="cstat-no" title="statement not covered" >              settings={settings}</span>
+<span class="cstat-no" title="statement not covered" >              onOpen={settingsDisc.onOpen}</span>
+<span class="cstat-no" title="statement not covered" >            /&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;BattleArea</span>
+<span class="cstat-no" title="statement not covered" >              ref={arenaRef}</span>
+<span class="cstat-no" title="statement not covered" >              enemyImg={enemyImg}</span>
+<span class="cstat-no" title="statement not covered" >              backgroundImg={backgroundImg}</span>
+<span class="cstat-no" title="statement not covered" >              hurtId={hurtId}</span>
+<span class="cstat-no" title="statement not covered" >              vanishId={vanishId}</span>
+<span class="cstat-no" title="statement not covered" >              vanished={vanished}</span>
+<span class="cstat-no" title="statement not covered" >              onVanishDone={() =&gt; setVanished(true)}</span>
+<span class="cstat-no" title="statement not covered" >              slashId={slashId}</span>
+<span class="cstat-no" title="statement not covered" >              questionText={</span>
+<span class="cstat-no" title="statement not covered" >                engine.state.questionJa</span>
+<span class="cstat-no" title="statement not covered" >                  ? engine.state.questionJa</span>
+<span class="cstat-no" title="statement not covered" >                  : battle</span>
+<span class="cstat-no" title="statement not covered" >                    ? "問題がここに出るよ"</span>
+<span class="cstat-no" title="statement not covered" >                    : "バトル開始"</span>
+              }
+<span class="cstat-no" title="statement not covered" >              questionImg={engine.state.questionImg}</span>
+<span class="cstat-no" title="statement not covered" >              state={engine.state}</span>
+<span class="cstat-no" title="statement not covered" >              enemyHpPct={enemyHpPct}</span>
+<span class="cstat-no" title="statement not covered" >              arenaRef={arenaRef.current}</span>
+            &gt;
+<span class="cstat-no" title="statement not covered" >              &lt;DamageMotion</span>
+<span class="cstat-no" title="statement not covered" >                arenaRef={arenaRef.current}</span>
+<span class="cstat-no" title="statement not covered" >                slashId={slashId}</span>
+<span class="cstat-no" title="statement not covered" >                hurtId={hurtId}</span>
+<span class="cstat-no" title="statement not covered" >              /&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;/BattleArea&gt;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >						{battle &amp;&amp; (</span>
-<span class="cstat-no" title="statement not covered" >							&lt;PhaseNotice</span>
-<span class="cstat-no" title="statement not covered" >								learnThenRecall={settings.learnThenRecall}</span>
-<span class="cstat-no" title="statement not covered" >								phase={</span>
-<span class="cstat-no" title="statement not covered" >									engine.state.learningPhase as "study" | "recall" | undefined</span>
-								}
-<span class="cstat-no" title="statement not covered" >							/&gt;</span>
-						)}
-<span class="cstat-no" title="statement not covered" >						{!battle &amp;&amp; (</span>
-<span class="cstat-no" title="statement not covered" >							&lt;PlayerHpBar</span>
-<span class="cstat-no" title="statement not covered" >								current={engine.state.playerHp}</span>
-<span class="cstat-no" title="statement not covered" >								max={engine.state.playerMaxHp}</span>
-<span class="cstat-no" title="statement not covered" >								pct={playerHpPct}</span>
-<span class="cstat-no" title="statement not covered" >							/&gt;</span>
-						)}
+<span class="cstat-no" title="statement not covered" >            {battle &amp;&amp; (</span>
+<span class="cstat-no" title="statement not covered" >              &lt;PhaseNotice</span>
+<span class="cstat-no" title="statement not covered" >                learnThenRecall={settings.learnThenRecall}</span>
+<span class="cstat-no" title="statement not covered" >                phase={</span>
+<span class="cstat-no" title="statement not covered" >                  engine.state.learningPhase as "study" | "recall" | undefined</span>
+                }
+<span class="cstat-no" title="statement not covered" >              /&gt;</span>
+            )}
+<span class="cstat-no" title="statement not covered" >            {!battle &amp;&amp; (</span>
+<span class="cstat-no" title="statement not covered" >              &lt;PlayerHpBar</span>
+<span class="cstat-no" title="statement not covered" >                current={engine.state.playerHp}</span>
+<span class="cstat-no" title="statement not covered" >                max={engine.state.playerMaxHp}</span>
+<span class="cstat-no" title="statement not covered" >                pct={playerHpPct}</span>
+<span class="cstat-no" title="statement not covered" >              /&gt;</span>
+            )}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >						&lt;AnswerArea</span>
-<span class="cstat-no" title="statement not covered" >							typed={engine.state.typed}</span>
-<span class="cstat-no" title="statement not covered" >							correctMap={engine.state.correctMap}</span>
-<span class="cstat-no" title="statement not covered" >							answer={engine.state.answerEn}</span>
-<span class="cstat-no" title="statement not covered" >							showHint={engine.state.showHint}</span>
-<span class="cstat-no" title="statement not covered" >							state={engine.state}</span>
-<span class="cstat-no" title="statement not covered" >							inputOnKey={engine.onKey}</span>
-<span class="cstat-no" title="statement not covered" >							resultOpen={resultOpen}</span>
-<span class="cstat-no" title="statement not covered" >							engine={engine}</span>
-<span class="cstat-no" title="statement not covered" >						/&gt;</span>
-<span class="cstat-no" title="statement not covered" >					&lt;/Stack&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;AnswerArea</span>
+<span class="cstat-no" title="statement not covered" >              typed={engine.state.typed}</span>
+<span class="cstat-no" title="statement not covered" >              correctMap={engine.state.correctMap}</span>
+<span class="cstat-no" title="statement not covered" >              answer={engine.state.answerEn}</span>
+<span class="cstat-no" title="statement not covered" >              showHint={engine.state.showHint}</span>
+<span class="cstat-no" title="statement not covered" >              state={engine.state}</span>
+<span class="cstat-no" title="statement not covered" >              inputOnKey={engine.onKey}</span>
+<span class="cstat-no" title="statement not covered" >              resultOpen={resultOpen}</span>
+<span class="cstat-no" title="statement not covered" >              engine={engine}</span>
+<span class="cstat-no" title="statement not covered" >            /&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;/Stack&gt;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >					&lt;SettingsDrawer</span>
-<span class="cstat-no" title="statement not covered" >						open={settingsDisc.open}</span>
-<span class="cstat-no" title="statement not covered" >						onClose={settingsDisc.onClose}</span>
-<span class="cstat-no" title="statement not covered" >						settings={settings}</span>
-<span class="cstat-no" title="statement not covered" >						onChange={setSettings}</span>
-<span class="cstat-no" title="statement not covered" >						engine={engine}</span>
-<span class="cstat-no" title="statement not covered" >					/&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;SettingsDrawer</span>
+<span class="cstat-no" title="statement not covered" >            open={settingsDisc.open}</span>
+<span class="cstat-no" title="statement not covered" >            onClose={settingsDisc.onClose}</span>
+<span class="cstat-no" title="statement not covered" >            settings={settings}</span>
+<span class="cstat-no" title="statement not covered" >            onChange={setSettings}</span>
+<span class="cstat-no" title="statement not covered" >            engine={engine}</span>
+<span class="cstat-no" title="statement not covered" >          /&gt;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >					&lt;ResultsDialog</span>
-<span class="cstat-no" title="statement not covered" >						open={resultOpen}</span>
-<span class="cstat-no" title="statement not covered" >						setOpen={setResultOpen}</span>
-<span class="cstat-no" title="statement not covered" >						onRetry={() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >							setResultOpen(false);</span>
-<span class="cstat-no" title="statement not covered" >							engine.start();</span>
-<span class="cstat-no" title="statement not covered" >						}}</span>
-<span class="cstat-no" title="statement not covered" >						setShouldBgmPlay={setShouldPlay}</span>
-<span class="cstat-no" title="statement not covered" >						summary={{</span>
-<span class="cstat-no" title="statement not covered" >							timeSec: engine.actualTimeSec,</span>
-<span class="cstat-no" title="statement not covered" >							usedHintCount: engine.state.usedHintCount,</span>
-<span class="cstat-no" title="statement not covered" >							mistakeProblemCount: engine.state.mistakeProblemCount,</span>
-<span class="cstat-no" title="statement not covered" >							killedNow: engine.state.enemyHp === 0 &amp;&amp; battle !== true,</span>
-<span class="cstat-no" title="statement not covered" >						}}</span>
-<span class="cstat-no" title="statement not covered" >					/&gt;</span>
-<span class="cstat-no" title="statement not covered" >				&lt;/Container&gt;</span>
-			) : (
-<span class="cstat-no" title="statement not covered" >				&lt;App played={false} /&gt;</span>
-			)}
-<span class="cstat-no" title="statement not covered" >		&lt;/&gt;</span>
-	);
+<span class="cstat-no" title="statement not covered" >          &lt;ResultsDialog</span>
+<span class="cstat-no" title="statement not covered" >            open={resultOpen}</span>
+<span class="cstat-no" title="statement not covered" >            setOpen={setResultOpen}</span>
+<span class="cstat-no" title="statement not covered" >            onRetry={() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >              setResultOpen(false);</span>
+<span class="cstat-no" title="statement not covered" >              engine.start();</span>
+<span class="cstat-no" title="statement not covered" >            }}</span>
+<span class="cstat-no" title="statement not covered" >            setShouldBgmPlay={setShouldPlay}</span>
+<span class="cstat-no" title="statement not covered" >            summary={{</span>
+<span class="cstat-no" title="statement not covered" >              timeSec: engine.actualTimeSec,</span>
+<span class="cstat-no" title="statement not covered" >              usedHintCount: engine.state.usedHintCount,</span>
+<span class="cstat-no" title="statement not covered" >              mistakeProblemCount: engine.state.mistakeProblemCount,</span>
+<span class="cstat-no" title="statement not covered" >              killedNow: engine.state.enemyHp === 0 &amp;&amp; battle !== true,</span>
+<span class="cstat-no" title="statement not covered" >            }}</span>
+<span class="cstat-no" title="statement not covered" >          /&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;/Container&gt;</span>
+      ) : (
+<span class="cstat-no" title="statement not covered" >        &lt;App played={false} /&gt;</span>
+      )}
+<span class="cstat-no" title="statement not covered" >    &lt;/&gt;</span>
+  );
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;</pre></td></tr></table></pre>
 
@@ -634,7 +679,7 @@ import type { Settings, TypingPageProps } from "@/types/index";
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-07T04:34:44.621Z
+                at 2025-10-09T12:07:46.489Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

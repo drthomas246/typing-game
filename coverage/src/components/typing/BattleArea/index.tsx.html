@@ -173,7 +173,14 @@
 <a name='L108'></a><a href='#L108'>108</a>
 <a name='L109'></a><a href='#L109'>109</a>
 <a name='L110'></a><a href='#L110'>110</a>
-<a name='L111'></a><a href='#L111'>111</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -182,11 +189,17 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -206,6 +219,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -292,104 +306,111 @@ import type { BattleArenaProps } from "@/types/index";
 <span class="cstat-no" title="statement not covered" >import EnemyLayer from "./EnemyLayer";</span>
 <span class="cstat-no" title="statement not covered" >import QuestionPanel from "./QuestionPanel";</span>
 &nbsp;
+// framer-motionでアニメーション可能なdiv要素を作成
 <span class="cstat-no" title="statement not covered" >const MotionDiv = motion.div;</span>
 &nbsp;
 /**
- * 敵表示と問題表示を含むバトルエリア。
+ * 戦闘シーンのすべての視覚要素（敵、背景、問題、HPバー、エフェクト）を統合するメインコンポーネント。
+ * `forwardRef` を利用して、親コンポーネントから `ref` を受け取り、内部のDOM要素に渡します。
+ * これにより、親コンポーネントがこのコンポーネント内のDOMノード（例: 敵表示エリア）のサイズや位置を直接参照できるようになり、エフェクトの計算などに利用されます。
+ *
+ * @param props - コンポーネントのプロパティ。`BattleArenaProps` 型を参照。
+ * @param ref - `forwardRef` を通じて転送される `ref` オブジェクト。敵表示エリアの `div` 要素にアタッチされます。
  */
 <span class="cstat-no" title="statement not covered" >const BattleArena = forwardRef&lt;HTMLDivElement, BattleArenaProps&gt;(</span>
-<span class="cstat-no" title="statement not covered" >	(</span>
-<span class="cstat-no" title="statement not covered" >		{</span>
-<span class="cstat-no" title="statement not covered" >			enemyImg,</span>
-<span class="cstat-no" title="statement not covered" >			backgroundImg,</span>
-<span class="cstat-no" title="statement not covered" >			hurtId,</span>
-<span class="cstat-no" title="statement not covered" >			vanishId,</span>
-<span class="cstat-no" title="statement not covered" >			vanished,</span>
-<span class="cstat-no" title="statement not covered" >			slashId,</span>
-<span class="cstat-no" title="statement not covered" >			onVanishDone,</span>
-<span class="cstat-no" title="statement not covered" >			questionText,</span>
-<span class="cstat-no" title="statement not covered" >			questionImg,</span>
-<span class="cstat-no" title="statement not covered" >			state,</span>
-<span class="cstat-no" title="statement not covered" >			enemyHpPct,</span>
-<span class="cstat-no" title="statement not covered" >			arenaRef,</span>
-<span class="cstat-no" title="statement not covered" >		},</span>
-<span class="cstat-no" title="statement not covered" >		ref,</span>
-<span class="cstat-no" title="statement not covered" >	) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >		return (</span>
-<span class="cstat-no" title="statement not covered" >			&lt;Box</span>
-<span class="cstat-no" title="statement not covered" >				rounded="xl"</span>
-<span class="cstat-no" title="statement not covered" >				borderWidth="1px"</span>
-<span class="cstat-no" title="statement not covered" >				p="4"</span>
-<span class="cstat-no" title="statement not covered" >				bg="bg.subtle"</span>
-<span class="cstat-no" title="statement not covered" >				h="calc(100vh - 293px)"</span>
-			&gt;
-<span class="cstat-no" title="statement not covered" >				&lt;HStack gap="16px" h="calc(100vh - 367px)" mb="16px"&gt;</span>
-<span class="cstat-no" title="statement not covered" >					&lt;Box</span>
-<span class="cstat-no" title="statement not covered" >						ref={ref}</span>
-<span class="cstat-no" title="statement not covered" >						mx="auto"</span>
-<span class="cstat-no" title="statement not covered" >						w="100%"</span>
-<span class="cstat-no" title="statement not covered" >						h="calc(100vh - 367px)"</span>
-<span class="cstat-no" title="statement not covered" >						rounded="2xl"</span>
-<span class="cstat-no" title="statement not covered" >						borderWidth="1px"</span>
-<span class="cstat-no" title="statement not covered" >						overflow="hidden"</span>
-<span class="cstat-no" title="statement not covered" >						bg="blackAlpha.50"</span>
-<span class="cstat-no" title="statement not covered" >						position="relative"</span>
-					&gt;
-<span class="cstat-no" title="statement not covered" >						&lt;AnimatePresence initial={false} mode="popLayout"&gt;</span>
-<span class="cstat-no" title="statement not covered" >							{hurtId &gt; 0 ? (</span>
-<span class="cstat-no" title="statement not covered" >								&lt;MotionDiv</span>
-<span class="cstat-no" title="statement not covered" >									key={`shake-${hurtId}`}</span>
-<span class="cstat-no" title="statement not covered" >									style={{</span>
-<span class="cstat-no" title="statement not covered" >										width: "100%",</span>
-<span class="cstat-no" title="statement not covered" >										height: "100%",</span>
-<span class="cstat-no" title="statement not covered" >										position: "relative",</span>
-<span class="cstat-no" title="statement not covered" >									}}</span>
-<span class="cstat-no" title="statement not covered" >									initial={{ x: 0 }}</span>
-<span class="cstat-no" title="statement not covered" >									animate={{ x: [0, -14, 14, -10, 10, -6, 6, 0] }}</span>
-<span class="cstat-no" title="statement not covered" >									transition={{ duration: 0.45, ease: "easeInOut" }}</span>
-<span class="cstat-no" title="statement not covered" >									exit={{ x: 0 }}</span>
-								&gt;
-<span class="cstat-no" title="statement not covered" >									&lt;EnemyLayer</span>
-<span class="cstat-no" title="statement not covered" >										backgroundImg={backgroundImg}</span>
-<span class="cstat-no" title="statement not covered" >										enemyImg={enemyImg}</span>
-<span class="cstat-no" title="statement not covered" >										vanishId={vanishId}</span>
-<span class="cstat-no" title="statement not covered" >										vanished={vanished}</span>
-<span class="cstat-no" title="statement not covered" >										onVanishDone={onVanishDone}</span>
-<span class="cstat-no" title="statement not covered" >									/&gt;</span>
-<span class="cstat-no" title="statement not covered" >								&lt;/MotionDiv&gt;</span>
-							) : (
-<span class="cstat-no" title="statement not covered" >								&lt;Box w="100%" h="100%" position="relative"&gt;</span>
-<span class="cstat-no" title="statement not covered" >									&lt;EnemyLayer</span>
-<span class="cstat-no" title="statement not covered" >										backgroundImg={backgroundImg}</span>
-<span class="cstat-no" title="statement not covered" >										enemyImg={enemyImg}</span>
-<span class="cstat-no" title="statement not covered" >										vanishId={vanishId}</span>
-<span class="cstat-no" title="statement not covered" >										vanished={vanished}</span>
-<span class="cstat-no" title="statement not covered" >										onVanishDone={onVanishDone}</span>
-<span class="cstat-no" title="statement not covered" >									/&gt;</span>
-<span class="cstat-no" title="statement not covered" >								&lt;/Box&gt;</span>
-							)}
-<span class="cstat-no" title="statement not covered" >						&lt;/AnimatePresence&gt;</span>
+<span class="cstat-no" title="statement not covered" >  (</span>
+<span class="cstat-no" title="statement not covered" >    {</span>
+<span class="cstat-no" title="statement not covered" >      enemyImg,</span>
+<span class="cstat-no" title="statement not covered" >      backgroundImg,</span>
+<span class="cstat-no" title="statement not covered" >      hurtId,</span>
+<span class="cstat-no" title="statement not covered" >      vanishId,</span>
+<span class="cstat-no" title="statement not covered" >      vanished,</span>
+<span class="cstat-no" title="statement not covered" >      slashId,</span>
+<span class="cstat-no" title="statement not covered" >      onVanishDone,</span>
+<span class="cstat-no" title="statement not covered" >      questionText,</span>
+<span class="cstat-no" title="statement not covered" >      questionImg,</span>
+<span class="cstat-no" title="statement not covered" >      state,</span>
+<span class="cstat-no" title="statement not covered" >      enemyHpPct,</span>
+<span class="cstat-no" title="statement not covered" >      arenaRef,</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+<span class="cstat-no" title="statement not covered" >    ref,</span>
+<span class="cstat-no" title="statement not covered" >  ) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    return (</span>
+      // バトルエリア全体のコンテナ
+<span class="cstat-no" title="statement not covered" >      &lt;Box</span>
+<span class="cstat-no" title="statement not covered" >        rounded="xl"</span>
+<span class="cstat-no" title="statement not covered" >        borderWidth="1px"</span>
+<span class="cstat-no" title="statement not covered" >        p="4"</span>
+<span class="cstat-no" title="statement not covered" >        bg="bg.subtle"</span>
+<span class="cstat-no" title="statement not covered" >        h="calc(100vh - 293px)"</span>
+      &gt;
+<span class="cstat-no" title="statement not covered" >        &lt;HStack gap="16px" h="calc(100vh - 367px)" mb="16px"&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;Box</span>
+<span class="cstat-no" title="statement not covered" >            ref={ref}</span>
+<span class="cstat-no" title="statement not covered" >            mx="auto"</span>
+<span class="cstat-no" title="statement not covered" >            w="100%"</span>
+<span class="cstat-no" title="statement not covered" >            h="calc(100vh - 367px)"</span>
+<span class="cstat-no" title="statement not covered" >            rounded="2xl"</span>
+<span class="cstat-no" title="statement not covered" >            borderWidth="1px"</span>
+<span class="cstat-no" title="statement not covered" >            overflow="hidden"</span>
+<span class="cstat-no" title="statement not covered" >            bg="blackAlpha.50"</span>
+<span class="cstat-no" title="statement not covered" >            position="relative"</span>
+          &gt;
+<span class="cstat-no" title="statement not covered" >            &lt;AnimatePresence initial={false} mode="popLayout"&gt;</span>
+<span class="cstat-no" title="statement not covered" >              {hurtId &gt; 0 ? (</span>
+<span class="cstat-no" title="statement not covered" >                &lt;MotionDiv</span>
+<span class="cstat-no" title="statement not covered" >                  key={`shake-${hurtId}`}</span>
+<span class="cstat-no" title="statement not covered" >                  style={{</span>
+<span class="cstat-no" title="statement not covered" >                    width: "100%",</span>
+<span class="cstat-no" title="statement not covered" >                    height: "100%",</span>
+<span class="cstat-no" title="statement not covered" >                    position: "relative",</span>
+<span class="cstat-no" title="statement not covered" >                  }}</span>
+<span class="cstat-no" title="statement not covered" >                  initial={{ x: 0 }}</span>
+<span class="cstat-no" title="statement not covered" >                  animate={{ x: [0, -14, 14, -10, 10, -6, 6, 0] }}</span>
+<span class="cstat-no" title="statement not covered" >                  transition={{ duration: 0.45, ease: "easeInOut" }}</span>
+<span class="cstat-no" title="statement not covered" >                  exit={{ x: 0 }}</span>
+                &gt;
+<span class="cstat-no" title="statement not covered" >                  &lt;EnemyLayer</span>
+<span class="cstat-no" title="statement not covered" >                    backgroundImg={backgroundImg}</span>
+<span class="cstat-no" title="statement not covered" >                    enemyImg={enemyImg}</span>
+<span class="cstat-no" title="statement not covered" >                    vanishId={vanishId}</span>
+<span class="cstat-no" title="statement not covered" >                    vanished={vanished}</span>
+<span class="cstat-no" title="statement not covered" >                    onVanishDone={onVanishDone}</span>
+<span class="cstat-no" title="statement not covered" >                  /&gt;</span>
+<span class="cstat-no" title="statement not covered" >                &lt;/MotionDiv&gt;</span>
+              ) : (
+<span class="cstat-no" title="statement not covered" >                &lt;Box w="100%" h="100%" position="relative"&gt;</span>
+<span class="cstat-no" title="statement not covered" >                  &lt;EnemyLayer</span>
+<span class="cstat-no" title="statement not covered" >                    backgroundImg={backgroundImg}</span>
+<span class="cstat-no" title="statement not covered" >                    enemyImg={enemyImg}</span>
+<span class="cstat-no" title="statement not covered" >                    vanishId={vanishId}</span>
+<span class="cstat-no" title="statement not covered" >                    vanished={vanished}</span>
+<span class="cstat-no" title="statement not covered" >                    onVanishDone={onVanishDone}</span>
+<span class="cstat-no" title="statement not covered" >                  /&gt;</span>
+<span class="cstat-no" title="statement not covered" >                &lt;/Box&gt;</span>
+              )}
+<span class="cstat-no" title="statement not covered" >            &lt;/AnimatePresence&gt;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >						&lt;DamageMotion</span>
-<span class="cstat-no" title="statement not covered" >							arenaRef={arenaRef}</span>
-<span class="cstat-no" title="statement not covered" >							slashId={slashId}</span>
-<span class="cstat-no" title="statement not covered" >							hurtId={hurtId}</span>
-<span class="cstat-no" title="statement not covered" >						/&gt;</span>
-<span class="cstat-no" title="statement not covered" >					&lt;/Box&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;DamageMotion</span>
+<span class="cstat-no" title="statement not covered" >              arenaRef={arenaRef}</span>
+<span class="cstat-no" title="statement not covered" >              slashId={slashId}</span>
+<span class="cstat-no" title="statement not covered" >              hurtId={hurtId}</span>
+<span class="cstat-no" title="statement not covered" >            /&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;/Box&gt;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >					&lt;QuestionPanel</span>
-<span class="cstat-no" title="statement not covered" >						questionText={questionText}</span>
-<span class="cstat-no" title="statement not covered" >						questionImg={questionImg}</span>
-<span class="cstat-no" title="statement not covered" >					/&gt;</span>
-<span class="cstat-no" title="statement not covered" >				&lt;/HStack&gt;</span>
-<span class="cstat-no" title="statement not covered" >				&lt;EnemyHpBar</span>
-<span class="cstat-no" title="statement not covered" >					current={state.enemyHp}</span>
-<span class="cstat-no" title="statement not covered" >					max={state.enemyMaxHp}</span>
-<span class="cstat-no" title="statement not covered" >					pct={enemyHpPct}</span>
-<span class="cstat-no" title="statement not covered" >				/&gt;</span>
-<span class="cstat-no" title="statement not covered" >			&lt;/Box&gt;</span>
-		);
-<span class="cstat-no" title="statement not covered" >	},</span>
+<span class="cstat-no" title="statement not covered" >          &lt;QuestionPanel</span>
+<span class="cstat-no" title="statement not covered" >            questionText={questionText}</span>
+<span class="cstat-no" title="statement not covered" >            questionImg={questionImg}</span>
+<span class="cstat-no" title="statement not covered" >          /&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;/HStack&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;EnemyHpBar</span>
+<span class="cstat-no" title="statement not covered" >          current={state.enemyHp}</span>
+<span class="cstat-no" title="statement not covered" >          max={state.enemyMaxHp}</span>
+<span class="cstat-no" title="statement not covered" >          pct={enemyHpPct}</span>
+<span class="cstat-no" title="statement not covered" >        /&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;/Box&gt;</span>
+    );
+<span class="cstat-no" title="statement not covered" >  },</span>
 <span class="cstat-no" title="statement not covered" >);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >export default BattleArena;</span>
@@ -400,7 +421,7 @@ import type { BattleArenaProps } from "@/types/index";
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-07T04:34:44.621Z
+                at 2025-10-09T12:07:46.489Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

@@ -113,7 +113,22 @@
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -121,6 +136,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -145,6 +174,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -169,49 +199,64 @@
 import type { AnswerPanelProps } from "@/types/index";
 &nbsp;
 /**
- * 入力欄とキーボード操作をまとめた回答パネル。
+ * タイピングの回答エリア全体を構成するメインコンポーネント。
+ * ユーザー入力の視覚的表示を担当する `AnswerInputView` と、
+ * キーボード入力のロジックを担当する `InputCapture` を組み合わせています。
+ * また、ユーザーへの操作説明も表示します。
+ *
+ * @param props - コンポーネントのプロパティ。
+ * @param props.typed - ユーザーが入力した文字列。
+ * @param props.correctMap - 入力された各文字の正誤を示す真偽値の配列。
+ * @param props.answer - 正解の文字列。
+ * @param props.showHint - ヒントの表示を制御するフラグ。
+ * @param props.state - ゲームエンジンの現在の状態（例: `started`, `finished`）。
+ * @param props.inputOnKey - ユーザーのキー入力を処理するためのコールバック関数。
+ * @param props.resultOpen - 結果画面が開いているかどうかを示すフラグ。入力無効化に使用。
+ * @param props.engine - ゲームを開始または停止するために使用されるゲームエンジンインスタンス。
+ * @returns レンダリングされた回答パネルコンポーネント。
  */
 <span class="cstat-no" title="statement not covered" >export default function AnswerPanel({</span>
-<span class="cstat-no" title="statement not covered" >	typed,</span>
-<span class="cstat-no" title="statement not covered" >	correctMap,</span>
-<span class="cstat-no" title="statement not covered" >	answer,</span>
-<span class="cstat-no" title="statement not covered" >	showHint,</span>
-<span class="cstat-no" title="statement not covered" >	state,</span>
-<span class="cstat-no" title="statement not covered" >	inputOnKey,</span>
-<span class="cstat-no" title="statement not covered" >	resultOpen,</span>
-<span class="cstat-no" title="statement not covered" >	engine,</span>
+<span class="cstat-no" title="statement not covered" >  typed,</span>
+<span class="cstat-no" title="statement not covered" >  correctMap,</span>
+<span class="cstat-no" title="statement not covered" >  answer,</span>
+<span class="cstat-no" title="statement not covered" >  showHint,</span>
+<span class="cstat-no" title="statement not covered" >  state,</span>
+<span class="cstat-no" title="statement not covered" >  inputOnKey,</span>
+<span class="cstat-no" title="statement not covered" >  resultOpen,</span>
+<span class="cstat-no" title="statement not covered" >  engine,</span>
 <span class="cstat-no" title="statement not covered" >}: AnswerPanelProps) {</span>
-<span class="cstat-no" title="statement not covered" >	return (</span>
-<span class="cstat-no" title="statement not covered" >		&lt;&gt;</span>
-<span class="cstat-no" title="statement not covered" >			&lt;Box p="4" rounded="xl" borderWidth="1px" bg="bg.panel" h="109px"&gt;</span>
-<span class="cstat-no" title="statement not covered" >				&lt;AnswerInputView</span>
-<span class="cstat-no" title="statement not covered" >					typed={typed}</span>
-<span class="cstat-no" title="statement not covered" >					correctMap={correctMap}</span>
-<span class="cstat-no" title="statement not covered" >					answer={answer}</span>
-<span class="cstat-no" title="statement not covered" >					showHint={showHint}</span>
-<span class="cstat-no" title="statement not covered" >				/&gt;</span>
-<span class="cstat-no" title="statement not covered" >				&lt;Text mt="2" fontSize="sm" color="fg.muted"&gt;</span>
-					スペースキー: 次のたん語 / エンターキー: はじめる、おわる /
-					バックスペースキー: 1文字消す / タブキー: ヒント
-<span class="cstat-no" title="statement not covered" >				&lt;/Text&gt;</span>
-<span class="cstat-no" title="statement not covered" >			&lt;/Box&gt;</span>
-<span class="cstat-no" title="statement not covered" >			&lt;InputCapture</span>
-<span class="cstat-no" title="statement not covered" >				enabled={!state.finished &amp;&amp; !resultOpen}</span>
-<span class="cstat-no" title="statement not covered" >				onKey={(ch, e) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >					if (ch === "\n") {</span>
-<span class="cstat-no" title="statement not covered" >						e.preventDefault();</span>
-<span class="cstat-no" title="statement not covered" >						if (!state.started) {</span>
-<span class="cstat-no" title="statement not covered" >							engine.start();</span>
-<span class="cstat-no" title="statement not covered" >						} else if (!state.finished) {</span>
-<span class="cstat-no" title="statement not covered" >							engine.stop();</span>
-<span class="cstat-no" title="statement not covered" >							return;</span>
-<span class="cstat-no" title="statement not covered" >						}</span>
-<span class="cstat-no" title="statement not covered" >					}</span>
-<span class="cstat-no" title="statement not covered" >					inputOnKey(ch);</span>
-<span class="cstat-no" title="statement not covered" >				}}</span>
-<span class="cstat-no" title="statement not covered" >			/&gt;</span>
-<span class="cstat-no" title="statement not covered" >		&lt;/&gt;</span>
-	);
+<span class="cstat-no" title="statement not covered" >  return (</span>
+<span class="cstat-no" title="statement not covered" >    &lt;&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;Box p="4" rounded="xl" borderWidth="1px" bg="bg.panel" h="109px"&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;AnswerInputView</span>
+<span class="cstat-no" title="statement not covered" >          typed={typed}</span>
+<span class="cstat-no" title="statement not covered" >          correctMap={correctMap}</span>
+<span class="cstat-no" title="statement not covered" >          answer={answer}</span>
+<span class="cstat-no" title="statement not covered" >          showHint={showHint}</span>
+<span class="cstat-no" title="statement not covered" >        /&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;Text mt="2" fontSize="sm" color="fg.muted"&gt;</span>
+          スペースキー: 次のたん語 / エンターキー: はじめる、おわる /
+          バックスペースキー: 1文字消す / タブキー: ヒント
+<span class="cstat-no" title="statement not covered" >        &lt;/Text&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;/Box&gt;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      &lt;InputCapture</span>
+<span class="cstat-no" title="statement not covered" >        enabled={!state.finished &amp;&amp; !resultOpen}</span>
+<span class="cstat-no" title="statement not covered" >        onKey={(ch, e) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          if (ch === "\n") {</span>
+<span class="cstat-no" title="statement not covered" >            e.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >            if (!state.started) {</span>
+<span class="cstat-no" title="statement not covered" >              engine.start();</span>
+<span class="cstat-no" title="statement not covered" >            } else if (!state.finished) {</span>
+<span class="cstat-no" title="statement not covered" >              engine.stop();</span>
+<span class="cstat-no" title="statement not covered" >              return;</span>
+<span class="cstat-no" title="statement not covered" >            }</span>
+<span class="cstat-no" title="statement not covered" >          }</span>
+<span class="cstat-no" title="statement not covered" >          inputOnKey(ch);</span>
+<span class="cstat-no" title="statement not covered" >        }}</span>
+<span class="cstat-no" title="statement not covered" >      /&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/&gt;</span>
+  );
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;</pre></td></tr></table></pre>
 
@@ -220,7 +265,7 @@ import type { AnswerPanelProps } from "@/types/index";
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-07T04:34:44.621Z
+                at 2025-10-09T12:07:46.489Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

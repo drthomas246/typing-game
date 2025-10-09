@@ -162,7 +162,13 @@
 <a name='L97'></a><a href='#L97'>97</a>
 <a name='L98'></a><a href='#L98'>98</a>
 <a name='L99'></a><a href='#L99'>99</a>
-<a name='L100'></a><a href='#L100'>100</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -170,9 +176,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -182,7 +191,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -267,98 +279,104 @@
 import type { DamageMotionProps } from "@/types/index";
 &nbsp;
 /**
- * 斬撃や被弾時の演出を制御するコンポーネント。
+ * 攻撃時の斬撃エフェクトや、被弾時の画面フラッシュエフェクトを制御するコンポーネント。
+ * `framer-motion` を利用して、これらのアニメーションを表現します。
+ *
+ * @param props - コンポーネントのプロパティ。
+ * @param props.arenaRef - アニメーションの基準となるコンテナ要素への参照。斬撃の移動距離計算に使用されます。
+ * @param props.slashId - 斬撃アニメーションのトリガー。このIDが変更される（インクリメントされる）と、新しい斬撃アニメーションが再生されます。
+ * @param props.hurtId - 被弾フラッシュアニメーションのトリガー。このIDが変更されると、新しいフラッシュアニメーションが再生されます。
  */
 <span class="cstat-no" title="statement not covered" >export default function DamageMotion({</span>
-<span class="cstat-no" title="statement not covered" >	arenaRef,</span>
-<span class="cstat-no" title="statement not covered" >	slashId,</span>
-<span class="cstat-no" title="statement not covered" >	hurtId,</span>
+<span class="cstat-no" title="statement not covered" >  arenaRef,</span>
+<span class="cstat-no" title="statement not covered" >  slashId,</span>
+<span class="cstat-no" title="statement not covered" >  hurtId,</span>
 <span class="cstat-no" title="statement not covered" >}: DamageMotionProps) {</span>
-<span class="cstat-no" title="statement not covered" >	const [travel, setTravel] = useState(400);</span>
-<span class="cstat-no" title="statement not covered" >	useEffect(() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >		if (!arenaRef) return;</span>
-<span class="cstat-no" title="statement not covered" >		const el = arenaRef;</span>
+<span class="cstat-no" title="statement not covered" >  const [travel, setTravel] = useState(400);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >		const update = () =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >			const rect = el.getBoundingClientRect();</span>
+<span class="cstat-no" title="statement not covered" >  useEffect(() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    if (!arenaRef) return;</span>
+<span class="cstat-no" title="statement not covered" >    const el = arenaRef;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >			const d = Math.hypot(rect.width, rect.height) / 2 + 60;</span>
-<span class="cstat-no" title="statement not covered" >			setTravel(d);</span>
-<span class="cstat-no" title="statement not covered" >		};</span>
+<span class="cstat-no" title="statement not covered" >    const update = () =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      const rect = el.getBoundingClientRect();</span>
+<span class="cstat-no" title="statement not covered" >      const d = Math.hypot(rect.width, rect.height) / 2 + 60;</span>
+<span class="cstat-no" title="statement not covered" >      setTravel(d);</span>
+<span class="cstat-no" title="statement not covered" >    };</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >		update();</span>
-<span class="cstat-no" title="statement not covered" >		const ro = new ResizeObserver(update);</span>
-<span class="cstat-no" title="statement not covered" >		ro.observe(el);</span>
-<span class="cstat-no" title="statement not covered" >		return () =&gt; ro.disconnect();</span>
-<span class="cstat-no" title="statement not covered" >	}, [arenaRef]);</span>
-<span class="cstat-no" title="statement not covered" >	return (</span>
-<span class="cstat-no" title="statement not covered" >		&lt;&gt;</span>
-<span class="cstat-no" title="statement not covered" >			&lt;AnimatePresence&gt;</span>
-<span class="cstat-no" title="statement not covered" >				{slashId &gt; 0 &amp;&amp; (</span>
-<span class="cstat-no" title="statement not covered" >					&lt;Box</span>
-<span class="cstat-no" title="statement not covered" >						position="absolute"</span>
-<span class="cstat-no" title="statement not covered" >						inset="0"</span>
-<span class="cstat-no" title="statement not covered" >						display="flex"</span>
-<span class="cstat-no" title="statement not covered" >						alignItems="center"</span>
-<span class="cstat-no" title="statement not covered" >						justifyContent="center"</span>
-<span class="cstat-no" title="statement not covered" >						pointerEvents="none"</span>
-<span class="cstat-no" title="statement not covered" >						zIndex={10}</span>
-					&gt;
-<span class="cstat-no" title="statement not covered" >						&lt;motion.div</span>
-<span class="cstat-no" title="statement not covered" >							key={slashId}</span>
-<span class="cstat-no" title="statement not covered" >							style={{</span>
-<span class="cstat-no" title="statement not covered" >								width: "160%",</span>
-<span class="cstat-no" title="statement not covered" >								height: "12px",</span>
-<span class="cstat-no" title="statement not covered" >								borderRadius: "999px",</span>
-<span class="cstat-no" title="statement not covered" >								background:</span>
-<span class="cstat-no" title="statement not covered" >									"linear-gradient(90deg, rgba(255,0,0,0) 0%, rgba(255,0,0,1) 50%, rgba(255,0,0,0) 100%)",</span>
-<span class="cstat-no" title="statement not covered" >								boxShadow:</span>
-<span class="cstat-no" title="statement not covered" >									"0 0 8px rgba(255,0,0,0.9), 0 0 16px rgba(255,0,0,0.6)",</span>
-<span class="cstat-no" title="statement not covered" >								transformOrigin: "center",</span>
-<span class="cstat-no" title="statement not covered" >							}}</span>
-<span class="cstat-no" title="statement not covered" >							initial={{</span>
-<span class="cstat-no" title="statement not covered" >								opacity: 0,</span>
-<span class="cstat-no" title="statement not covered" >								rotate: -45,</span>
-<span class="cstat-no" title="statement not covered" >								x: +travel,</span>
-<span class="cstat-no" title="statement not covered" >								y: -travel,</span>
-<span class="cstat-no" title="statement not covered" >							}}</span>
-<span class="cstat-no" title="statement not covered" >							animate={{</span>
-<span class="cstat-no" title="statement not covered" >								opacity: [0, 1, 1, 0],</span>
-<span class="cstat-no" title="statement not covered" >								rotate: -45,</span>
-<span class="cstat-no" title="statement not covered" >								x: -travel,</span>
-<span class="cstat-no" title="statement not covered" >								y: +travel,</span>
-<span class="cstat-no" title="statement not covered" >							}}</span>
-<span class="cstat-no" title="statement not covered" >							transition={{ duration: 0.4, ease: "easeOut" }}</span>
-<span class="cstat-no" title="statement not covered" >							exit={{ opacity: 0, rotate: -45 }}</span>
-<span class="cstat-no" title="statement not covered" >						/&gt;</span>
-<span class="cstat-no" title="statement not covered" >					&lt;/Box&gt;</span>
-				)}
-<span class="cstat-no" title="statement not covered" >			&lt;/AnimatePresence&gt;</span>
+<span class="cstat-no" title="statement not covered" >    update(); // 初期計算</span>
+<span class="cstat-no" title="statement not covered" >    const ro = new ResizeObserver(update);</span>
+<span class="cstat-no" title="statement not covered" >    ro.observe(el);</span>
+<span class="cstat-no" title="statement not covered" >    return () =&gt; ro.disconnect();</span>
+<span class="cstat-no" title="statement not covered" >  }, [arenaRef]);</span>
+<span class="cstat-no" title="statement not covered" >  return (</span>
+<span class="cstat-no" title="statement not covered" >    &lt;&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;AnimatePresence&gt;</span>
+<span class="cstat-no" title="statement not covered" >        {slashId &gt; 0 &amp;&amp; (</span>
+<span class="cstat-no" title="statement not covered" >          &lt;Box</span>
+<span class="cstat-no" title="statement not covered" >            position="absolute"</span>
+<span class="cstat-no" title="statement not covered" >            inset="0"</span>
+<span class="cstat-no" title="statement not covered" >            display="flex"</span>
+<span class="cstat-no" title="statement not covered" >            alignItems="center"</span>
+<span class="cstat-no" title="statement not covered" >            justifyContent="center"</span>
+<span class="cstat-no" title="statement not covered" >            pointerEvents="none"</span>
+<span class="cstat-no" title="statement not covered" >            zIndex={10}</span>
+          &gt;
+<span class="cstat-no" title="statement not covered" >            &lt;motion.div</span>
+<span class="cstat-no" title="statement not covered" >              key={slashId}</span>
+<span class="cstat-no" title="statement not covered" >              style={{</span>
+<span class="cstat-no" title="statement not covered" >                width: "160%",</span>
+<span class="cstat-no" title="statement not covered" >                height: "12px",</span>
+<span class="cstat-no" title="statement not covered" >                borderRadius: "999px",</span>
+<span class="cstat-no" title="statement not covered" >                background:</span>
+<span class="cstat-no" title="statement not covered" >                  "linear-gradient(90deg, rgba(255,0,0,0) 0%, rgba(255,0,0,1) 50%, rgba(255,0,0,0) 100%)",</span>
+<span class="cstat-no" title="statement not covered" >                boxShadow:</span>
+<span class="cstat-no" title="statement not covered" >                  "0 0 8px rgba(255,0,0,0.9), 0 0 16px rgba(255,0,0,0.6)",</span>
+<span class="cstat-no" title="statement not covered" >                transformOrigin: "center",</span>
+<span class="cstat-no" title="statement not covered" >              }}</span>
+<span class="cstat-no" title="statement not covered" >              initial={{</span>
+<span class="cstat-no" title="statement not covered" >                opacity: 0,</span>
+<span class="cstat-no" title="statement not covered" >                rotate: -45,</span>
+<span class="cstat-no" title="statement not covered" >                x: +travel,</span>
+<span class="cstat-no" title="statement not covered" >                y: -travel,</span>
+<span class="cstat-no" title="statement not covered" >              }}</span>
+<span class="cstat-no" title="statement not covered" >              animate={{</span>
+<span class="cstat-no" title="statement not covered" >                opacity: [0, 1, 1, 0],</span>
+<span class="cstat-no" title="statement not covered" >                rotate: -45,</span>
+<span class="cstat-no" title="statement not covered" >                x: -travel,</span>
+<span class="cstat-no" title="statement not covered" >                y: +travel,</span>
+<span class="cstat-no" title="statement not covered" >              }}</span>
+<span class="cstat-no" title="statement not covered" >              transition={{ duration: 0.4, ease: "easeOut" }}</span>
+<span class="cstat-no" title="statement not covered" >              exit={{ opacity: 0, rotate: -45 }} // 終了時の状態</span>
+<span class="cstat-no" title="statement not covered" >            /&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;/Box&gt;</span>
+        )}
+<span class="cstat-no" title="statement not covered" >      &lt;/AnimatePresence&gt;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >			&lt;AnimatePresence&gt;</span>
-<span class="cstat-no" title="statement not covered" >				{hurtId &gt; 0 &amp;&amp; (</span>
-<span class="cstat-no" title="statement not covered" >					&lt;motion.div</span>
-<span class="cstat-no" title="statement not covered" >						key={`flash-${hurtId}`}</span>
-<span class="cstat-no" title="statement not covered" >						style={{</span>
-<span class="cstat-no" title="statement not covered" >							position: "absolute",</span>
-<span class="cstat-no" title="statement not covered" >							inset: 0,</span>
-<span class="cstat-no" title="statement not covered" >							background: "rgba(255,0,0,0.35)",</span>
-<span class="cstat-no" title="statement not covered" >							pointerEvents: "none",</span>
-<span class="cstat-no" title="statement not covered" >							zIndex: 15,</span>
-<span class="cstat-no" title="statement not covered" >						}}</span>
-<span class="cstat-no" title="statement not covered" >						initial={{ opacity: 0 }}</span>
-<span class="cstat-no" title="statement not covered" >						animate={{ opacity: [0, 1, 0] }}</span>
-<span class="cstat-no" title="statement not covered" >						transition={{</span>
-<span class="cstat-no" title="statement not covered" >							duration: 0.6,</span>
-<span class="cstat-no" title="statement not covered" >							times: [0, 0.2, 0.8, 1],</span>
-<span class="cstat-no" title="statement not covered" >							ease: "easeOut",</span>
-<span class="cstat-no" title="statement not covered" >						}}</span>
-<span class="cstat-no" title="statement not covered" >						exit={{ opacity: 0 }}</span>
-<span class="cstat-no" title="statement not covered" >					/&gt;</span>
-				)}
-<span class="cstat-no" title="statement not covered" >			&lt;/AnimatePresence&gt;</span>
-<span class="cstat-no" title="statement not covered" >		&lt;/&gt;</span>
-	);
+<span class="cstat-no" title="statement not covered" >      &lt;AnimatePresence&gt;</span>
+<span class="cstat-no" title="statement not covered" >        {hurtId &gt; 0 &amp;&amp; (</span>
+<span class="cstat-no" title="statement not covered" >          &lt;motion.div</span>
+<span class="cstat-no" title="statement not covered" >            key={`flash-${hurtId}`}</span>
+<span class="cstat-no" title="statement not covered" >            style={{</span>
+<span class="cstat-no" title="statement not covered" >              position: "absolute",</span>
+<span class="cstat-no" title="statement not covered" >              inset: 0,</span>
+<span class="cstat-no" title="statement not covered" >              background: "rgba(255,0,0,0.35)",</span>
+<span class="cstat-no" title="statement not covered" >              pointerEvents: "none",</span>
+<span class="cstat-no" title="statement not covered" >              zIndex: 15,</span>
+<span class="cstat-no" title="statement not covered" >            }}</span>
+<span class="cstat-no" title="statement not covered" >            initial={{ opacity: 0 }}</span>
+<span class="cstat-no" title="statement not covered" >            animate={{ opacity: [0, 1, 0] }}</span>
+<span class="cstat-no" title="statement not covered" >            transition={{</span>
+<span class="cstat-no" title="statement not covered" >              duration: 0.6,</span>
+<span class="cstat-no" title="statement not covered" >              times: [0, 0.2, 0.8, 1],</span>
+<span class="cstat-no" title="statement not covered" >              ease: "easeOut",</span>
+<span class="cstat-no" title="statement not covered" >            }}</span>
+<span class="cstat-no" title="statement not covered" >            exit={{ opacity: 0 }}</span>
+<span class="cstat-no" title="statement not covered" >          /&gt;</span>
+        )}
+<span class="cstat-no" title="statement not covered" >      &lt;/AnimatePresence&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/&gt;</span>
+  );
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;</pre></td></tr></table></pre>
 
@@ -367,7 +385,7 @@ import type { DamageMotionProps } from "@/types/index";
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-07T04:34:44.850Z
+                at 2025-10-09T12:07:46.855Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

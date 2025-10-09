@@ -111,14 +111,44 @@
 <a name='L46'></a><a href='#L46'>46</a>
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -126,6 +156,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -145,6 +180,11 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -161,51 +201,71 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { type AppSnapshot, db } from "@/db";
 &nbsp;
+/**
+ * アプリケーションの状態をIndexedDBに保存する際のキーとして使用されるID。
+ */
 const ID = "app";
+/**
+ * アプリケーション状態のスナップショットのバージョン番号。
+ * スキーマの変更を管理するために使用されます。
+ */
 const SNAPSHOT_VERSION = 1;
 &nbsp;
 /**
- * 保存されたアプリ状態を読み込む。
+ * IndexedDBからアプリケーションの保存された状態を非同期で読み込む関数。
+ * `ID`で指定されたキー (`"app"`) に対応する`AppSnapshot`を取得します。
+ *
+ * @returns {Promise&lt;AppSnapshot | undefined&gt;} 保存されたアプリケーション状態、または見つからない場合は`undefined`を返すPromise。
  */
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >export async function loadApp(): Promise&lt;AppSnapshot | undefined&gt; {</span></span>
-<span class="cstat-no" title="statement not covered" >        return db.app.get(ID);</span>
+<span class="cstat-no" title="statement not covered" >  return db.app.get(ID);</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;
 /**
- * 状態の一部をマージして保存する。
+ * IndexedDBにアプリケーションの状態の一部をマージして保存する非同期関数。
+ * 既存の状態を読み込み、指定された`partial`で部分的に更新してから保存します。
+ * 状態が存在しない場合は初期値を設定します。
+ *
+ * @param {Partial&lt;AppSnapshot["state"]&gt;} partial - 更新するアプリケーション状態の部分オブジェクト。
+ * @returns {Promise&lt;AppSnapshot&gt;} 更新されたアプリケーション状態を返すPromise。
  */
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >export async function saveApp(partial: Partial&lt;AppSnapshot["state"]&gt;) {</span></span>
-<span class="cstat-no" title="statement not covered" >	const current = (await db.app.get(ID)) ?? {</span>
-<span class="cstat-no" title="statement not covered" >		id: ID,</span>
-<span class="cstat-no" title="statement not covered" >		version: SNAPSHOT_VERSION,</span>
-<span class="cstat-no" title="statement not covered" >		updatedAt: 0,</span>
-<span class="cstat-no" title="statement not covered" >		state: {</span>
-<span class="cstat-no" title="statement not covered" >			settings: { mode: "battle", sort: "reverse" },</span>
-<span class="cstat-no" title="statement not covered" >			progress: { level: 1, lastOpenedAt: 0 },</span>
-<span class="cstat-no" title="statement not covered" >		},</span>
-<span class="cstat-no" title="statement not covered" >	};</span>
-<span class="cstat-no" title="statement not covered" >	const next: AppSnapshot = {</span>
-<span class="cstat-no" title="statement not covered" >		...current,</span>
-<span class="cstat-no" title="statement not covered" >		version: SNAPSHOT_VERSION,</span>
-<span class="cstat-no" title="statement not covered" >		updatedAt: Date.now(),</span>
-<span class="cstat-no" title="statement not covered" >		state: { ...current.state, ...partial }, // 上書きマージ</span>
-<span class="cstat-no" title="statement not covered" >	};</span>
-<span class="cstat-no" title="statement not covered" >	await db.app.put(next);</span>
-<span class="cstat-no" title="statement not covered" >	return next;</span>
+<span class="cstat-no" title="statement not covered" >  const current = (await db.app.get(ID)) ?? {</span>
+<span class="cstat-no" title="statement not covered" >    id: ID,</span>
+<span class="cstat-no" title="statement not covered" >    version: SNAPSHOT_VERSION,</span>
+<span class="cstat-no" title="statement not covered" >    updatedAt: 0,</span>
+<span class="cstat-no" title="statement not covered" >    state: {</span>
+<span class="cstat-no" title="statement not covered" >      settings: { mode: "battle", sort: "reverse" },</span>
+<span class="cstat-no" title="statement not covered" >      progress: { level: 1, lastOpenedAt: 0 },</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+<span class="cstat-no" title="statement not covered" >  };</span>
+<span class="cstat-no" title="statement not covered" >  const next: AppSnapshot = {</span>
+<span class="cstat-no" title="statement not covered" >    ...current,</span>
+<span class="cstat-no" title="statement not covered" >    version: SNAPSHOT_VERSION,</span>
+<span class="cstat-no" title="statement not covered" >    updatedAt: Date.now(),</span>
+<span class="cstat-no" title="statement not covered" >    state: { ...current.state, ...partial }, // 上書きマージ</span>
+<span class="cstat-no" title="statement not covered" >  };</span>
+<span class="cstat-no" title="statement not covered" >  await db.app.put(next);</span>
+<span class="cstat-no" title="statement not covered" >  return next;</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;
 /**
- * 状態全体を置き換えて保存する。
+ * アプリケーションの状態全体を指定された新しい状態に置き換えてIndexedDBに保存する非同期関数。
+ * 主にアプリケーションのリセットや、状態の完全な上書きが必要な場合に使用されます。
+ * `updatedAt`と`version`も自動的に更新されます。
+ *
+ * @param {AppSnapshot["state"]} full - アプリケーションの新しい完全な状態オブジェクト。
+ * @returns {Promise&lt;AppSnapshot&gt;} 新しく保存された`AppSnapshot`オブジェクトを返すPromise。
  */
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >export async function overwriteApp(full: AppSnapshot["state"]) {</span></span>
-<span class="cstat-no" title="statement not covered" >	const next: AppSnapshot = {</span>
-<span class="cstat-no" title="statement not covered" >		id: ID,</span>
-<span class="cstat-no" title="statement not covered" >		version: SNAPSHOT_VERSION,</span>
-<span class="cstat-no" title="statement not covered" >		updatedAt: Date.now(),</span>
-<span class="cstat-no" title="statement not covered" >		state: full,</span>
-<span class="cstat-no" title="statement not covered" >	};</span>
-<span class="cstat-no" title="statement not covered" >	await db.app.put(next);</span>
-<span class="cstat-no" title="statement not covered" >	return next;</span>
+<span class="cstat-no" title="statement not covered" >  const next: AppSnapshot = {</span>
+<span class="cstat-no" title="statement not covered" >    id: ID,</span>
+<span class="cstat-no" title="statement not covered" >    version: SNAPSHOT_VERSION,</span>
+<span class="cstat-no" title="statement not covered" >    updatedAt: Date.now(),</span>
+<span class="cstat-no" title="statement not covered" >    state: full,</span>
+<span class="cstat-no" title="statement not covered" >  };</span>
+<span class="cstat-no" title="statement not covered" >  await db.app.put(next);</span>
+<span class="cstat-no" title="statement not covered" >  return next;</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;</pre></td></tr></table></pre>
 
@@ -214,7 +274,7 @@ const SNAPSHOT_VERSION = 1;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-07T04:34:44.850Z
+                at 2025-10-09T12:07:46.855Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

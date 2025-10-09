@@ -98,7 +98,21 @@
 <a name='L33'></a><a href='#L33'>33</a>
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -136,35 +150,42 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { QAPair } from "@/types/index";
 &nbsp;
 /**
- * ステップ1の語彙問題を収録したデータ。
+ * ステップ1（初級）の語彙に関するタイピングゲームの問題データ配列。
+ * 各要素は日本語の問い (`ja`)、対応する英語の答え (`en`)、
+ * および関連する画像へのパス (`img`) を含む`QAPair`オブジェクトです。
+ *
+ * @type {QAPair[]}
+ * @property {string} ja - 日本語の意味やフレーズ（例: "活動"）。
+ * @property {string} en - 対応する英語の単語（例: "activity"）。タイピングの解答として使用されます。
+ * @property {string} img - 単語に関連する画像ファイルへのパス。
  */
 <span class="cstat-no" title="statement not covered" >const QA_STEP1: QAPair[] = [</span>
-<span class="cstat-no" title="statement not covered" >	{</span>
-<span class="cstat-no" title="statement not covered" >		ja: "～について（の）/およそ、約",</span>
-<span class="cstat-no" title="statement not covered" >		en: "about",</span>
-<span class="cstat-no" title="statement not covered" >		img: "./images/step1/about.png",</span>
-<span class="cstat-no" title="statement not covered" >	},</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "活動", en: "activity", img: "./images/step1/activity.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "～のあとに", en: "after", img: "./images/step1/after.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "午後", en: "afternoon", img: "./images/step1/afternoon.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{</span>
-<span class="cstat-no" title="statement not covered" >		ja: "再び、もう一度、また",</span>
-<span class="cstat-no" title="statement not covered" >		en: "again",</span>
-<span class="cstat-no" title="statement not covered" >		img: "./images/step1/again.png",</span>
-<span class="cstat-no" title="statement not covered" >	},</span>
-<span class="cstat-no" title="statement not covered" >	{</span>
-<span class="cstat-no" title="statement not covered" >		ja: "～に対抗して、反対して",</span>
-<span class="cstat-no" title="statement not covered" >		en: "against",</span>
-<span class="cstat-no" title="statement not covered" >		img: "./images/step1/against.png",</span>
-<span class="cstat-no" title="statement not covered" >	},</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "年齢、時代", en: "age", img: "./images/step1/age.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{</span>
-<span class="cstat-no" title="statement not covered" >		ja: "全ての/全く、すっかり",</span>
-<span class="cstat-no" title="statement not covered" >		en: "all",</span>
-<span class="cstat-no" title="statement not covered" >		img: "./images/step1/all.png",</span>
-<span class="cstat-no" title="statement not covered" >	},</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "いつも、常に", en: "always", img: "./images/step1/always.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "～と･･･、そして", en: "and", img: "./images/step1/and.png" },</span>
+<span class="cstat-no" title="statement not covered" >  {</span>
+<span class="cstat-no" title="statement not covered" >    ja: "～について（の）/およそ、約",</span>
+<span class="cstat-no" title="statement not covered" >    en: "about",</span>
+<span class="cstat-no" title="statement not covered" >    img: "./images/step1/about.png",</span>
+<span class="cstat-no" title="statement not covered" >  },</span>
+<span class="cstat-no" title="statement not covered" >  { ja: "活動", en: "activity", img: "./images/step1/activity.png" },</span>
+<span class="cstat-no" title="statement not covered" >  { ja: "～のあとに", en: "after", img: "./images/step1/after.png" },</span>
+<span class="cstat-no" title="statement not covered" >  { ja: "午後", en: "afternoon", img: "./images/step1/afternoon.png" },</span>
+<span class="cstat-no" title="statement not covered" >  {</span>
+<span class="cstat-no" title="statement not covered" >    ja: "再び、もう一度、また",</span>
+<span class="cstat-no" title="statement not covered" >    en: "again",</span>
+<span class="cstat-no" title="statement not covered" >    img: "./images/step1/again.png",</span>
+<span class="cstat-no" title="statement not covered" >  },</span>
+<span class="cstat-no" title="statement not covered" >  {</span>
+<span class="cstat-no" title="statement not covered" >    ja: "～に対抗して、反対して",</span>
+<span class="cstat-no" title="statement not covered" >    en: "against",</span>
+<span class="cstat-no" title="statement not covered" >    img: "./images/step1/against.png",</span>
+<span class="cstat-no" title="statement not covered" >  },</span>
+<span class="cstat-no" title="statement not covered" >  { ja: "年齢、時代", en: "age", img: "./images/step1/age.png" },</span>
+<span class="cstat-no" title="statement not covered" >  {</span>
+<span class="cstat-no" title="statement not covered" >    ja: "全ての/全く、すっかり",</span>
+<span class="cstat-no" title="statement not covered" >    en: "all",</span>
+<span class="cstat-no" title="statement not covered" >    img: "./images/step1/all.png",</span>
+<span class="cstat-no" title="statement not covered" >  },</span>
+<span class="cstat-no" title="statement not covered" >  { ja: "いつも、常に", en: "always", img: "./images/step1/always.png" },</span>
+<span class="cstat-no" title="statement not covered" >  { ja: "～と･･･、そして", en: "and", img: "./images/step1/and.png" },</span>
 <span class="cstat-no" title="statement not covered" >];</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >export default QA_STEP1;</span>
@@ -175,7 +196,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-07T04:34:44.621Z
+                at 2025-10-09T12:07:46.489Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
