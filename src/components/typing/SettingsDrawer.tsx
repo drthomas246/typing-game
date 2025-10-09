@@ -96,12 +96,12 @@ export default function SettingsDrawer({
                     onValueChange={(e) => setProblemSort(e?.value === "random")}
                   >
                     <HStack gap="6">
-                      <RadioGroup.Item value="random">
+                      <RadioGroup.Item value="sequential">
                         <RadioGroup.ItemHiddenInput />
                         <RadioGroup.ItemIndicator />
                         <RadioGroup.ItemText>ならびじゅん</RadioGroup.ItemText>
                       </RadioGroup.Item>
-                      <RadioGroup.Item value="sequential">
+                      <RadioGroup.Item value="random">
                         <RadioGroup.ItemHiddenInput />
                         <RadioGroup.ItemIndicator />
                         <RadioGroup.ItemText>ばらばら</RadioGroup.ItemText>
