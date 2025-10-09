@@ -4,8 +4,9 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
   base: "./",
-  plugins: [react(), tsconfigPaths()],
-  build: {
-    outDir: "./docs",
-  },
+  plugins: [
+    tsconfigPaths({ projects: ["tsconfig.app.json"] }), // ←追加
+    react(),
+  ],
+  build: { outDir: "./docs" },
 });

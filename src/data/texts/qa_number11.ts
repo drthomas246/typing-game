@@ -1,5 +1,14 @@
 import type { QAPair } from "@/types/index";
 
+/**
+ * 11から20までの数字の名称（日本語と英語）と、それに対応する画像パスをまとめた問題データの配列。
+ * 各オブジェクトは `QAPair` 型に準拠し、タイピングゲームで使用される問いと答えのペアを表します。
+ *
+ * @type {QAPair[]}
+ * @property {string} ja - 日本語の数字（例: "11"）。
+ * @property {string} en - 英語の数字（例: "eleven"）。タイピングの解答として使用されます。
+ * @property {string} img - 数字に関連する画像ファイルへのパス。
+ */
 const QA_NUMBER11: QAPair[] = [
 	{ ja: "11", en: "eleven", img: "./images/number11/number_11.png" },
 	{ ja: "12", en: "twelve", img: "./images/number11/number_12.png" },

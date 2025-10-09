@@ -1,8 +1,24 @@
 import type { Tile } from "@/types/index";
 
+/**
+ * マップタイル1枚あたりの幅（ピクセル単位）。
+ * @constant
+ */
 export const TILE_W = 1308;
+
+/**
+ * マップタイル1枚あたりの高さ（ピクセル単位）。
+ * @constant
+ */
 export const TILE_H = 736;
 
+/**
+ * マップを構成するタイル情報の配列。
+ * 各オブジェクトは、タイルの画像ソース、ワールド座標(x, y)、および寸法(w, h)を定義します。
+ * 座標は、タイルのグリッド位置とタイルの固定寸法に基づいて計算されます。
+ * `as const`アサーションにより、この配列とその内容が読み取り専用として扱われることが保証されます。
+ * @type {ReadonlyArray<Tile>}
+ */
 export const tiles: ReadonlyArray<Tile> = [
   {
     src: "./images/map/map_01.webp",
@@ -118,6 +134,12 @@ export const tiles: ReadonlyArray<Tile> = [
   },
 ] as const;
 
+/**
+ * タイルの配置情報から計算されたワールドマップ全体のサイズ。
+ * この値は、マップのパン操作などのインタラクションにおける境界を定義するために使用されます。
+ * @property {number} width - マップの総幅。
+ * @property {number} height - マップの総高さ。
+ */
 export const worldSize = {
   width: Math.max(...tiles.map((t) => t.x + t.w)),
   height: Math.max(...tiles.map((t) => t.y + t.h)),
