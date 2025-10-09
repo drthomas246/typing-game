@@ -138,8 +138,30 @@
 <a name='L73'></a><a href='#L73'>73</a>
 <a name='L74'></a><a href='#L74'>74</a>
 <a name='L75'></a><a href='#L75'>75</a>
-<a name='L76'></a><a href='#L76'>76</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -223,70 +245,81 @@ import type {
 } from "@/types/index";
 &nbsp;
 /**
- * バトル時の攻撃・被弾処理を提供するフック。
+ * タイピングゲームのバトルモードにおける攻撃（敵へのダメージ）と被弾（プレイヤーへのダメージ）のロジックを提供するカスタムフック。
+ * ゲームの進行に応じてサウンドエフェクトを再生し、HPの増減をディスパッチします。
+ *
+ * @param {EngineOptions} opts - エンジンのオプション設定。`battleMode`、`damagePerMiss`、`damagePerSentence`などが含まれます。
+ * @param {SoundCtl} sound - サウンド制御オブジェクト。効果音やBGMの再生/停止に使用されます。
+ * @param {React.Dispatch&lt;React.SetStateAction&lt;number&gt;&gt;} setHurtId - プレイヤーがダメージを受けた際に視覚効果をトリガーするためのステート更新関数。
+ * @param {React.Dispatch&lt;React.SetStateAction&lt;number&gt;&gt;} setSlashId - 敵がダメージを受けた際に視覚効果をトリガーするためのステート更新関数。
+ * @param {React.Dispatch&lt;Action&gt;} dispatch - タイピングエンジンの状態を更新するためのディスパッチ関数。
+ *
+ * @returns {object} バトル関連のコールバック関数を含むオブジェクト。
+ * @property {function(s: EngineState): void} onMiss - プレイヤーがミスした際に呼び出されるコールバック関数。
+ * @property {function(s: EngineState): void} onSentenceClear - プレイヤーが問題をクリアした際に呼び出されるコールバック関数。
  */
 export function useBattle(
-	opts: EngineOptions,
-	sound: SoundCtl,
-	setHurtId: React.Dispatch&lt;React.SetStateAction&lt;number&gt;&gt;,
-	setSlashId: React.Dispatch&lt;React.SetStateAction&lt;number&gt;&gt;,
-	dispatch: React.Dispatch&lt;Action&gt;,
+  opts: EngineOptions,
+  sound: SoundCtl,
+  setHurtId: React.Dispatch&lt;React.SetStateAction&lt;number&gt;&gt;,
+  setSlashId: React.Dispatch&lt;React.SetStateAction&lt;number&gt;&gt;,
+  dispatch: React.Dispatch&lt;Action&gt;,
 ) {
-	const battle = useBattleContext();
-	const battleMode = opts.battleMode ?? true;
-	const damagePerMiss = Math.max(1, opts.damagePerMiss ?? 5);
-	const damagePerSentence = Math.max(
-		1,
-		opts.damagePerSentence ?? opts.damagePerHit ?? 10,
-	);
+  const battle = useBattleContext();
+  const battleMode = opts.battleMode ?? true;
+  const damagePerMiss = Math.max(1, opts.damagePerMiss ?? 5);
+  const damagePerSentence = Math.max(
+    1,
+    opts.damagePerSentence ?? opts.damagePerHit ?? 10,
+  );
 &nbsp;
-	const onMiss = useCallback(
-		(s: EngineState) =&gt; {
-			setHurtId((n) =&gt; n + 1);
-			if (!battleMode) return;
-			if (battle) <span class="branch-0 cbranch-no" title="branch not covered" >return;</span>
-			sound.sfx.punch();
+  const onMiss = useCallback(
+    (s: EngineState) =&gt; {
+      setHurtId((n) =&gt; n + 1);
+      if (!battleMode) return;
+      if (battle) <span class="branch-0 cbranch-no" title="branch not covered" >return;</span>
+      sound.sfx.punch();
 &nbsp;
-			const justDied =
-				s.playerHp &gt; 0 &amp;&amp; Math.max(0, s.playerHp - damagePerMiss) === 0;
-			dispatch({ type: "DAMAGE_PLAYER", payload: { amount: damagePerMiss } });
+      const justDied =
+        s.playerHp &gt; 0 &amp;&amp; Math.max(0, s.playerHp - damagePerMiss) === 0;
+      dispatch({ type: "DAMAGE_PLAYER", payload: { amount: damagePerMiss } });
 &nbsp;
-			if (justDied) {
-				sound.sfx.fallDown();
-				sound.stopBgm();
-			}
-		},
-		[battleMode, damagePerMiss, battle, dispatch, setHurtId, sound],
-	);
+      if (justDied) {
+        sound.sfx.fallDown();
+        sound.stopBgm();
+      }
+    },
+    [battleMode, damagePerMiss, battle, dispatch, setHurtId, sound],
+  );
 &nbsp;
-	const onSentenceClear = useCallback(
-		(s: EngineState) =&gt; {
-			if (!battleMode) return;
+  const onSentenceClear = useCallback(
+    (s: EngineState) =&gt; {
+      if (!battleMode) return;
 &nbsp;
-			if (!battle) sound.sfx.slash();
-			setSlashId((n) =&gt; n + 1);
+      if (!battle) sound.sfx.slash();
+      setSlashId((n) =&gt; n + 1);
 &nbsp;
-			const killedNow =
-				s.enemyHp &gt; 0 &amp;&amp; Math.max(0, s.enemyHp - damagePerSentence) === 0;
-			dispatch({
-				type: "DAMAGE_ENEMY",
-				payload: { amount: damagePerSentence },
-			});
+      const killedNow =
+        s.enemyHp &gt; 0 &amp;&amp; Math.max(0, s.enemyHp - damagePerSentence) === 0;
+      dispatch({
+        type: "DAMAGE_ENEMY",
+        payload: { amount: damagePerSentence },
+      });
 &nbsp;
-			if (killedNow) {
-				if (!battle) {
-					sound.sfx.defeat();
-					setTimeout(() =&gt; {
-						sound.sfx.levelUp();
-					}, 2500);
-				}
-				sound.stopBgm();
-			}
-		},
-		[battleMode, damagePerSentence, battle, dispatch, setSlashId, sound],
-	);
+      if (killedNow) {
+        if (!battle) {
+          sound.sfx.defeat();
+          setTimeout(() =&gt; {
+            sound.sfx.levelUp();
+          }, 2500);
+        }
+        sound.stopBgm();
+      }
+    },
+    [battleMode, damagePerSentence, battle, dispatch, setSlashId, sound],
+  );
 &nbsp;
-	return { onMiss, onSentenceClear };
+  return { onMiss, onSentenceClear };
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -295,7 +328,7 @@ export function useBattle(
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-07T04:34:44.850Z
+                at 2025-10-09T12:07:46.855Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

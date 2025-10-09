@@ -117,8 +117,30 @@
 <a name='L52'></a><a href='#L52'>52</a>
 <a name='L53'></a><a href='#L53'>53</a>
 <a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -175,55 +197,66 @@
 import { useEffect, useRef, useState } from "react";
 &nbsp;
 /**
- * タイピング画面用BGMの再生可否を制御するフック。
+ * タイピング画面のBGM（背景音楽）の再生を制御するためのカスタムフック。
+ * `howler.js`ライブラリを使用してBGMをロード、再生、停止し、
+ * `opts`で指定された設定に基づいて動作します。
+ *
+ * @param {object} opts - BGMのオプション設定。
+ * @param {string} opts.src - BGMの音源ファイルパス。
+ * @param {boolean} [opts.loop=true] - BGMをループ再生するかどうか。デフォルトは`true`。
+ * @param {number} [opts.volume=0.4] - BGMの音量（0.0から1.0）。デフォルトは`0.4`。
+ * @param {boolean | undefined} opts.enabled - BGMの再生が許可されているかどうかを示すフラグ。`true`の場合に再生が試みられます。
+ * @returns {{ shouldPlay: boolean | undefined; setShouldPlay: React.Dispatch&lt;React.SetStateAction&lt;boolean | undefined&gt;&gt; }} BGMの再生状態と、その状態を更新する関数を含むオブジェクト。
+ * @returns {boolean | undefined} .shouldPlay - 現在BGMが再生されるべきかどうかを示す状態。
+ * @returns {React.Dispatch&lt;React.SetStateAction&lt;boolean | undefined&gt;&gt;} .setShouldPlay - BGMの再生状態を更新するための関数。
  */
 export function useBgm(opts: {
-        src: string;
-        loop?: boolean;
-	volume?: number;
-	enabled: boolean | undefined;
+  src: string;
+  loop?: boolean;
+  volume?: number;
+  enabled: boolean | undefined;
 }) {
-	const { src, loop = true, volume = 0.4, enabled } = opts;
-	const [shouldPlay, setShouldPlay] = useState&lt;boolean | undefined&gt;(enabled);
-	const bgmRef = useRef&lt;Howl | null&gt;(null);
+  const { src, loop = true, volume = 0.4, enabled } = opts;
+  const [shouldPlay, setShouldPlay] = useState&lt;boolean | undefined&gt;(enabled);
+  const bgmRef = useRef&lt;Howl | null&gt;(null);
 &nbsp;
-	useEffect(() =&gt; {
-		setShouldPlay(enabled);
-	}, [enabled]);
+  useEffect(() =&gt; {
+    setShouldPlay(enabled);
+  }, [enabled]);
 &nbsp;
-	useEffect(() =&gt; {
-		if (shouldPlay) {
-			if (bgmRef.current?.playing()) return;
+  useEffect(() =&gt; {
+    if (shouldPlay) {
+      if (bgmRef.current?.playing()) return;
 &nbsp;
-			if (!bgmRef.current) {
-				bgmRef.current = new Howl({
-					src: [src],
-					loop,
-					volume,
-					html5: true,
-				});
-			}
-			try {
-				if (!bgmRef.current.playing()) {
-					bgmRef.current.play();
-				}
-<span class="branch-0 cbranch-no" title="branch not covered" >			} catch {</span>
-				/* ignore */
-<span class="cstat-no" title="statement not covered" >			}</span>
-		} else {
-			if (bgmRef.current) {
-				try {
-					bgmRef.current.stop();
-					bgmRef.current.unload();
-<span class="branch-0 cbranch-no" title="branch not covered" >				} catch {</span>
-					/* ignore */
-<span class="cstat-no" title="statement not covered" >				}</span>
-				bgmRef.current = null;
-			}
-		}
-	}, [shouldPlay, src, loop, volume]);
+      if (!bgmRef.current) {
+        bgmRef.current = new Howl({
+          src: [src],
+          loop,
+          volume,
+          html5: true,
+        });
+      }
+      try {
+        if (!bgmRef.current.playing()) {
+          bgmRef.current.play();
+        }
+<span class="branch-0 cbranch-no" title="branch not covered" >      } catch {</span>
+        /* ignore */
+<span class="cstat-no" title="statement not covered" >      }</span>
+    } else {
+      if (bgmRef.current) {
+        try {
+          bgmRef.current.stop();
+          bgmRef.current.unload();
+<span class="branch-0 cbranch-no" title="branch not covered" >        } catch {</span>
+          /* ignore */
+<span class="cstat-no" title="statement not covered" >        }</span>
+        bgmRef.current = null;
+      }
+    }
+  }, [shouldPlay, src, loop, volume]);
 &nbsp;
-	return { shouldPlay, setShouldPlay };
+  return { shouldPlay, setShouldPlay };
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -232,7 +265,7 @@ export function useBgm(opts: {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-07T04:34:44.621Z
+                at 2025-10-09T12:07:46.489Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

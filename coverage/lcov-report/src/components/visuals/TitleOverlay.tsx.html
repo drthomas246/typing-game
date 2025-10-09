@@ -92,11 +92,25 @@
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -128,27 +142,34 @@ import type { TitleOverlayProps } from "@/types/index";
 <span class="cstat-no" title="statement not covered" >const MotionImage = motion(Image);</span>
 &nbsp;
 /**
- * タイトル画像をアニメーション付きで表示するオーバーレイ。
+ * タイトル画面で表示されるアニメーション付きの画像オーバーレイコンポーネント。
+ * 主にゲームの開始時など、タイトル画像に動的な効果を与えるために使用されます。
+ *
+ * @param {object} props - このコンポーネントが受け取るプロパティ。
+ * @param {string} props.src - オーバーレイとして表示する画像ファイルのパス。
+ * @param {boolean} props.visible - オーバーレイを表示するかどうかを制御するフラグ。`false`の場合、コンポーネントは`null`を返す。
+ * @param {import('framer-motion').AnimationControls} props.animateCtrl - `framer-motion`の`AnimationControls`インスタンス。アニメーションを制御するために使用されます。
+ * @returns {JSX.Element | null} タイトル画像オーバーレイ、または`visible`が`false`の場合は`null`。
  */
 <span class="cstat-no" title="statement not covered" >export function TitleOverlay({ src, visible, animateCtrl }: TitleOverlayProps) {</span>
-<span class="cstat-no" title="statement not covered" >	if (!visible) return null;</span>
+<span class="cstat-no" title="statement not covered" >  if (!visible) return null;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	return (</span>
-<span class="cstat-no" title="statement not covered" >		&lt;MotionImage</span>
-<span class="cstat-no" title="statement not covered" >			src={src}</span>
-<span class="cstat-no" title="statement not covered" >			alt="タイトル"</span>
-<span class="cstat-no" title="statement not covered" >			pos="absolute"</span>
-<span class="cstat-no" title="statement not covered" >			inset="0"</span>
-<span class="cstat-no" title="statement not covered" >			w="100%"</span>
-<span class="cstat-no" title="statement not covered" >			h="100%"</span>
-<span class="cstat-no" title="statement not covered" >			objectFit="contain"</span>
-<span class="cstat-no" title="statement not covered" >			zIndex={60}</span>
-<span class="cstat-no" title="statement not covered" >			animate={animateCtrl}</span>
-<span class="cstat-no" title="statement not covered" >			initial={{ scale: 0, opacity: 0, display: "block" }}</span>
-<span class="cstat-no" title="statement not covered" >			pointerEvents="none"</span>
-<span class="cstat-no" title="statement not covered" >			style={{ willChange: "transform, opacity", backfaceVisibility: "hidden" }}</span>
-<span class="cstat-no" title="statement not covered" >		/&gt;</span>
-	);
+<span class="cstat-no" title="statement not covered" >  return (</span>
+<span class="cstat-no" title="statement not covered" >    &lt;MotionImage</span>
+<span class="cstat-no" title="statement not covered" >      src={src}</span>
+<span class="cstat-no" title="statement not covered" >      alt="タイトル"</span>
+<span class="cstat-no" title="statement not covered" >      pos="absolute"</span>
+<span class="cstat-no" title="statement not covered" >      inset="0"</span>
+<span class="cstat-no" title="statement not covered" >      w="100%"</span>
+<span class="cstat-no" title="statement not covered" >      h="100%"</span>
+<span class="cstat-no" title="statement not covered" >      objectFit="contain"</span>
+<span class="cstat-no" title="statement not covered" >      zIndex={60}</span>
+<span class="cstat-no" title="statement not covered" >      animate={animateCtrl}</span>
+<span class="cstat-no" title="statement not covered" >      initial={{ scale: 0, opacity: 0, display: "block" }}</span>
+<span class="cstat-no" title="statement not covered" >      pointerEvents="none"</span>
+<span class="cstat-no" title="statement not covered" >      style={{ willChange: "transform, opacity", backfaceVisibility: "hidden" }}</span>
+<span class="cstat-no" title="statement not covered" >    /&gt;</span>
+  );
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;</pre></td></tr></table></pre>
 
@@ -157,7 +178,7 @@ import type { TitleOverlayProps } from "@/types/index";
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-07T04:34:44.850Z
+                at 2025-10-09T12:07:46.855Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

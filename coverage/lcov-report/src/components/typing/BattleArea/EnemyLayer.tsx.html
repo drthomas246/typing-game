@@ -123,15 +123,36 @@
 <a name='L58'></a><a href='#L58'>58</a>
 <a name='L59'></a><a href='#L59'>59</a>
 <a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -141,6 +162,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -187,61 +209,72 @@
 <span class="cstat-no" title="statement not covered" >import { motion } from "framer-motion";</span>
 import type { EnemyLayerProps } from "@/types/index";
 &nbsp;
+// framer-motionでアニメーション可能なimg要素を作成
 <span class="cstat-no" title="statement not covered" >const MotionImg = motion.img;</span>
 &nbsp;
 /**
- * 背景と敵キャラクターの表示を担当するレイヤー。
+ * 戦闘シーンの背景と敵キャラクターを表示するレイヤーコンポーネント。
+ * 敵キャラクターが倒された際の消滅アニメーションも担当します。
+ *
+ * @param props - コンポーネントのプロパティ。
+ * @param props.backgroundImg - 表示する背景画像のURL。
+ * @param props.enemyImg - 表示する敵キャラクターの画像のURL。
+ * @param props.vanishId - 敵の消滅アニメーションをトリガーするためのID。この値が変更される（インクリメントされる）とアニメーションが開始されます。
+ * @param props.vanished - 敵が完全に消滅したかどうかを示すフラグ。trueの場合、敵画像はレンダリングされません。
+ * @param props.onVanishDone - 消滅アニメーションが完了したときに呼び出されるコールバック関数。
+ * @returns レンダリングされた背景と敵キャラクターのレイヤー。
  */
 <span class="cstat-no" title="statement not covered" >export default function EnemyLayer({</span>
-<span class="cstat-no" title="statement not covered" >	backgroundImg,</span>
-<span class="cstat-no" title="statement not covered" >	enemyImg,</span>
-<span class="cstat-no" title="statement not covered" >	vanishId,</span>
-<span class="cstat-no" title="statement not covered" >	vanished,</span>
-<span class="cstat-no" title="statement not covered" >	onVanishDone,</span>
+<span class="cstat-no" title="statement not covered" >  backgroundImg,</span>
+<span class="cstat-no" title="statement not covered" >  enemyImg,</span>
+<span class="cstat-no" title="statement not covered" >  vanishId,</span>
+<span class="cstat-no" title="statement not covered" >  vanished,</span>
+<span class="cstat-no" title="statement not covered" >  onVanishDone,</span>
 <span class="cstat-no" title="statement not covered" >}: EnemyLayerProps) {</span>
-<span class="cstat-no" title="statement not covered" >	return (</span>
-<span class="cstat-no" title="statement not covered" >		&lt;&gt;</span>
-<span class="cstat-no" title="statement not covered" >			&lt;Image</span>
-<span class="cstat-no" title="statement not covered" >				src={backgroundImg}</span>
-<span class="cstat-no" title="statement not covered" >				alt="Background"</span>
-<span class="cstat-no" title="statement not covered" >				fit="cover"</span>
-<span class="cstat-no" title="statement not covered" >				w="100%"</span>
-<span class="cstat-no" title="statement not covered" >				h="100%"</span>
-<span class="cstat-no" title="statement not covered" >			/&gt;</span>
-<span class="cstat-no" title="statement not covered" >			{!vanished &amp;&amp; (</span>
-<span class="cstat-no" title="statement not covered" >				&lt;MotionImg</span>
-<span class="cstat-no" title="statement not covered" >					key={`monster-${vanishId}`}</span>
-<span class="cstat-no" title="statement not covered" >					src={enemyImg}</span>
-<span class="cstat-no" title="statement not covered" >					alt="Enemy"</span>
-<span class="cstat-no" title="statement not covered" >					style={{</span>
-<span class="cstat-no" title="statement not covered" >						position: "absolute",</span>
-<span class="cstat-no" title="statement not covered" >						top: 0,</span>
-<span class="cstat-no" title="statement not covered" >						left: 0,</span>
-<span class="cstat-no" title="statement not covered" >						width: "100%",</span>
-<span class="cstat-no" title="statement not covered" >						height: "100%",</span>
-<span class="cstat-no" title="statement not covered" >						objectFit: "contain",</span>
-<span class="cstat-no" title="statement not covered" >					}}</span>
-<span class="cstat-no" title="statement not covered" >					initial={{ opacity: 1, scale: 1, x: 0 }}</span>
-<span class="cstat-no" title="statement not covered" >					animate={{</span>
-<span class="cstat-no" title="statement not covered" >						opacity: vanishId &gt; 0 ? [1, 1, 0] : 1,</span>
-<span class="cstat-no" title="statement not covered" >						x:</span>
-<span class="cstat-no" title="statement not covered" >							vanishId &gt; 0</span>
-<span class="cstat-no" title="statement not covered" >								? [0, -20, 20, -18, 18, -15, 15, -10, 10, -5, 5, 0]</span>
-<span class="cstat-no" title="statement not covered" >								: 0,</span>
-<span class="cstat-no" title="statement not covered" >						scale: vanishId &gt; 0 ? 0.95 : 1,</span>
-<span class="cstat-no" title="statement not covered" >					}}</span>
-<span class="cstat-no" title="statement not covered" >					transition={{</span>
-<span class="cstat-no" title="statement not covered" >						opacity: { duration: 1.2, ease: "easeOut", times: [0, 0.6, 1] },</span>
-<span class="cstat-no" title="statement not covered" >						x: { duration: 1.2, ease: "easeInOut" },</span>
-<span class="cstat-no" title="statement not covered" >						scale: { duration: 1.2, ease: "easeOut" },</span>
-<span class="cstat-no" title="statement not covered" >					}}</span>
-<span class="cstat-no" title="statement not covered" >					onAnimationComplete={() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >						if (vanishId &gt; 0) onVanishDone();</span>
-<span class="cstat-no" title="statement not covered" >					}}</span>
-<span class="cstat-no" title="statement not covered" >				/&gt;</span>
-			)}
-<span class="cstat-no" title="statement not covered" >		&lt;/&gt;</span>
-	);
+<span class="cstat-no" title="statement not covered" >  return (</span>
+<span class="cstat-no" title="statement not covered" >    &lt;&gt;</span>
+      {/* 背景画像 */}
+<span class="cstat-no" title="statement not covered" >      &lt;Image</span>
+<span class="cstat-no" title="statement not covered" >        src={backgroundImg}</span>
+<span class="cstat-no" title="statement not covered" >        alt="Background"</span>
+<span class="cstat-no" title="statement not covered" >        fit="cover"</span>
+<span class="cstat-no" title="statement not covered" >        w="100%"</span>
+<span class="cstat-no" title="statement not covered" >        h="100%"</span>
+<span class="cstat-no" title="statement not covered" >      /&gt;</span>
+<span class="cstat-no" title="statement not covered" >      {!vanished &amp;&amp; (</span>
+<span class="cstat-no" title="statement not covered" >        &lt;MotionImg</span>
+<span class="cstat-no" title="statement not covered" >          key={`monster-${vanishId}`}</span>
+<span class="cstat-no" title="statement not covered" >          src={enemyImg}</span>
+<span class="cstat-no" title="statement not covered" >          alt="Enemy"</span>
+<span class="cstat-no" title="statement not covered" >          style={{</span>
+<span class="cstat-no" title="statement not covered" >            position: "absolute",</span>
+<span class="cstat-no" title="statement not covered" >            top: 0,</span>
+<span class="cstat-no" title="statement not covered" >            left: 0,</span>
+<span class="cstat-no" title="statement not covered" >            width: "100%",</span>
+<span class="cstat-no" title="statement not covered" >            height: "100%",</span>
+<span class="cstat-no" title="statement not covered" >            objectFit: "contain",</span>
+<span class="cstat-no" title="statement not covered" >          }}</span>
+<span class="cstat-no" title="statement not covered" >          initial={{ opacity: 1, scale: 1, x: 0 }}</span>
+<span class="cstat-no" title="statement not covered" >          animate={{</span>
+<span class="cstat-no" title="statement not covered" >            opacity: vanishId &gt; 0 ? [1, 1, 0] : 1,</span>
+<span class="cstat-no" title="statement not covered" >            x:</span>
+<span class="cstat-no" title="statement not covered" >              vanishId &gt; 0</span>
+<span class="cstat-no" title="statement not covered" >                ? [0, -20, 20, -18, 18, -15, 15, -10, 10, -5, 5, 0]</span>
+<span class="cstat-no" title="statement not covered" >                : 0,</span>
+<span class="cstat-no" title="statement not covered" >            scale: vanishId &gt; 0 ? 0.95 : 1,</span>
+<span class="cstat-no" title="statement not covered" >          }}</span>
+<span class="cstat-no" title="statement not covered" >          transition={{</span>
+<span class="cstat-no" title="statement not covered" >            opacity: { duration: 1.2, ease: "easeOut", times: [0, 0.6, 1] },</span>
+<span class="cstat-no" title="statement not covered" >            x: { duration: 1.2, ease: "easeInOut" },</span>
+<span class="cstat-no" title="statement not covered" >            scale: { duration: 1.2, ease: "easeOut" },</span>
+<span class="cstat-no" title="statement not covered" >          }}</span>
+<span class="cstat-no" title="statement not covered" >          onAnimationComplete={() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            if (vanishId &gt; 0) onVanishDone();</span>
+<span class="cstat-no" title="statement not covered" >          }}</span>
+<span class="cstat-no" title="statement not covered" >        /&gt;</span>
+      )}
+<span class="cstat-no" title="statement not covered" >    &lt;/&gt;</span>
+  );
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;</pre></td></tr></table></pre>
 
@@ -250,7 +283,7 @@ import type { EnemyLayerProps } from "@/types/index";
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-07T04:34:44.850Z
+                at 2025-10-09T12:07:46.855Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

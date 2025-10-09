@@ -101,7 +101,17 @@
 <a name='L36'></a><a href='#L36'>36</a>
 <a name='L37'></a><a href='#L37'>37</a>
 <a name='L38'></a><a href='#L38'>38</a>
-<a name='L39'></a><a href='#L39'>39</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -143,39 +153,44 @@
 import type { QuestionPanelProps } from "@/types/index";
 &nbsp;
 /**
- * 出題文と関連画像を表示するパネル。
+ * タイピングゲームの問題文と、それに関連する画像を表示するためのパネルコンポーネント。
+ *
+ * @param props - コンポーネントのプロパティ。
+ * @param props.questionText - 表示する問題文のテキスト。
+ * @param props.questionImg - 表示する画像のソースURL。画像がない場合は `null` または `undefined` を想定。
+ * @returns レンダリングされた問題パネルコンポーネント。
  */
 <span class="cstat-no" title="statement not covered" >export default function QuestionPanel({</span>
-<span class="cstat-no" title="statement not covered" >	questionText,</span>
-<span class="cstat-no" title="statement not covered" >	questionImg,</span>
+<span class="cstat-no" title="statement not covered" >  questionText,</span>
+<span class="cstat-no" title="statement not covered" >  questionImg,</span>
 <span class="cstat-no" title="statement not covered" >}: QuestionPanelProps) {</span>
-<span class="cstat-no" title="statement not covered" >	return (</span>
-<span class="cstat-no" title="statement not covered" >		&lt;Box w="450px"&gt;</span>
-<span class="cstat-no" title="statement not covered" >			&lt;Box rounded="lg" borderWidth="1px" p="3" bg="gray.subtle"&gt;</span>
-<span class="cstat-no" title="statement not covered" >				&lt;Text fontSize={{ base: "lg", md: "xl" }} color="fg"&gt;</span>
-<span class="cstat-no" title="statement not covered" >					{questionText}</span>
-<span class="cstat-no" title="statement not covered" >				&lt;/Text&gt;</span>
-<span class="cstat-no" title="statement not covered" >			&lt;/Box&gt;</span>
+<span class="cstat-no" title="statement not covered" >  return (</span>
+<span class="cstat-no" title="statement not covered" >    &lt;Box w="450px"&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;Box rounded="lg" borderWidth="1px" p="3" bg="gray.subtle"&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;Text fontSize={{ base: "lg", md: "xl" }} color="fg"&gt;</span>
+<span class="cstat-no" title="statement not covered" >          {questionText}</span>
+<span class="cstat-no" title="statement not covered" >        &lt;/Text&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;/Box&gt;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >			&lt;Box mt="16px"&gt;</span>
-<span class="cstat-no" title="statement not covered" >				&lt;AspectRatio ratio={1 / 1} w="200px" mx="auto"&gt;</span>
-<span class="cstat-no" title="statement not covered" >					{questionImg ? (</span>
-<span class="cstat-no" title="statement not covered" >						&lt;Image</span>
-<span class="cstat-no" title="statement not covered" >							src={questionImg}</span>
-<span class="cstat-no" title="statement not covered" >							alt={questionText || "question image"}</span>
-<span class="cstat-no" title="statement not covered" >							objectFit="contain"</span>
-<span class="cstat-no" title="statement not covered" >							rounded="lg"</span>
-<span class="cstat-no" title="statement not covered" >							borderWidth="1px"</span>
-<span class="cstat-no" title="statement not covered" >							bg="white"</span>
-<span class="cstat-no" title="statement not covered" >							p="2"</span>
-<span class="cstat-no" title="statement not covered" >						/&gt;</span>
-					) : (
-<span class="cstat-no" title="statement not covered" >						&lt;Skeleton rounded="lg" /&gt;</span>
-					)}
-<span class="cstat-no" title="statement not covered" >				&lt;/AspectRatio&gt;</span>
-<span class="cstat-no" title="statement not covered" >			&lt;/Box&gt;</span>
-<span class="cstat-no" title="statement not covered" >		&lt;/Box&gt;</span>
-	);
+<span class="cstat-no" title="statement not covered" >      &lt;Box mt="16px"&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;AspectRatio ratio={1 / 1} w="200px" mx="auto"&gt;</span>
+<span class="cstat-no" title="statement not covered" >          {questionImg ? (</span>
+<span class="cstat-no" title="statement not covered" >            &lt;Image</span>
+<span class="cstat-no" title="statement not covered" >              src={questionImg}</span>
+<span class="cstat-no" title="statement not covered" >              alt={questionText || "question image"}</span>
+<span class="cstat-no" title="statement not covered" >              objectFit="contain"</span>
+<span class="cstat-no" title="statement not covered" >              rounded="lg"</span>
+<span class="cstat-no" title="statement not covered" >              borderWidth="1px"</span>
+<span class="cstat-no" title="statement not covered" >              bg="white"</span>
+<span class="cstat-no" title="statement not covered" >              p="2"</span>
+<span class="cstat-no" title="statement not covered" >            /&gt;</span>
+          ) : (
+<span class="cstat-no" title="statement not covered" >            &lt;Skeleton rounded="lg" /&gt;</span>
+          )}
+<span class="cstat-no" title="statement not covered" >        &lt;/AspectRatio&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;/Box&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/Box&gt;</span>
+  );
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;</pre></td></tr></table></pre>
 
@@ -184,7 +199,7 @@ import type { QuestionPanelProps } from "@/types/index";
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-07T04:34:44.850Z
+                at 2025-10-09T12:07:46.855Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

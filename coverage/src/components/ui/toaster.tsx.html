@@ -107,7 +107,12 @@
 <a name='L42'></a><a href='#L42'>42</a>
 <a name='L43'></a><a href='#L43'>43</a>
 <a name='L44'></a><a href='#L44'>44</a>
-<a name='L45'></a><a href='#L45'>45</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -120,6 +125,11 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -152,48 +162,53 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import {<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
-	Toaster as ChakraToaster,
-	createToaster,
-	Portal,
-	Spinner,
-	Stack,
-	Toast,
+  Toaster as ChakraToaster,
+  createToaster,
+  Portal,
+  Spinner,
+  Stack,
+  Toast,
 } from "@chakra-ui/react";
 &nbsp;
 <span class="cstat-no" title="statement not covered" >const toaster = createToaster({</span>
-<span class="cstat-no" title="statement not covered" >        placement: "bottom-end",</span>
-<span class="cstat-no" title="statement not covered" >        pauseOnPageIdle: true,</span>
+<span class="cstat-no" title="statement not covered" >  placement: "bottom-end",</span>
+<span class="cstat-no" title="statement not covered" >  pauseOnPageIdle: true,</span>
 <span class="cstat-no" title="statement not covered" >});</span>
 &nbsp;
 /**
  * グローバルなトースト通知を描画するコンポーネント。
+ * `createToaster`で初期化された`toaster`インスタンスを使用し、
+ * アプリケーション全体にわたる通知（ローディング、成功、エラーなど）を表示します。
+ * `Portal`内でレンダリングされるため、DOMツリーのどこにでも表示できます。
+ *
+ * @returns {JSX.Element} グローバルなトースト通知コンポーネント。
  */
 <span class="cstat-no" title="statement not covered" >export const Toaster = () =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >	return (</span>
-<span class="cstat-no" title="statement not covered" >		&lt;Portal&gt;</span>
-<span class="cstat-no" title="statement not covered" >			&lt;ChakraToaster toaster={toaster} insetInline={{ mdDown: "4" }}&gt;</span>
-<span class="cstat-no" title="statement not covered" >				{(toast) =&gt; (</span>
-<span class="cstat-no" title="statement not covered" >					&lt;Toast.Root width={{ md: "sm" }}&gt;</span>
-<span class="cstat-no" title="statement not covered" >						{toast.type === "loading" ? (</span>
-<span class="cstat-no" title="statement not covered" >							&lt;Spinner size="sm" color="blue.solid" /&gt;</span>
-						) : (
-<span class="cstat-no" title="statement not covered" >							&lt;Toast.Indicator /&gt;</span>
-						)}
-<span class="cstat-no" title="statement not covered" >						&lt;Stack gap="1" flex="1" maxWidth="100%"&gt;</span>
-<span class="cstat-no" title="statement not covered" >							{toast.title &amp;&amp; &lt;Toast.Title&gt;{toast.title}&lt;/Toast.Title&gt;}</span>
-<span class="cstat-no" title="statement not covered" >							{toast.description &amp;&amp; (</span>
-<span class="cstat-no" title="statement not covered" >								&lt;Toast.Description&gt;{toast.description}&lt;/Toast.Description&gt;</span>
-							)}
-<span class="cstat-no" title="statement not covered" >						&lt;/Stack&gt;</span>
-<span class="cstat-no" title="statement not covered" >						{toast.action &amp;&amp; (</span>
-<span class="cstat-no" title="statement not covered" >							&lt;Toast.ActionTrigger&gt;{toast.action.label}&lt;/Toast.ActionTrigger&gt;</span>
-						)}
-<span class="cstat-no" title="statement not covered" >						{toast.closable &amp;&amp; &lt;Toast.CloseTrigger /&gt;}</span>
-<span class="cstat-no" title="statement not covered" >					&lt;/Toast.Root&gt;</span>
-				)}
-<span class="cstat-no" title="statement not covered" >			&lt;/ChakraToaster&gt;</span>
-<span class="cstat-no" title="statement not covered" >		&lt;/Portal&gt;</span>
-	);
+<span class="cstat-no" title="statement not covered" >  return (</span>
+<span class="cstat-no" title="statement not covered" >    &lt;Portal&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;ChakraToaster toaster={toaster} insetInline={{ mdDown: "4" }}&gt;</span>
+<span class="cstat-no" title="statement not covered" >        {(toast) =&gt; (</span>
+<span class="cstat-no" title="statement not covered" >          &lt;Toast.Root width={{ md: "sm" }}&gt;</span>
+<span class="cstat-no" title="statement not covered" >            {toast.type === "loading" ? (</span>
+<span class="cstat-no" title="statement not covered" >              &lt;Spinner size="sm" color="blue.solid" /&gt;</span>
+            ) : (
+<span class="cstat-no" title="statement not covered" >              &lt;Toast.Indicator /&gt;</span>
+            )}
+<span class="cstat-no" title="statement not covered" >            &lt;Stack gap="1" flex="1" maxWidth="100%"&gt;</span>
+<span class="cstat-no" title="statement not covered" >              {toast.title &amp;&amp; &lt;Toast.Title&gt;{toast.title}&lt;/Toast.Title&gt;}</span>
+<span class="cstat-no" title="statement not covered" >              {toast.description &amp;&amp; (</span>
+<span class="cstat-no" title="statement not covered" >                &lt;Toast.Description&gt;{toast.description}&lt;/Toast.Description&gt;</span>
+              )}
+<span class="cstat-no" title="statement not covered" >            &lt;/Stack&gt;</span>
+<span class="cstat-no" title="statement not covered" >            {toast.action &amp;&amp; (</span>
+<span class="cstat-no" title="statement not covered" >              &lt;Toast.ActionTrigger&gt;{toast.action.label}&lt;/Toast.ActionTrigger&gt;</span>
+            )}
+<span class="cstat-no" title="statement not covered" >            {toast.closable &amp;&amp; &lt;Toast.CloseTrigger /&gt;}</span>
+<span class="cstat-no" title="statement not covered" >          &lt;/Toast.Root&gt;</span>
+        )}
+<span class="cstat-no" title="statement not covered" >      &lt;/ChakraToaster&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/Portal&gt;</span>
+  );
 <span class="cstat-no" title="statement not covered" >};</span>
 &nbsp;</pre></td></tr></table></pre>
 
@@ -202,7 +217,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-07T04:34:44.621Z
+                at 2025-10-09T12:07:46.489Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

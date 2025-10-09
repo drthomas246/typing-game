@@ -125,10 +125,33 @@
 <a name='L60'></a><a href='#L60'>60</a>
 <a name='L61'></a><a href='#L61'>61</a>
 <a name='L62'></a><a href='#L62'>62</a>
-<a name='L63'></a><a href='#L63'>63</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -144,13 +167,16 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -194,60 +220,73 @@
 import type { HeaderAreaProps } from "@/types/index";
 &nbsp;
 /**
- * タイトルと操作ボタンをまとめたヘッダー領域。
+ * ゲーム画面上部のヘッダー領域全体を構成するコンポーネント。
+ * アプリケーションのタイトルと、ゲームの操作を行う `HeaderControls` をレイアウトします。
+ *
+ * @param props - コンポー-ネントのプロパティ。
+ * @param props.title - ヘッダーに表示される現在のステージやページのタイトル。
+ * @param props.start - ゲームを開始するためのコールバック関数。
+ * @param props.stop - ゲームを停止するためのコールバック関数。
+ * @param props.state - ゲームの現在の状態（開始済みか、終了済みかなど）を保持するオブジェクト。
+ * @param props.setShouldPlay - BGMの再生状態を制御するためのセッター関数。
+ * @param props.onOpen - 設定モーダルを開くためのコールバック関数。
+ * @returns レンダリングされたヘッダーエリア。
  */
 <span class="cstat-no" title="statement not covered" >export default function HeaderArea({</span>
-<span class="cstat-no" title="statement not covered" >	title,</span>
-<span class="cstat-no" title="statement not covered" >	start,</span>
-<span class="cstat-no" title="statement not covered" >	stop,</span>
-<span class="cstat-no" title="statement not covered" >	state,</span>
-<span class="cstat-no" title="statement not covered" >	setShouldPlay,</span>
-<span class="cstat-no" title="statement not covered" >	onOpen,</span>
+<span class="cstat-no" title="statement not covered" >  title,</span>
+<span class="cstat-no" title="statement not covered" >  start,</span>
+<span class="cstat-no" title="statement not covered" >  stop,</span>
+<span class="cstat-no" title="statement not covered" >  state,</span>
+<span class="cstat-no" title="statement not covered" >  setShouldPlay,</span>
+<span class="cstat-no" title="statement not covered" >  onOpen,</span>
 <span class="cstat-no" title="statement not covered" >}: HeaderAreaProps) {</span>
-<span class="cstat-no" title="statement not covered" >	const setPage = useSetPage();</span>
-<span class="cstat-no" title="statement not covered" >	const sound = useSound();</span>
-<span class="cstat-no" title="statement not covered" >	const handleStart = () =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >		setShouldPlay(false);</span>
-<span class="cstat-no" title="statement not covered" >		start();</span>
-<span class="cstat-no" title="statement not covered" >	};</span>
-<span class="cstat-no" title="statement not covered" >	const handleEscape = () =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >		stop("escape");</span>
-<span class="cstat-no" title="statement not covered" >	};</span>
-<span class="cstat-no" title="statement not covered" >	return (</span>
-<span class="cstat-no" title="statement not covered" >		&lt;HStack justify="space-between" h="40px"&gt;</span>
-<span class="cstat-no" title="statement not covered" >			&lt;Heading size="lg"&gt;</span>
-<span class="cstat-no" title="statement not covered" >				&lt;Text as="span" color="#1E90FF"&gt;</span>
-					ことば
-<span class="cstat-no" title="statement not covered" >				&lt;/Text&gt;</span>
-				の
-<span class="cstat-no" title="statement not covered" >				&lt;Text as="span" color="#E60033" fontWeight="bold"&gt;</span>
-					魔王
-<span class="cstat-no" title="statement not covered" >				&lt;/Text&gt;</span>
-				と
-<span class="cstat-no" title="statement not covered" >				&lt;Text as="span" color="#228B22"&gt;</span>
-					えいご
-<span class="cstat-no" title="statement not covered" >				&lt;/Text&gt;</span>
-				の
-<span class="cstat-no" title="statement not covered" >				&lt;Text as="span" color="#FFD700"&gt;</span>
-					勇者
-<span class="cstat-no" title="statement not covered" >				&lt;/Text&gt;{" "}</span>
-<span class="cstat-no" title="statement not covered" >				～{title}～</span>
-<span class="cstat-no" title="statement not covered" >			&lt;/Heading&gt;</span>
-<span class="cstat-no" title="statement not covered" >			&lt;HeaderControls</span>
-<span class="cstat-no" title="statement not covered" >				started={state.started}</span>
-<span class="cstat-no" title="statement not covered" >				finished={state.finished}</span>
-<span class="cstat-no" title="statement not covered" >				onStart={handleStart}</span>
-<span class="cstat-no" title="statement not covered" >				onEscape={handleEscape}</span>
-<span class="cstat-no" title="statement not covered" >				onOpenSettings={onOpen}</span>
-<span class="cstat-no" title="statement not covered" >				onBack={() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >					if (sound) {</span>
-<span class="cstat-no" title="statement not covered" >						flushSync(() =&gt; setShouldPlay(false));</span>
-<span class="cstat-no" title="statement not covered" >					}</span>
-<span class="cstat-no" title="statement not covered" >					setPage(0);</span>
-<span class="cstat-no" title="statement not covered" >				}}</span>
-<span class="cstat-no" title="statement not covered" >			/&gt;</span>
-<span class="cstat-no" title="statement not covered" >		&lt;/HStack&gt;</span>
-	);
+<span class="cstat-no" title="statement not covered" >  const setPage = useSetPage();</span>
+<span class="cstat-no" title="statement not covered" >  const sound = useSound();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  const handleStart = () =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    setShouldPlay(false);</span>
+<span class="cstat-no" title="statement not covered" >    start();</span>
+<span class="cstat-no" title="statement not covered" >  };</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  const handleEscape = () =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    stop("escape");</span>
+<span class="cstat-no" title="statement not covered" >  };</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return (</span>
+<span class="cstat-no" title="statement not covered" >    &lt;HStack justify="space-between" h="40px"&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;Heading size="lg"&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;Text as="span" color="#1E90FF"&gt;</span>
+          ことば
+<span class="cstat-no" title="statement not covered" >        &lt;/Text&gt;</span>
+        の
+<span class="cstat-no" title="statement not covered" >        &lt;Text as="span" color="#E60033" fontWeight="bold"&gt;</span>
+          魔王
+<span class="cstat-no" title="statement not covered" >        &lt;/Text&gt;</span>
+        と
+<span class="cstat-no" title="statement not covered" >        &lt;Text as="span" color="#228B22"&gt;</span>
+          えいご
+<span class="cstat-no" title="statement not covered" >        &lt;/Text&gt;</span>
+        の
+<span class="cstat-no" title="statement not covered" >        &lt;Text as="span" color="#FFD700"&gt;</span>
+          勇者
+<span class="cstat-no" title="statement not covered" >        &lt;/Text&gt;{" "}</span>
+<span class="cstat-no" title="statement not covered" >        ～{title}～</span>
+<span class="cstat-no" title="statement not covered" >      &lt;/Heading&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;HeaderControls</span>
+<span class="cstat-no" title="statement not covered" >        started={state.started}</span>
+<span class="cstat-no" title="statement not covered" >        finished={state.finished}</span>
+<span class="cstat-no" title="statement not covered" >        onStart={handleStart}</span>
+<span class="cstat-no" title="statement not covered" >        onEscape={handleEscape}</span>
+<span class="cstat-no" title="statement not covered" >        onOpenSettings={onOpen}</span>
+<span class="cstat-no" title="statement not covered" >        onBack={() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          if (sound) {</span>
+<span class="cstat-no" title="statement not covered" >            flushSync(() =&gt; setShouldPlay(false));</span>
+<span class="cstat-no" title="statement not covered" >          }</span>
+<span class="cstat-no" title="statement not covered" >          setPage(0);</span>
+<span class="cstat-no" title="statement not covered" >        }}</span>
+<span class="cstat-no" title="statement not covered" >      /&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/HStack&gt;</span>
+  );
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;</pre></td></tr></table></pre>
 
@@ -256,7 +295,7 @@ import type { HeaderAreaProps } from "@/types/index";
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-07T04:34:44.621Z
+                at 2025-10-09T12:07:46.489Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

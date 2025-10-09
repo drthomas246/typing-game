@@ -92,7 +92,21 @@
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -124,29 +138,36 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { QAPair } from "@/types/index";
 &nbsp;
 /**
- * テスト用のQAペアを集めたデータ。
+ * タイピングゲームのテスト用問題データ配列。\n
+ * 各要素は日本語の問い (`ja`)、対応する英語の答え (`en`)、\n
+ * および関連する画像へのパス (`img`) を含む`QAPair`オブジェクトです。\n
+ *\n
+ * @type {QAPair[]}\n
+ * @property {string} ja - 日本語の単語やフレーズ（例: \"リンゴ\"）。\n
+ * @property {string} en - 対応する英語の単語（例: \"apple\"）。タイピングの解答として使用されます。\n
+ * @property {string} img - 単語に関連する画像ファイルへのパス。\n
  */
 <span class="cstat-no" title="statement not covered" >const QA_PAIRS: QAPair[] = [</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "リンゴ", en: "apple", img: "./images/test/1.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "オレンジ", en: "orange", img: "./images/test/2.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "水", en: "water", img: "./images/test/3.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "キーボード", en: "keyboard", img: "./images/test/21.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "リアクト", en: "react", img: "./images/test/4.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "ヴィテ", en: "vite", img: "./images/test/22.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "タイプスクリプト", en: "typescript", img: "./images/test/5.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "マウス", en: "mouse", img: "./images/test/23.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "ウィンドウ", en: "window", img: "./images/test/6.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "画面", en: "screen", img: "./images/test/7.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "手紙", en: "letter", img: "./images/test/8.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "音楽", en: "music", img: "./images/test/9.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "光", en: "light", img: "./images/test/10.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "緑", en: "green", img: "./images/test/11.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "雲", en: "cloud", img: "./images/test/12.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "川", en: "river", img: "./images/test/13.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "庭", en: "garden", img: "./images/test/14.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "コーヒー", en: "coffee", img: "./images/test/15.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "電話", en: "phone", img: "./images/test/16.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "地球", en: "earth", img: "./images/test/20.png" },</span>
+<span class="cstat-no" title="statement not covered" >  { ja: "リンゴ", en: "apple", img: "./images/test/1.png" },</span>
+<span class="cstat-no" title="statement not covered" >  { ja: "オレンジ", en: "orange", img: "./images/test/2.png" },</span>
+<span class="cstat-no" title="statement not covered" >  { ja: "水", en: "water", img: "./images/test/3.png" },</span>
+<span class="cstat-no" title="statement not covered" >  { ja: "キーボード", en: "keyboard", img: "./images/test/21.png" },</span>
+<span class="cstat-no" title="statement not covered" >  { ja: "リアクト", en: "react", img: "./images/test/4.png" },</span>
+<span class="cstat-no" title="statement not covered" >  { ja: "ヴィテ", en: "vite", img: "./images/test/22.png" },</span>
+<span class="cstat-no" title="statement not covered" >  { ja: "タイプスクリプト", en: "typescript", img: "./images/test/5.png" },</span>
+<span class="cstat-no" title="statement not covered" >  { ja: "マウス", en: "mouse", img: "./images/test/23.png" },</span>
+<span class="cstat-no" title="statement not covered" >  { ja: "ウィンドウ", en: "window", img: "./images/test/6.png" },</span>
+<span class="cstat-no" title="statement not covered" >  { ja: "画面", en: "screen", img: "./images/test/7.png" },</span>
+<span class="cstat-no" title="statement not covered" >  { ja: "手紙", en: "letter", img: "./images/test/8.png" },</span>
+<span class="cstat-no" title="statement not covered" >  { ja: "音楽", en: "music", img: "./images/test/9.png" },</span>
+<span class="cstat-no" title="statement not covered" >  { ja: "光", en: "light", img: "./images/test/10.png" },</span>
+<span class="cstat-no" title="statement not covered" >  { ja: "緑", en: "green", img: "./images/test/11.png" },</span>
+<span class="cstat-no" title="statement not covered" >  { ja: "雲", en: "cloud", img: "./images/test/12.png" },</span>
+<span class="cstat-no" title="statement not covered" >  { ja: "川", en: "river", img: "./images/test/13.png" },</span>
+<span class="cstat-no" title="statement not covered" >  { ja: "庭", en: "garden", img: "./images/test/14.png" },</span>
+<span class="cstat-no" title="statement not covered" >  { ja: "コーヒー", en: "coffee", img: "./images/test/15.png" },</span>
+<span class="cstat-no" title="statement not covered" >  { ja: "電話", en: "phone", img: "./images/test/16.png" },</span>
+<span class="cstat-no" title="statement not covered" >  { ja: "地球", en: "earth", img: "./images/test/20.png" },</span>
 <span class="cstat-no" title="statement not covered" >];</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >export default QA_PAIRS;</span>
@@ -157,7 +178,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-07T04:34:44.850Z
+                at 2025-10-09T12:07:46.855Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

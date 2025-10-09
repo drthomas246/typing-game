@@ -209,7 +209,25 @@
 <a name='L144'></a><a href='#L144'>144</a>
 <a name='L145'></a><a href='#L145'>145</a>
 <a name='L146'></a><a href='#L146'>146</a>
-<a name='L147'></a><a href='#L147'>147</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L147'></a><a href='#L147'>147</a>
+<a name='L148'></a><a href='#L148'>148</a>
+<a name='L149'></a><a href='#L149'>149</a>
+<a name='L150'></a><a href='#L150'>150</a>
+<a name='L151'></a><a href='#L151'>151</a>
+<a name='L152'></a><a href='#L152'>152</a>
+<a name='L153'></a><a href='#L153'>153</a>
+<a name='L154'></a><a href='#L154'>154</a>
+<a name='L155'></a><a href='#L155'>155</a>
+<a name='L156'></a><a href='#L156'>156</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -359,147 +377,156 @@
 import type { SpeakOpts } from "@/types/index";
 &nbsp;
 /**
- * Web Speech API を利用した音声読み上げを扱うフック。
+ * Web Speech APIを利用して音声読み上げ機能を提供するカスタムフック。
+ * 音声合成の準備状態、読み上げ、停止、ウォームアップなどの機能を含みます。
+ *
+ * @returns {object} 音声読み上げを制御するための関数と状態を含むオブジェクト。
+ * @returns {(text: string, opts?: SpeakOpts) =&gt; void} .speak - 指定されたテキストを読み上げる関数。
+ * @returns {() =&gt; void} .stop - 現在の音声読み上げを停止する関数。
+ * @returns {SpeechSynthesisVoice[]} .voices - 利用可能な音声のリスト。
+ * @returns {boolean} .isReady - 音声読み上げ機能が利用可能かどうかを示すフラグ。
+ * @returns {() =&gt; Promise&lt;void&gt;} .waitUntilReady - 音声読み上げ機能が準備完了になるまで待機する非同期関数。
+ * @returns {() =&gt; Promise&lt;void&gt;} .warmup - 音声読み上げ機能をウォームアップする非同期関数。
  */
 export function useSpeech() {
-	const [voices, setVoices] = useState&lt;SpeechSynthesisVoice[]&gt;([]);
-	const [isReady, setIsReady] = useState(false);
-	const readyRef = useRef(false);
+  const [voices, setVoices] = useState&lt;SpeechSynthesisVoice[]&gt;([]);
+  const [isReady, setIsReady] = useState(false);
+  const readyRef = useRef(false);
 &nbsp;
-	const readyWaiters = useRef&lt;Array&lt;() =&gt; void&gt;&gt;([]);
+  const readyWaiters = useRef&lt;Array&lt;() =&gt; void&gt;&gt;([]);
 &nbsp;
-	const lastSpeakRef = useRef&lt;{ text: string; at: number }&gt;({
-		text: "",
-		at: 0,
-	});
+  const lastSpeakRef = useRef&lt;{ text: string; at: number }&gt;({
+    text: "",
+    at: 0,
+  });
 &nbsp;
-	const currentUtterRef = useRef&lt;SpeechSynthesisUtterance | null&gt;(null);
+  const currentUtterRef = useRef&lt;SpeechSynthesisUtterance | null&gt;(null);
 &nbsp;
-	useEffect(() =&gt; {
-		const load = () =&gt; {
-			const v = speechSynthesis.getVoices();
-			if (v?.length) {
-				setVoices(v);
-				readyRef.current = true;
-				setIsReady(true);
+  useEffect(() =&gt; {
+    const load = () =&gt; {
+      const v = speechSynthesis.getVoices();
+      if (v?.length) {
+        setVoices(v);
+        readyRef.current = true;
+        setIsReady(true);
 &nbsp;
-				if (readyWaiters.current.length) {
-					readyWaiters.current.map((resolve) =&gt; resolve());
-					readyWaiters.current = [];
-				}
-			}
-		};
-		load();
+        if (readyWaiters.current.length) {
+          readyWaiters.current.map((resolve) =&gt; resolve());
+          readyWaiters.current = [];
+        }
+      }
+    };
+    load();
 &nbsp;
-		const handler = () =&gt; load();
-		speechSynthesis.onvoiceschanged = handler;
-		return () =&gt; {
-			speechSynthesis.onvoiceschanged = null;
-		};
-	}, []);
+    const handler = () =&gt; load();
+    speechSynthesis.onvoiceschanged = handler;
+    return () =&gt; {
+      speechSynthesis.onvoiceschanged = null;
+    };
+  }, []);
 &nbsp;
-	const stop = useCallback(() =&gt; {
-		try {
-			currentUtterRef.current = null;
-			speechSynthesis.cancel();
-<span class="branch-0 cbranch-no" title="branch not covered" >		} catch {</span>
-			/* no-op */
-<span class="cstat-no" title="statement not covered" >		}</span>
-	}, []);
+  const stop = useCallback(() =&gt; {
+    try {
+      currentUtterRef.current = null;
+      speechSynthesis.cancel();
+<span class="branch-0 cbranch-no" title="branch not covered" >    } catch {</span>
+      /* no-op */
+<span class="cstat-no" title="statement not covered" >    }</span>
+  }, []);
 &nbsp;
-	const waitUntilReady = useCallback((): Promise&lt;void&gt; =&gt; {
-		if (readyRef.current) return Promise.resolve();
-		return new Promise&lt;void&gt;((resolve) =&gt; {
-			readyWaiters.current.push(resolve);
+  const waitUntilReady = useCallback((): Promise&lt;void&gt; =&gt; {
+    if (readyRef.current) return Promise.resolve();
+    return new Promise&lt;void&gt;((resolve) =&gt; {
+      readyWaiters.current.push(resolve);
 &nbsp;
-			setTimeout(() =&gt; resolve(), 1000);
-		});
-	}, []);
+      setTimeout(() =&gt; resolve(), 1000);
+    });
+  }, []);
 &nbsp;
-	const warmup = useCallback(async () =&gt; {
-		try {
-			await waitUntilReady();
-			speechSynthesis.cancel();
-			const u = new SpeechSynthesisUtterance(".");
-			u.lang = "en-US";
-			u.rate = 1;
-			u.pitch = 1;
-			u.volume = 0;
-			speechSynthesis.speak(u);
-<span class="branch-0 cbranch-no" title="branch not covered" >		} catch {</span>
-			/* no-op */
-<span class="cstat-no" title="statement not covered" >		}</span>
-	}, [waitUntilReady]);
+  const warmup = useCallback(async () =&gt; {
+    try {
+      await waitUntilReady();
+      speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(".");
+      u.lang = "en-US";
+      u.rate = 1;
+      u.pitch = 1;
+      u.volume = 0;
+      speechSynthesis.speak(u);
+<span class="branch-0 cbranch-no" title="branch not covered" >    } catch {</span>
+      /* no-op */
+<span class="cstat-no" title="statement not covered" >    }</span>
+  }, [waitUntilReady]);
 &nbsp;
-	const speak = useCallback(
-		(text: string, opts: SpeakOpts = {}) =&gt; {
-			if (!text) <span class="branch-0 cbranch-no" title="branch not covered" >return;</span>
+  const speak = useCallback(
+    (text: string, opts: SpeakOpts = {}) =&gt; {
+      if (!text) <span class="branch-0 cbranch-no" title="branch not covered" >return;</span>
 &nbsp;
-			const {
-				lang = "en-US",
-				rate = 1,
-				pitch = 1,
-				voiceHint = "en",
-				dedupeMs = 500,
-				noDedupe = false,
-			} = opts;
+      const {
+        lang = "en-US",
+        rate = 1,
+        pitch = 1,
+        voiceHint = "en",
+        dedupeMs = 500,
+        noDedupe = false,
+      } = opts;
 &nbsp;
-			if (!noDedupe) {
-				const now = Date.now();
-				if (
-					lastSpeakRef.current.text === text &amp;&amp;
-					now - lastSpeakRef.current.at &lt; dedupeMs
-				) {
-					return;
-				}
-				lastSpeakRef.current = { text, at: now };
-			}
+      if (!noDedupe) {
+        const now = Date.now();
+        if (
+          lastSpeakRef.current.text === text &amp;&amp;
+          now - lastSpeakRef.current.at &lt; dedupeMs
+        ) {
+          return;
+        }
+        lastSpeakRef.current = { text, at: now };
+      }
 &nbsp;
-			stop();
+      stop();
 &nbsp;
-			const u = new SpeechSynthesisUtterance(text);
-			u.lang = lang;
-			u.rate = rate;
-			u.pitch = pitch;
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = lang;
+      u.rate = rate;
+      u.pitch = pitch;
 &nbsp;
-			const voice =
-				voices.find((v) =&gt; v.lang === lang) ||
-				voices.find((v) =&gt; v.lang.startsWith(lang)) ||
-				voices.find((v) =&gt; v.lang.startsWith(voiceHint));
-			if (voice) u.voice = voice;
+      const voice =
+        voices.find((v) =&gt; v.lang === lang) ||
+        voices.find((v) =&gt; v.lang.startsWith(lang)) ||
+        voices.find((v) =&gt; v.lang.startsWith(voiceHint));
+      if (voice) u.voice = voice;
 &nbsp;
-			u.onend = () =&gt; {
-				if (currentUtterRef.current === u) currentUtterRef.current = null;
-			};
-			u.onerror = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >				if (currentUtterRef.current === u) currentUtterRef.current = null;</span>
-<span class="cstat-no" title="statement not covered" >			};</span>
+      u.onend = () =&gt; {
+        if (currentUtterRef.current === u) currentUtterRef.current = null;
+      };
+      u.onerror = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        if (currentUtterRef.current === u) currentUtterRef.current = null;</span>
+<span class="cstat-no" title="statement not covered" >      };</span>
 &nbsp;
-			setTimeout(
-				() =&gt; {
-					try {
-						currentUtterRef.current = u;
+      setTimeout(
+        () =&gt; {
+          try {
+            currentUtterRef.current = u;
 &nbsp;
-						if (speechSynthesis.paused) {
-							try {
-								speechSynthesis.resume();
-<span class="branch-0 cbranch-no" title="branch not covered" >							} catch {</span>
-								/* no-op */
-<span class="cstat-no" title="statement not covered" >							}</span>
-						}
+            if (speechSynthesis.paused) {
+              try {
+                speechSynthesis.resume();
+<span class="branch-0 cbranch-no" title="branch not covered" >              } catch {</span>
+                /* no-op */
+<span class="cstat-no" title="statement not covered" >              }</span>
+            }
 &nbsp;
-						speechSynthesis.speak(u);
-<span class="branch-0 cbranch-no" title="branch not covered" >					} catch {</span>
-						/* no-op */
-<span class="cstat-no" title="statement not covered" >					}</span>
-				},
-				readyRef.current ? 0 : 60,
-			);
-		},
-		[voices, stop],
-	);
+            speechSynthesis.speak(u);
+<span class="branch-0 cbranch-no" title="branch not covered" >          } catch {</span>
+            /* no-op */
+<span class="cstat-no" title="statement not covered" >          }</span>
+        },
+        readyRef.current ? 0 : 60,
+      );
+    },
+    [voices, stop],
+  );
 &nbsp;
-	return { speak, stop, voices, isReady, waitUntilReady, warmup };
+  return { speak, stop, voices, isReady, waitUntilReady, warmup };
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -508,7 +535,7 @@ export function useSpeech() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-07T04:34:44.621Z
+                at 2025-10-09T12:07:46.489Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
