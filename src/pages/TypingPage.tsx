@@ -128,9 +128,9 @@ export default function TypingPage({ QA, title }: TypingPageProps) {
 							questionImg={engine.state.questionImg}
 							state={engine.state}
 							enemyHpPct={enemyHpPct}
-							arenaRef={arenaRef.current}
+							arenaRef={arenaRef}
 						>
-							<DamageMotion arenaRef={arenaRef.current} slashId={slashId} hurtId={hurtId} />
+							<DamageMotion arenaRef={arenaRef} slashId={slashId} hurtId={hurtId} />
 						</BattleArea>
 
 						{battle && (

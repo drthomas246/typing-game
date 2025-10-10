@@ -150,7 +150,7 @@ export default function MapViewFixedViewport({
 	return (
 		<Box ref={containerRef} w="100%" h="100%" bg="#222" position="relative" overflow="hidden">
 			<Stage
-				ref={stageRef}
+				ref={stageRef as React.LegacyRef<KonvaStage>}
 				width={container.w}
 				height={container.h}
 				draggable

@@ -398,7 +398,7 @@ export type BattleArenaProps = {
 	/** 敵のHPのパーセンテージ（0.0〜1.0）。 */
 	enemyHpPct: number;
 	/** アリーナのDOM要素そのものの参照。 */
-	arenaRef: HTMLDivElement | null;
+	arenaRef: React.RefObject<HTMLDivElement>;
 };
 
 /**
