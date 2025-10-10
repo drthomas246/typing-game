@@ -1,5 +1,5 @@
 import { act, renderHook, waitFor } from "@testing-library/react";
-import React from "react";
+import React, { useRef } from "react";
 import { beforeEach, describe, expect, it } from "vitest";
 import { useContainRect } from "@/hooks/useContainRect";
 
@@ -18,8 +18,8 @@ function setNaturalSize(img: HTMLImageElement, w: number, h: number) {
 }
 
 describe("useContainRect", () => {
-  let imgRef: React.RefObject<HTMLImageElement | null>;
-  let wrapRef: React.RefObject<HTMLDivElement | null>;
+  let imgRef = useRef<HTMLImageElement | null>(null);
+  let wrapRef = useRef<HTMLDivElement | null>(null);
   let imgEl: HTMLImageElement;
   let wrapEl: HTMLDivElement;
 

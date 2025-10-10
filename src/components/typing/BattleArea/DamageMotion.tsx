@@ -1,35 +1,41 @@
 import { Box } from "@chakra-ui/react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import type { DamageMotionProps } from "@/types/index";
+import React, { useLayoutEffect } from "react";
 
-/**
- * 攻撃時の斬撃エフェクトや、被弾時の画面フラッシュエフェクトを制御するコンポーネント。
- * `framer-motion` を利用して、これらのアニメーションを表現します。
- *
- * @param props - コンポーネントのプロパティ。
- * @param props.arenaRef - アニメーションの基準となるコンテナ要素への参照。斬撃の移動距離計算に使用されます。
- * @param props.slashId - 斬撃アニメーションのトリガー。このIDが変更される（インクリメントされる）と、新しい斬撃アニメーションが再生されます。
- * @param props.hurtId - 被弾フラッシュアニメーションのトリガー。このIDが変更されると、新しいフラッシュアニメーションが再生されます。
- */
+type DamageMotionProps = {
+	arenaRef: React.RefObject<HTMLDivElement>;
+	slashId: number;
+	hurtId: number;
+};
+
 export default function DamageMotion({ arenaRef, slashId, hurtId }: DamageMotionProps) {
-	const [travel, setTravel] = useState(400);
+	// 計測できるまではフォールバック距離で開始
+	const [travel, setTravel] = React.useState(400);
 
-	useEffect(() => {
-		if (!arenaRef) return;
-		const el = arenaRef;
+	const update = React.useCallback(() => {
+		const el = arenaRef?.current;
+		if (!el || typeof el.getBoundingClientRect !== "function") return;
+		const rect = el.getBoundingClientRect();
+		const d = Math.hypot(rect.width, rect.height) / 2 + 60;
+		setTravel(d);
+	}, [arenaRef]);
 
-		const update = () => {
-			const rect = el.getBoundingClientRect();
-			const d = Math.hypot(rect.width, rect.height) / 2 + 60;
-			setTravel(d);
-		};
+	// 初期 & トリガ更新時に次フレームで計測（未確定でも落ちない）
+	useLayoutEffect(() => {
+		const raf = requestAnimationFrame(update);
+		return () => cancelAnimationFrame(raf);
+	}, [update]);
 
-		update(); // 初期計算
-		const ro = new ResizeObserver(update);
+	// リサイズ追従
+	React.useEffect(() => {
+		const el = arenaRef?.current;
+		if (!el || typeof ResizeObserver === "undefined") return;
+		const ro = new ResizeObserver(() => update());
 		ro.observe(el);
 		return () => ro.disconnect();
-	}, [arenaRef]);
+	}, [arenaRef, update]);
+
+	// ✅ ここで「ref が無いなら return null」はしない。常にレイヤーは存在させる
 	return (
 		<>
 			<AnimatePresence>
@@ -54,12 +60,7 @@ export default function DamageMotion({ arenaRef, slashId, hurtId }: DamageMotion
 								boxShadow: "0 0 8px rgba(255,0,0,0.9), 0 0 16px rgba(255,0,0,0.6)",
 								transformOrigin: "center",
 							}}
-							initial={{
-								opacity: 0,
-								rotate: -45,
-								x: +travel,
-								y: -travel,
-							}}
+							initial={{ opacity: 0, rotate: -45, x: +travel, y: -travel }}
 							animate={{
 								opacity: [0, 1, 1, 0],
 								rotate: -45,
@@ -67,7 +68,7 @@ export default function DamageMotion({ arenaRef, slashId, hurtId }: DamageMotion
 								y: +travel,
 							}}
 							transition={{ duration: 0.4, ease: "easeOut" }}
-							exit={{ opacity: 0, rotate: -45 }} // 終了時の状態
+							exit={{ opacity: 0, rotate: -45 }}
 						/>
 					</Box>
 				)}
