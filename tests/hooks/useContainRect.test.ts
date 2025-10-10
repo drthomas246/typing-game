@@ -1,5 +1,5 @@
 import { act, renderHook, waitFor } from "@testing-library/react";
-import React, { useRef } from "react";
+import React from "react";
 import { beforeEach, describe, expect, it } from "vitest";
 import { useContainRect } from "@/hooks/useContainRect";
 
@@ -18,51 +18,47 @@ function setNaturalSize(img: HTMLImageElement, w: number, h: number) {
 }
 
 describe("useContainRect", () => {
-  let imgRef = useRef<HTMLImageElement | null>(null);
-  let wrapRef = useRef<HTMLDivElement | null>(null);
   let imgEl: HTMLImageElement;
   let wrapEl: HTMLDivElement;
 
   beforeEach(() => {
-    imgRef = React.createRef<HTMLImageElement>();
-    wrapRef = React.createRef<HTMLDivElement>();
     imgEl = document.createElement("img");
     wrapEl = document.createElement("div");
-    imgRef.current = imgEl;
-    wrapRef.current = wrapEl;
   });
 
   it("横長コンテナ: rCon > rImg の場合は高さ基準 + 左右センタリング", async () => {
     setNaturalSize(imgEl, 800, 600);
-
     setClientSize(wrapEl, 1200, 600);
 
-    const { result } = renderHook(() => useContainRect(imgRef, wrapRef));
+    const { result } = renderHook(() => {
+      const imgRef = React.useRef<HTMLImageElement | null>(imgEl);
+      const wrapRef = React.useRef<HTMLDivElement | null>(wrapEl);
+      return useContainRect(imgRef, wrapRef);
+    });
 
     await waitFor(() => {
       const r = result.current.rect;
-
       expect(r.h).toBeCloseTo(600);
-      expect(r.w).toBeCloseTo(600 * (800 / 600));
-
-      expect(r.x).toBeCloseTo((1200 - 800) / 2);
+      expect(r.w).toBeCloseTo(600 * (800 / 600)); // 800
+      expect(r.x).toBeCloseTo((1200 - 800) / 2); // 200
       expect(r.y).toBeCloseTo(0);
     });
   });
 
   it("縦長コンテナ: rCon < rImg の場合は幅基準 + 上下センタリング", async () => {
     setNaturalSize(imgEl, 1200, 600);
-
     setClientSize(wrapEl, 600, 600);
 
-    const { result } = renderHook(() => useContainRect(imgRef, wrapRef));
+    const { result } = renderHook(() => {
+      const imgRef = React.useRef<HTMLImageElement | null>(imgEl);
+      const wrapRef = React.useRef<HTMLDivElement | null>(wrapEl);
+      return useContainRect(imgRef, wrapRef);
+    });
 
     await waitFor(() => {
       const r = result.current.rect;
-
       expect(r.w).toBeCloseTo(600);
       expect(r.h).toBeCloseTo(300);
-
       expect(r.x).toBeCloseTo(0);
       expect(r.y).toBeCloseTo(150);
     });
@@ -72,7 +68,11 @@ describe("useContainRect", () => {
     setNaturalSize(imgEl, 0, 0);
     setClientSize(wrapEl, 800, 600);
 
-    const { result } = renderHook(() => useContainRect(imgRef, wrapRef));
+    const { result } = renderHook(() => {
+      const imgRef = React.useRef<HTMLImageElement | null>(imgEl);
+      const wrapRef = React.useRef<HTMLDivElement | null>(wrapEl);
+      return useContainRect(imgRef, wrapRef);
+    });
 
     await new Promise((r) => setTimeout(r, 10));
     expect(result.current.rect).toEqual({ x: 0, y: 0, w: 0, h: 0 });
@@ -80,17 +80,20 @@ describe("useContainRect", () => {
 
   it("window.resize イベントで再計算される", async () => {
     setNaturalSize(imgEl, 1000, 500);
-
     setClientSize(wrapEl, 1000, 1000);
 
-    const { result } = renderHook(() => useContainRect(imgRef, wrapRef));
+    const { result } = renderHook(() => {
+      const imgRef = React.useRef<HTMLImageElement | null>(imgEl);
+      const wrapRef = React.useRef<HTMLDivElement | null>(wrapEl);
+      return useContainRect(imgRef, wrapRef);
+    });
 
     await waitFor(() => {
       const r = result.current.rect;
       expect(r.w).toBeCloseTo(1000);
       expect(r.h).toBeCloseTo(500);
       expect(r.x).toBeCloseTo(0);
-      expect(r.y).toBeCloseTo((1000 - 500) / 2);
+      expect(r.y).toBeCloseTo(250);
     });
 
     act(() => {
@@ -100,7 +103,6 @@ describe("useContainRect", () => {
 
     await waitFor(() => {
       const r2 = result.current.rect;
-
       expect(r2.h).toBeCloseTo(600);
       expect(r2.w).toBeCloseTo(1200);
       expect(r2.x).toBeCloseTo(100);
@@ -110,14 +112,16 @@ describe("useContainRect", () => {
 
   it("compute() の明示呼び出しで再計算される", async () => {
     setNaturalSize(imgEl, 900, 900);
-
     setClientSize(wrapEl, 500, 300);
 
-    const { result } = renderHook(() => useContainRect(imgRef, wrapRef));
+    const { result } = renderHook(() => {
+      const imgRef = React.useRef<HTMLImageElement | null>(imgEl);
+      const wrapRef = React.useRef<HTMLDivElement | null>(wrapEl);
+      return useContainRect(imgRef, wrapRef);
+    });
 
     await waitFor(() => {
       const r = result.current.rect;
-
       expect(r.h).toBeCloseTo(300);
       expect(r.w).toBeCloseTo(300);
       expect(r.x).toBeCloseTo(100);
@@ -131,7 +135,6 @@ describe("useContainRect", () => {
 
     await waitFor(() => {
       const r2 = result.current.rect;
-
       expect(r2.w).toBeCloseTo(300);
       expect(r2.h).toBeCloseTo(300);
       expect(r2.x).toBeCloseTo(0);
