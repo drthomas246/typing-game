@@ -14,9 +14,12 @@
     "ladle:preview": "npx ladle preview",
     "test": "vitest",
     "test:run": "vitest run",
-    "test:cov": "vitest run --coverage --reporter=verbose",
+    "test:cov": "vitest run --coverage && node tests/overwrite-coverage-css.mjs",
     "docs:build": "typedoc",
-    "docs:check": "typedoc --treatWarningsAsErrors --showConfig"
+    "docs:check": "typedoc --treatWarningsAsErrors --showConfig",
+    "site:dev": "rspress dev",
+    "site:build": "rspress build",
+    "site:preview": "rspress preview"
   },
   "dependencies": {
     "@chakra-ui/react": "3.27.1",
@@ -39,6 +42,7 @@
     "@csstools/css-parser-algorithms": "^3.0.5",
     "@csstools/css-tokenizer": "^3.0.4",
     "@ladle/react": "^5.1.0",
+    "@rspress/plugin-typedoc": "^1.45.7",
     "@testing-library/jest-dom": "^6.9.0",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
@@ -51,10 +55,11 @@
     "fake-indexeddb": "^6.2.2",
     "globals": "^16.3.0",
     "jsdom": "^27.0.0",
+    "rspress": "^1.45.6",
     "typedoc": "^0.28.13",
     "typedoc-plugin-markdown": "^4.9.0",
     "typescript": "~5.8.3",
-    "vite": "^7.1.0",
+    "vite": "^7.1.9",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4"
   },

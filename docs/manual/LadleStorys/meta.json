@@ -1,0 +1,103 @@
+{
+  "about": {
+    "homepage": "https://www.ladle.dev",
+    "github": "https://github.com/tajo/ladle",
+    "version": 1
+  },
+  "stories": {
+    "components--typing--answerarea--basic": {
+      "name": "Basic",
+      "levels": [
+        "Components",
+        "Typing",
+        "Answerarea"
+      ],
+      "locStart": 93,
+      "locEnd": 140,
+      "filePath": "src/stories/components/typing/AnserArea.stories.tsx",
+      "namedExport": "Basic",
+      "meta": {}
+    },
+    "components--typing--battlearea--basic": {
+      "name": "Basic",
+      "levels": [
+        "Components",
+        "Typing",
+        "Battlearea"
+      ],
+      "locStart": 92,
+      "locEnd": 284,
+      "filePath": "src/stories/components/typing/BattleArea.stories.tsx",
+      "namedExport": "Basic",
+      "meta": {}
+    },
+    "components--typing--headerarea--basic": {
+      "name": "Basic",
+      "levels": [
+        "Components",
+        "Typing",
+        "Headerarea"
+      ],
+      "locStart": 117,
+      "locEnd": 121,
+      "filePath": "src/stories/components/typing/HeaderArea.stories.tsx",
+      "namedExport": "Basic",
+      "meta": {}
+    },
+    "components--typing--phasenoticearea--phasenotice--basic": {
+      "name": "Basic",
+      "levels": [
+        "Components",
+        "Typing",
+        "Phasenoticearea",
+        "Phasenotice"
+      ],
+      "locStart": 38,
+      "locEnd": 86,
+      "filePath": "src/stories/components/typing/PhaseNotice.stories.tsx",
+      "namedExport": "Basic",
+      "meta": {}
+    },
+    "components--typing--phasenoticearea--phasenotice--matrix": {
+      "name": "Matrix",
+      "levels": [
+        "Components",
+        "Typing",
+        "Phasenoticearea",
+        "Phasenotice"
+      ],
+      "locStart": 89,
+      "locEnd": 146,
+      "filePath": "src/stories/components/typing/PhaseNotice.stories.tsx",
+      "namedExport": "Matrix",
+      "meta": {}
+    },
+    "components--typing--phasenoticearea--playerhpbar--basic": {
+      "name": "Basic",
+      "levels": [
+        "Components",
+        "Typing",
+        "Phasenoticearea",
+        "Playerhpbar"
+      ],
+      "locStart": 32,
+      "locEnd": 114,
+      "filePath": "src/stories/components/typing/PlayerHpBar.stories.tsx",
+      "namedExport": "Basic",
+      "meta": {}
+    },
+    "components--typing--resultsdialog--basic": {
+      "name": "Basic",
+      "levels": [
+        "Components",
+        "Typing",
+        "Resultsdialog"
+      ],
+      "locStart": 53,
+      "locEnd": 219,
+      "filePath": "src/stories/components/typing/ResultsDialog.stories.tsx",
+      "namedExport": "Basic",
+      "meta": {}
+    }
+  }
+}

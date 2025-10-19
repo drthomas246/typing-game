@@ -1,0 +1,35 @@
+h1:has(.hero-name) {
+  font-size: 3rem;
+}
+span:has(.hero-name) {
+  /*biome-ignore  lint/complexity/noImportantStyles: 文字列の改行のため*/
+  line-height: 1 !important;
+}
+.rspress-home-hero-text {
+  font-size: 3rem;
+  /*biome-ignore  lint/complexity/noImportantStyles: 文字列の改行のため*/
+  line-height: 1 !important;
+}
+.rspress-home-hero-image img {
+  width: calc((100vw - 500px) / 2);
+}
+.iframe-wrapper{
+  overflow: hidden;
+}
+.compornents-iframe-story{
+  height: calc(100vh - 308px);
+}
+@media (max-width: 960px) {
+  .compornents-iframe-story{
+    height: calc(100vh - 342px);
+  }
+}
+.rspress-doc:has(.compornents-iframe){
+  max-width:none;
+  padding:1rem
+}
+
+:root {
+  --rp-home-hero-image-width: calc((100vw - 500px) / 2);
+  --rp-home-hero-image-width-sm: calc((100vw - 500px) / 2);
+}
