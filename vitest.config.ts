@@ -12,8 +12,10 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     globals: true,
-    setupFiles: ["./vitest.setup.ts"],
+    setupFiles: ["./vitest.setup.ts", "./tests/setup/quiet-console.ts"],
     css: true,
+    restoreMocks: true,
+    clearMocks: true,
     include: ["tests/**/*.{test,spec}.{ts,tsx}"],
     exclude: [
       "src/**/*.d.ts",
@@ -25,7 +27,7 @@ export default defineConfig({
       all: true,
       provider: "v8",
       reporter: ["text", "html"],
-      reportsDirectory: "./coverage",
+      reportsDirectory: "./docs/manual/coverage",
       include: ["src/**/*.{ts,tsx}"],
       exclude: [
         "src/**/*.d.ts",
@@ -33,6 +35,7 @@ export default defineConfig({
         "src/**/*.{test,spec}.{ts,tsx}",
         "**/node_modules/**",
         "**/dist/**",
+        "src/stories/**",
       ],
     },
   },
