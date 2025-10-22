@@ -1,3 +1,3 @@
 export default {
-  outDir: "LadleStorys",
+  outDir: "docs/manual/LadleStorys",
 };

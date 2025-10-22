@@ -12,13 +12,14 @@ const rels = fg.sync(
     "!src/**/*.stories.*",
     "!src/**/*.story.*",
   ],
-  { dot: false }
+  { dot: false },
 );
 const abs = rels.map((p) => path.join(__dirname, p));
 
 // === Rspress 全体設定 ===
 export default defineConfig({
   // ★ 出力先を ./docs/manual に変更（デフォルトの doc_build を上書き）
+  base: "/manual",
   outDir: "docs/manual",
 
   // === サイト情報 ===
@@ -54,12 +55,11 @@ export default defineConfig({
     output: {
       // ★ outDir に統合したので distPath.root は削除
       // distPath: { root: "./docs/manual" },
-
       // ★ coverage や LadleStorys をコピーして同梱
-      copy: [
-        { from: "./coverage", to: "coverage" },
-        { from: "./LadleStorys", to: "LadleStorys" },
-      ],
+      // copy: [
+      //   { from: "./coverage", to: "coverage" },
+      //   { from: "./LadleStorys", to: "LadleStorys" },
+      // ],
     },
   },
 

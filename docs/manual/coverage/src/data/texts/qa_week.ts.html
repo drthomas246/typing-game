@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>10/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>10/10</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -96,17 +96,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { QAPair } from "@/types/index";
 &nbsp;
 /**
@@ -118,17 +118,17 @@
  * @property {string} en - 英語の曜日名（例: "sunday"）。タイピングの解答として使用されます。
  * @property {string} img - 曜日に関連する画像ファイルへのパス。
  */
-<span class="cstat-no" title="statement not covered" >const QA_WEEK: QAPair[] = [</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "日曜日", en: "sunday", img: "./images/week/weekmark7.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "月曜日", en: "monday", img: "./images/week/weekmark1.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "火曜日", en: "tuesday", img: "./images/week/weekmark2.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "水曜日", en: "wednesday", img: "./images/week/weekmark3.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "木曜日", en: "thursday", img: "./images/week/weekmark4.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "金曜日", en: "friday", img: "./images/week/weekmark5.png" },</span>
-<span class="cstat-no" title="statement not covered" >	{ ja: "土曜日", en: "saturday", img: "./images/week/weekmark6.png" },</span>
-<span class="cstat-no" title="statement not covered" >];</span>
+const QA_WEEK: QAPair[] = [
+	{ ja: "日曜日", en: "sunday", img: "./images/week/weekmark7.png" },
+	{ ja: "月曜日", en: "monday", img: "./images/week/weekmark1.png" },
+	{ ja: "火曜日", en: "tuesday", img: "./images/week/weekmark2.png" },
+	{ ja: "水曜日", en: "wednesday", img: "./images/week/weekmark3.png" },
+	{ ja: "木曜日", en: "thursday", img: "./images/week/weekmark4.png" },
+	{ ja: "金曜日", en: "friday", img: "./images/week/weekmark5.png" },
+	{ ja: "土曜日", en: "saturday", img: "./images/week/weekmark6.png" },
+];
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export default QA_WEEK;</span>
+export default QA_WEEK;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -136,7 +136,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-19T05:15:27.649Z
+                at 2025-10-22T15:57:47.228Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

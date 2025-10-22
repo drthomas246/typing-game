@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/22</span>
+                <span class='fraction'>22/22</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/22</span>
+                <span class='fraction'>22/22</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -104,9 +104,9 @@
 <a name='L39'></a><a href='#L39'>39</a>
 <a name='L40'></a><a href='#L40'>40</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -118,34 +118,34 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { Stage as KonvaStage } from "konva/lib/Stage";
 import type { PropsWithChildren } from "react";
-<span class="cstat-no" title="statement not covered" >import MapView from "@/components/map/MapView";</span>
-<span class="cstat-no" title="statement not covered" >import { tiles, worldSize } from "@/components/map/mapData";</span>
-<span class="cstat-no" title="statement not covered" >import { TYPING_ROUTE_POINTS } from "@/data/points";</span>
+import MapView from "@/components/map/MapView";
+import { tiles, worldSize } from "@/components/map/mapData";
+import { TYPING_ROUTE_POINTS } from "@/data/points";
 &nbsp;
 /**
  * マップ画面を描写し、ゲームの進行状況に応じたポイントを配置するページコンポーネント。
@@ -157,29 +157,29 @@ import type { PropsWithChildren } from "react";
  * @param {React.ReactNode} props.children - マップビュー内にレンダリングされる子要素。
  * @returns {JSX.Element} マップ画面のUI要素。
  */
-<span class="cstat-no" title="statement not covered" >export default function MapPage({</span>
-<span class="cstat-no" title="statement not covered" >	showTooltip,</span>
-<span class="cstat-no" title="statement not covered" >	stageRef,</span>
-<span class="cstat-no" title="statement not covered" >	children,</span>
-<span class="cstat-no" title="statement not covered" >}: PropsWithChildren&lt;{</span>
+export default function MapPage({
+	showTooltip,
+	stageRef,
+	children,
+}: PropsWithChildren&lt;{
 	showTooltip: boolean;
 	stageRef: React.RefObject&lt;KonvaStage | null&gt;;
-<span class="cstat-no" title="statement not covered" >}&gt;) {</span>
-<span class="cstat-no" title="statement not covered" >	return (</span>
-<span class="cstat-no" title="statement not covered" >		&lt;div style={{ width: "100vw", height: "100vh" }}&gt;</span>
-<span class="cstat-no" title="statement not covered" >			&lt;MapView</span>
-<span class="cstat-no" title="statement not covered" >				tiles={tiles}</span>
-<span class="cstat-no" title="statement not covered" >				points={TYPING_ROUTE_POINTS}</span>
-<span class="cstat-no" title="statement not covered" >				worldSize={worldSize}</span>
-<span class="cstat-no" title="statement not covered" >				initialCenter={{ x: 2990, y: 1640 }}</span>
-<span class="cstat-no" title="statement not covered" >				showTooltip={showTooltip}</span>
-<span class="cstat-no" title="statement not covered" >				stageRef={stageRef}</span>
+}&gt;) {
+	return (
+		&lt;div style={{ width: "100vw", height: "100vh" }}&gt;
+			&lt;MapView
+				tiles={tiles}
+				points={TYPING_ROUTE_POINTS}
+				worldSize={worldSize}
+				initialCenter={{ x: 2990, y: 1640 }}
+				showTooltip={showTooltip}
+				stageRef={stageRef}
 			&gt;
-<span class="cstat-no" title="statement not covered" >				{children}</span>
-<span class="cstat-no" title="statement not covered" >			&lt;/MapView&gt;</span>
-<span class="cstat-no" title="statement not covered" >		&lt;/div&gt;</span>
+				{children}
+			&lt;/MapView&gt;
+		&lt;/div&gt;
 	);
-<span class="cstat-no" title="statement not covered" >}</span>
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -187,7 +187,7 @@ import type { PropsWithChildren } from "react";
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-19T05:15:27.649Z
+                at 2025-10-22T15:57:47.228Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
