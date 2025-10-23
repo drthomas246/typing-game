@@ -26,7 +26,7 @@ export default defineConfig({
   globalStyles: path.resolve(__dirname, "./site/styles/global.css"),
   title: "ことばの魔王とえいごの勇者",
   description: "English learning app for students",
-  root: "site",
+  root: "./manual",
 
   // === テーマ設定 ===
   themeConfig: {

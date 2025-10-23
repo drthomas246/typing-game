@@ -11,8 +11,8 @@ node_modules
 dist
 dist-ssr
 *.local
-/LadleStorys/
-/coverage/
+/manual
+.gitignore
 
 # Editor directories and files
 .vscode/*
