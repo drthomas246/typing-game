@@ -6,10 +6,6 @@ html {
   overflow-y: hidden;
 }
 body {
-  font-family:
-    Helvetica Neue,
-    Helvetica,
-    Arial;
   font-size: 14px;
   color: #333;
 }
@@ -105,7 +101,6 @@ a:hover {
 
 .quiet {
   color: #7f7f7f;
-  color: rgba(0, 0, 0, 0.5);
 }
 .quiet a {
   opacity: 0.7;
@@ -354,7 +349,6 @@ pre.prettyprint {
 .wrapper {
   min-height: 100%;
   height: auto !important;
-  height: 100%;
   margin: 0 auto -48px;
 }
 .footer,
