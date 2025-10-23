@@ -7,7 +7,7 @@ import PageProvider from "@/contexts/PageProvider";
 const el = document.getElementById("root");
 
 if (!(el instanceof HTMLElement)) {
-	throw new Error('Root element "#root" not found');
+  throw new Error('Root element "#root" not found');
 }
 
 /**
@@ -15,11 +15,11 @@ if (!(el instanceof HTMLElement)) {
  * @param el - アプリケーションがマウントされるDOM要素。
  */
 ReactDOM.createRoot(el).render(
-	<React.StrictMode>
-		<Provider>
-			<PageProvider>
-				<App />
-			</PageProvider>
-		</Provider>
-	</React.StrictMode>,
+  <React.StrictMode>
+    <Provider>
+      <PageProvider>
+        <App />
+      </PageProvider>
+    </Provider>
+  </React.StrictMode>,
 );

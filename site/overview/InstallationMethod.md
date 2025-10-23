@@ -1,12 +1,9 @@
 ---
-title: 設置方法
+title: ⚙️ セットアップ手順（Setup）
 ---
 ```bash
-# Clone the repository
-git clone https://github.com/drthomas246/typing-game.git
-cd typing-game
-# Install dependencies
+git clone https://github.com/yourname/typing-rpg.git
+cd typing-rpg
 npm install
-# Start the development server
 npm run dev
 ```

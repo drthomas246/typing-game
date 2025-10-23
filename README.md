@@ -40,6 +40,13 @@
 
 ---
 
+## システム要件
+- **ブラウザ**: Google Chrome 最新バージョン推奨（音声合成API対応ブラウザ）
+- Node.js: v18 以降（ローカル開発用）
+- OS: Windows / macOS / Linux / Chromebook
+
+---
+
 ## 📁 ディレクトリ構成（Project Structure）
 ```bash
 typing-game/
@@ -225,6 +232,12 @@ npm run dev
 > 改変は公開しない限り自由に行えます。
 
 **詳細は [LICENSE.md](./LICENSE.md) を参照してください。**
+
+本アプリ内の画像は[いらすとや](https://www.irasutoya.com/)より提供されています。
+
+ここで使用されているモンスター及び背景画像は[Gemini](https://gemini.google.com/)を用いて作成されました。
+
+本アプリ内の効果音は[効果音ラボ](https://soundeffect-lab.info/)、[OtoLogic](https://otologic.jp/)、[ポケットサウンド/効果音素材](https://pocket-se.info/)より提供されています。
 
 ---
 

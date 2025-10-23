@@ -1,0 +1,7 @@
+---
+title: 💡 開発方針（Design Philosophy）
+---
+- 学び × 遊び × 挑戦 の三位一体設計
+- Type-Safe & Modular を徹底した拡張性のある設計
+- オフライン対応（Dexie.js）
+- 子どもにも理解しやすい操作・UI設計

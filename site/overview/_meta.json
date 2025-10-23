@@ -1,11 +1,14 @@
 [
   "index.md",
   "mainFeatures.md",
+  "TechStack.md",
   "SystemRequirements.md",
+  "ProjectStructure.md",
   "InstallationMethod.md",
-  "Usage.md",
-  "setting.md",
-  "ForDevelopers.md",
+  "AvailableScripts.md",
+  "Screenshots.md",
+  "DesignPhilosophy.md",
+  "Roadmap.md",
   "License.md",
-  "Summary.md"
+  "AuthorAndLinks.md"
 ]
