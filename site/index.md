@@ -17,10 +17,10 @@ hero:
       link: /en/guide/getting-started
 
 features:
-  - title: 'LadleStorys'
+  - title: 'LadleStories'
     details: コンポーネントのUIカタログ
     icon: 🧱
-    link: /ladle/LadleStorys.html
+    link: /ladle/LadleStories.html
   - title: 'TypeDocs'
     details: APIドキュメント.
     icon: 🔨

@@ -1,4 +1,4 @@
 export default {
-  outDir: "docs/manual/LadleStorys",
-  base: "/typing-game/manual/LadleStorys",
+  outDir: "docs/manual/LadleStories",
+  base: "/typing-game/manual/LadleStories",
 };
