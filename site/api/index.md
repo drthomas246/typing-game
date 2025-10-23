@@ -37,7 +37,6 @@
 - [data/texts/qa\_number](./modules/data_texts_qa_number.md)
 - [data/texts/qa\_number11](./modules/data_texts_qa_number11.md)
 - [data/texts/qa\_step1](./modules/data_texts_qa_step1.md)
-- [data/texts/qa\_test](./modules/data_texts_qa_test.md)
 - [data/texts/qa\_week](./modules/data_texts_qa_week.md)
 - [db](./modules/db.md)
 - [hooks/typingEngine/reducer](./modules/hooks_typingEngine_reducer.md)
