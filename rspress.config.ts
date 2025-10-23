@@ -19,7 +19,7 @@ const abs = rels.map((p) => path.join(__dirname, p));
 // === Rspress 全体設定 ===
 export default defineConfig({
   // ★ 出力先を ./docs/manual に変更（デフォルトの doc_build を上書き）
-  base: "./",
+  base: "/typing-game/manual",
   outDir: "docs/manual",
 
   // === サイト情報 ===
