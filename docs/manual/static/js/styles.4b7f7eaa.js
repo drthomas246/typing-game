@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunktyping_game=self.webpackChunktyping_game||[]).push([["7298"],{6297:function(){},8046:function(){},6612:function(){},9284:function(){},4167:function(){}}]);
