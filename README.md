@@ -40,7 +40,7 @@
 
 ---
 
-## システム要件
+## 📑 システム要件
 - **ブラウザ**: Google Chrome 最新バージョン推奨（音声合成API対応ブラウザ）
 - Node.js: v18 以降（ローカル開発用）
 - OS: Windows / macOS / Linux / Chromebook
@@ -217,10 +217,6 @@ npm run dev
 
 ## 🗺️ 今後のロードマップ（Roadmap）
 - [ ] ストーリーモード実装
-- [ ] 英文モード追加
-- [ ] 新モンスター（ゴブリン・ドラゴン）追加
-- [ ] モバイル最適化
-- [ ] ボイスサポート機能
 
 ---
 
@@ -243,7 +239,7 @@ npm run dev
 
 ## 👤 作者情報（Author & Links）
 
-- 🧑‍💻 **作者:** Dr?Thomas（Yamahara Yoshihiro）
+- 🧑‍💻 **作者:** Yamahara Yoshihiro
 - 🌐 **Website:** [https://www.hobofoto.work](https://www.hobofoto.work)
 - 📖 **Docs:** [https://drthomas246.github.io/typing-game/manual/](https://drthomas246.github.io/typing-game/manual/)
 - 🎮 **Demo:** [https://drthomas246.github.io/typing-game/](https://drthomas246.github.io/typing-game/)
