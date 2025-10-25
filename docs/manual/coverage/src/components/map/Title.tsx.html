@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>10/10</span>
+                <span class='fraction'>0/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>10/10</span>
+                <span class='fraction'>0/10</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -88,7 +88,7 @@
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -101,19 +101,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Box, Image } from "@chakra-ui/react";
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import { Box, Image } from "@chakra-ui/react";<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
 import type { TitleProps } from "@/types/index";
 &nbsp;
 /**
@@ -126,18 +126,18 @@ import type { TitleProps } from "@/types/index";
  *   `x`, `y`, `w` (幅), `h` (高さ) のプロパティを持ちます。
  * @returns レンダリングされたタイトルコンポーネント、または `containRect` が無効な場合は `null`。
  */
-export function Title({ containRect }: TitleProps) {
-	if (!containRect || containRect.w === 0 || containRect.h === 0) <span class="branch-0 cbranch-no" title="branch not covered" >return null;</span>
+<span class="cstat-no" title="statement not covered" >export function Title({ containRect }: TitleProps) {</span>
+<span class="cstat-no" title="statement not covered" >	if (!containRect || containRect.w === 0 || containRect.h === 0) return null;</span>
 &nbsp;
-	const leftPx = containRect.x + 0.8 * containRect.w;
-	const topPx = containRect.y;
+<span class="cstat-no" title="statement not covered" >	const leftPx = containRect.x + 0.8 * containRect.w;</span>
+<span class="cstat-no" title="statement not covered" >	const topPx = containRect.y;</span>
 &nbsp;
-	return (
-		&lt;Box pos="absolute" left={leftPx} top={topPx} w="20%" zIndex={1}&gt;
-			&lt;Image src="./images/title/title.png" alt="ことばの魔王とえいごの勇者" /&gt;
-		&lt;/Box&gt;
+<span class="cstat-no" title="statement not covered" >	return (</span>
+<span class="cstat-no" title="statement not covered" >		&lt;Box pos="absolute" left={leftPx} top={topPx} w="20%" zIndex={1}&gt;</span>
+<span class="cstat-no" title="statement not covered" >			&lt;Image src="./images/title/title.png" alt="ことばの魔王とえいごの勇者" /&gt;</span>
+<span class="cstat-no" title="statement not covered" >		&lt;/Box&gt;</span>
 	);
-}
+<span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -145,7 +145,7 @@ export function Title({ containRect }: TitleProps) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-24T08:45:14.366Z
+                at 2025-10-25T22:13:36.580Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

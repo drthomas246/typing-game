@@ -4,4 +4,4 @@
 
 ### Functions
 
-- [default](../functions/App.default.md)
+- [App](../functions/App.App.md)

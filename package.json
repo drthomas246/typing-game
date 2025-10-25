@@ -9,8 +9,8 @@
     "preview": "vite preview",
     "format": "biome format --write ./src",
     "lint": "biome check ./src",
-    "ladle": "npx ladle serve",
-    "ladle:build": "npx ladle build",
+    "ladle": "npx ladle serve --config vite.ladle.config.ts",
+    "ladle:build": "npx ladle build --config vite.ladle.config.ts",
     "ladle:preview": "npx ladle preview",
     "test": "vitest",
     "test:run": "vitest run",
@@ -19,7 +19,8 @@
     "docs:check": "typedoc --treatWarningsAsErrors --showConfig",
     "site:dev": "rspress dev",
     "site:build": "rspress build",
-    "site:preview": "rspress preview"
+    "site:preview": "rspress preview",
+    "build:all": "npm run build && npm run site:build && npm run ladle:build &&npm run test:cov"
   },
   "dependencies": {
     "@chakra-ui/react": "3.27.1",

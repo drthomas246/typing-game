@@ -1,0 +1,223 @@
+// ------------------------------
+// 基本セットアップ
+// ------------------------------
+import "@testing-library/jest-dom/vitest";
+import { cleanup } from "@testing-library/react";
+import { afterEach, vi } from "vitest";
+import "fake-indexeddb/auto";
+import React from "react";
+
+// Testing Library: 自動クリーンアップ
+afterEach(() => cleanup());
+
+// ------------------------------
+// グローバル Polyfill / Stub
+// ------------------------------
+
+// speechSynthesis モック（既存を踏襲）
+Object.defineProperty(global, "speechSynthesis", {
+  value: {
+    speak: vi.fn(),
+    cancel: vi.fn(),
+    pause: vi.fn(),
+    resume: vi.fn(),
+    getVoices: () => [],
+  },
+  writable: true,
+});
+
+// Image の軽量スタブ（既存を踏襲）
+class FakeImage {
+  onload: null | (() => void) = null;
+  onerror: null | ((e?: any) => void) = null;
+  set src(_v: string) {
+    // 同期すぎると崩れるケースがあるため queueMicrotask のまま
+    queueMicrotask(() => this.onload && this.onload());
+  }
+}
+vi.stubGlobal("Image", FakeImage as any);
+
+// matchMedia: 無いときだけ polyfill（next-themes / Chakra 等が参照）
+if (typeof window !== "undefined" && !("matchMedia" in window)) {
+  Object.defineProperty(window, "matchMedia", {
+    writable: true,
+    value: (query: string) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      addListener: vi.fn(), // 旧API互換
+      removeListener: vi.fn(), // 旧API互換
+      dispatchEvent: vi.fn(),
+    }),
+  });
+}
+
+// requestAnimationFrame / cancelAnimationFrame: 無いときだけ polyfill
+if (typeof window !== "undefined" && !("requestAnimationFrame" in window)) {
+  (window as any).requestAnimationFrame = (cb: FrameRequestCallback) =>
+    setTimeout(() => cb(performance.now()), 16) as unknown as number;
+}
+if (typeof window !== "undefined" && !("cancelAnimationFrame" in window)) {
+  (window as any).cancelAnimationFrame = (id: number) => clearTimeout(id);
+}
+
+// ResizeObserver: 無いときだけ polyfill（レイアウト計測系の警告防止）
+if (!(global as any).ResizeObserver) {
+  (global as any).ResizeObserver = class {
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+  };
+}
+
+// ------------------------------
+// ライブラリの安定化モック
+// ------------------------------
+
+// next-themes はブラウザ依存が強いので最小モックに差し替え
+vi.mock("next-themes", async () => {
+  const React = await import("react");
+  return {
+    __esModule: true,
+    ThemeProvider: (props: { children?: React.ReactNode }) =>
+      React.createElement(React.Fragment, null, props.children),
+    useTheme: () => ({ theme: "light", setTheme: vi.fn() }),
+  };
+});
+
+// Framer Motion: 同期モック（非アニメ化）※既存を統合
+// --- Framer Motion: 呼び出し型 + dot形式 両対応 & useAnimation 付き（ESM-safe） ---
+vi.mock("framer-motion", async () => {
+  // framer-motion由来の props を落として素のDOM/Componentに渡す
+  const stripFMProps = (props: Record<string, unknown>) => {
+    const {
+      initial: _initial,
+      animate: _animate,
+      exit: _exit,
+      transition: _transition,
+      variants: _variants,
+      whileHover: _whileHover,
+      whileTap: _whileTap,
+      whileInView: _whileInView,
+      viewport: _viewport,
+      layout: _layout,
+      layoutId: _layoutId,
+      drag: _drag,
+      dragConstraints: _dragConstraints,
+      dragElastic: _dragElastic,
+      dragMomentum: _dragMomentum,
+      onAnimationStart: _onAnimationStart,
+      onAnimationComplete: _onAnimationComplete,
+      onUpdate: _onUpdate,
+      onDrag: _onDrag,
+      onDragStart: _onDragStart,
+      onDragEnd: _onDragEnd,
+      // 必要に応じて増やす
+      ...rest
+    } = props;
+    return rest as React.HTMLAttributes<HTMLElement>;
+  };
+
+  // ✅ 関数呼び出し: motion(Component)
+  const motionCallable = (Component: any) => (props: any) =>
+    React.createElement(Component, stripFMProps(props));
+
+  // ✅ プロパティアクセス: motion.div / motion.img など
+  const motion = new Proxy(motionCallable as any, {
+    get: (_target, tag: string) => (props: any) =>
+      React.createElement(tag as any, stripFMProps(props)),
+  });
+
+  // AnimationControls ライクな最小APIだけ用意（start は Promise を返す）
+  const useAnimation = () => {
+    return {
+      start: async (_definition?: any) => {},
+      stop: () => {},
+      set: (_definition?: any) => {},
+      // 必要なら他メソッドをここに追加
+    };
+  };
+  // AnimatePresence は子をそのまま描画
+  const AnimatePresence = ({ children }: { children?: React.ReactNode }) => (
+    <React.Fragment>{children}</React.Fragment>
+  );
+
+  return { __esModule: true, motion, AnimatePresence, useAnimation };
+});
+
+// Howler: 同期モック（既存を統合）
+vi.mock("howler", () => {
+  class Howl {
+    static instances: Howl[] = [];
+    _playing = false;
+    _volume = 1;
+    _onFade?: () => void;
+
+    constructor(_opts: any) {
+      Howl.instances.push(this);
+    }
+    play = vi.fn(() => {
+      this._playing = true;
+      return 1;
+    });
+    stop = vi.fn(() => {
+      this._playing = false;
+    });
+    unload = vi.fn(() => {
+      this._playing = false;
+    });
+    volume = vi.fn((v?: number) => {
+      if (typeof v === "number") this._volume = v;
+      return this._volume;
+    });
+    once = vi.fn((evt: string, cb: () => void) => {
+      if (evt === "fade") this._onFade = cb;
+    });
+    off = vi.fn((_evt?: string, _cb?: () => void) => {
+      this._onFade = undefined;
+    });
+    fade = vi.fn((_from: number, _to: number, _ms: number) => {
+      this._onFade?.(); // 即完了
+    });
+    // ★ 追加：bgmManager.fadeOutStop() から呼ばれる
+    playing = vi.fn(() => this._playing);
+  }
+  const Howler = {
+    volume: vi.fn((v?: number) => (typeof v === "number" ? v : 1)),
+  };
+  return { __esModule: true, Howl, Howler };
+});
+
+// ⚠️ 注意: グローバルの vi.useFakeTimers()/vi.setSystemTime() はここで設定しない
+// → 各テスト内で必要に応じて opt-in する方針
+// --- react-konva をダミーの素通しコンポーネントにモック ---
+vi.mock("react-konva", async () => {
+  const React = await import("react");
+  const passthrough = (tag: keyof HTMLElementTagNameMap) =>
+    function C(props: any) {
+      return React.createElement(tag, props, props?.children);
+    };
+  return {
+    __esModule: true,
+    // よく使う要素だけで十分（必要に応じて追加）
+    Stage: passthrough("div"),
+    Layer: passthrough("div"),
+    Group: passthrough("div"),
+    Rect: passthrough("div"),
+    Circle: passthrough("div"),
+    Line: passthrough("div"),
+    Text: passthrough("span"),
+    Image: passthrough("img"),
+  };
+});
+
+// --- konva 自体も軽量モックに（react-konva が間接参照するため保険）---
+vi.mock("konva", () => {
+  return {
+    __esModule: true,
+    default: {}, // new Konva.XXX を使っていなければ空でOK
+    Util: {},
+  };
+});

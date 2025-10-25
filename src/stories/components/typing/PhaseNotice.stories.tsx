@@ -13,7 +13,7 @@ import React, { useMemo, useState } from "react";
 
 // ★ 実プロジェクトの配置に合わせてインポートを調整してください
 //   例） "@/components/typing/PhaseNoticeArea/PhaseNotice" 等
-import PhaseNotice from "@/components/typing/PhaseNoticeArea/PhaseNotice";
+import { PhaseNotice } from "@/components/typing/PhaseNoticeArea/PhaseNotice";
 
 // useBattle が参照するコンテキストを最小限モック（Dexie依存を避ける）
 import { UserBattleContext } from "@/contexts/PageContext";

@@ -4,4 +4,4 @@
 
 ### Functions
 
-- [default](../functions/components_typing_AnswerArea.default.md)
+- [AnswerArea](../functions/components_typing_AnswerArea.AnswerArea.md)

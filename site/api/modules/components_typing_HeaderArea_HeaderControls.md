@@ -4,4 +4,4 @@
 
 ### Functions
 
-- [default](../functions/components_typing_HeaderArea_HeaderControls.default.md)
+- [HeaderControls](../functions/components_typing_HeaderArea_HeaderControls.HeaderControls.md)

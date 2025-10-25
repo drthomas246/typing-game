@@ -4,4 +4,4 @@
 
 ### Functions
 
-- [default](../functions/components_typing_PhaseNoticeArea_PhaseNotice.default.md)
+- [PhaseNotice](../functions/components_typing_PhaseNoticeArea_PhaseNotice.PhaseNotice.md)

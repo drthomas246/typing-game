@@ -1,13 +1,13 @@
 [
   "index.md",
+  "DesignPhilosophy.md",
   "mainFeatures.md",
   "TechStack.md",
   "SystemRequirements.md",
   "ProjectStructure.md",
   "InstallationMethod.md",
   "AvailableScripts.md",
-  "Screenshots.md",
-  "DesignPhilosophy.md",
+  "Screenshots.mdx",
   "Roadmap.md",
   "License.md",
   "AuthorAndLinks.md"

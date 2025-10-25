@@ -4,4 +4,4 @@
 
 ### Functions
 
-- [default](../functions/components_typing_BattleArea.default.md)
+- [BattleArea](../functions/components_typing_BattleArea.BattleArea.md)

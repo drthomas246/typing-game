@@ -1,17 +1,10 @@
 import { Box } from "@chakra-ui/react";
 import type { Stage as KonvaStage } from "konva/lib/Stage";
-import React, {
-  type PropsWithChildren,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Group, Image as KonvaImage, Layer, Stage } from "react-konva";
 import useImage from "use-image";
 import { Title } from "@/components/map/Title";
-import type { MapPoint, Tile } from "@/types/index";
+import type { MapViewFixedViewportProps } from "@/types/index";
 
 /** 設計上の基準（ワールドの想定原寸） */
 const VIEW_W = 1744;
@@ -31,19 +24,7 @@ function TileImage({ src, x, y }: { src: string; x: number; y: number }) {
   );
 }
 
-type MapViewFixedViewportProps = PropsWithChildren<{
-  tiles: ReadonlyArray<Tile>;
-  points: ReadonlyArray<MapPoint>;
-  worldSize: { width: number; height: number };
-  /** 初期表示（world中心）。既定：右下寄り */
-  initialCenter?: { x: number; y: number };
-  showTooltip: boolean;
-  stageRef: React.RefObject<KonvaStage | null>;
-  /** 黒帯を無くすには cover を使う */
-  mode?: "cover" | "contain";
-}>;
-
-export default function MapViewFixedViewport({
+export function MapView({
   tiles,
   points,
   worldSize,

@@ -8,7 +8,6 @@ type Props = React.IframeHTMLAttributes<HTMLIFrameElement> & {
 // const resizeObserverRef = useRef<ResizeObserver | null>(null);
 // const mutationObserverRef = useRef<MutationObserver | null>(null);
 
-
 export default function IframeAutoHeight({ src, ...rest }: Props) {
   const ref = useRef<HTMLIFrameElement | null>(null);
 
@@ -31,7 +30,7 @@ export default function IframeAutoHeight({ src, ...rest }: Props) {
 
         const h = Math.max(
           doc.documentElement.scrollHeight,
-          doc.body.scrollHeight
+          doc.body.scrollHeight,
         );
 
         // 計算結果を適用
@@ -80,17 +79,16 @@ export default function IframeAutoHeight({ src, ...rest }: Props) {
           "input",
           "change",
           "transitionend",
-          "animationend"
+          "animationend",
         ];
 
-        eventListeners.forEach((ev) =>
-          doc.addEventListener(ev, setHeight, { passive: true })
-        );
+        eventListeners.forEach((ev) => {
+          doc.addEventListener(ev, setHeight, { passive: true });
+        });
 
         // ※このリスナー群は、次の load イベントで doc が新しくなることで自動的に破棄されます
         //   ただし、より堅牢にするなら、このリスナー群の削除も考慮すべきですが、
         //   複雑になるため、ここではオブザーバーの切断に焦点を当てます。
-
       } catch {
         // 別オリジンなら何もしない
       }
@@ -112,7 +110,12 @@ export default function IframeAutoHeight({ src, ...rest }: Props) {
     <iframe
       ref={ref}
       src={src}
-      style={{ width: "100%", border: "none", overflow: "hidden", minHeight: "1px" }} // minHeight を追加して、初期の高さ問題を回避
+      style={{
+        width: "100%",
+        border: "none",
+        overflow: "hidden",
+        minHeight: "1px",
+      }} // minHeight を追加して、初期の高さ問題を回避
       title="Auto Height Iframe" // title 属性を追加することを推奨
       {...rest}
     />

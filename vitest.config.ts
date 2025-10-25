@@ -12,7 +12,7 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     globals: true,
-    setupFiles: ["./vitest.setup.ts", "./tests/setup/quiet-console.ts"],
+    setupFiles: ["./vitest.setup.tsx", "./tests/setup/quiet-console.ts"],
     css: true,
     restoreMocks: true,
     clearMocks: true,

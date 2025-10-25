@@ -1,7 +1,7 @@
 import type { StoryDefault, Story } from "@ladle/react";
 import { Box, Button, HStack, Text } from "@chakra-ui/react";
 import { useMemo, useState } from "react";
-import AnswerPanel from "@/components/typing/AnswerArea"; // index.tsx の default export
+import { AnswerArea } from "@/components/typing/AnswerArea"; // index.tsx の default export
 // ↑ 実際の配置が "@/compornents/..." であればインポートも合わせて修正してください。
 
 type EngineMock = {
@@ -125,7 +125,7 @@ export const Basic: Story = () => {
         hint: {String(demo.showHint)}
       </Text>
 
-      <AnswerPanel
+      <AnswerArea
         typed={demo.typed}
         correctMap={demo.correctMap}
         answer={demo.answer}

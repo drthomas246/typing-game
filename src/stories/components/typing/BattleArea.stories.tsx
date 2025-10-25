@@ -12,7 +12,7 @@ import {
   Field,
 } from "@chakra-ui/react";
 import React, { useMemo, useRef, useState } from "react";
-import BattleArena from "@/components/typing/BattleArea";
+import { BattleArea } from "@/components/typing/BattleArea";
 
 // ========== ErrorBoundary ==========
 class DebugBoundary extends React.Component<
@@ -258,7 +258,7 @@ export const Basic: Story = () => {
         </VStack>
 
         {/* BattleArena 本体 */}
-        <BattleArena
+        <BattleArea
           enemyImg={ENEMY_DATA}
           backgroundImg={BG_DATA}
           hurtId={hurtId}

@@ -1,5 +1,18 @@
-import { Box, Button, CloseButton, Dialog, HStack, Portal, Stat } from "@chakra-ui/react";
-import { useBattle, useLevel, useSetLevel, useSound } from "@/contexts/PageContext";
+import {
+  Box,
+  Button,
+  CloseButton,
+  Dialog,
+  HStack,
+  Portal,
+  Stat,
+} from "@chakra-ui/react";
+import {
+  useBattle,
+  useLevel,
+  useSetLevel,
+  useSound,
+} from "@/contexts/PageContext";
 import type { ResultsDialogProps } from "@/types/index";
 
 /**
@@ -18,88 +31,100 @@ import type { ResultsDialogProps } from "@/types/index";
  *
  * @returns {JSX.Element} 結果表示用のダイアログ。
  */
-export default function ResultsDialog({
-	open,
-	setOpen,
-	onRetry,
-	setShouldBgmPlay,
-	summary,
+export function ResultsDialog({
+  open,
+  setOpen,
+  onRetry,
+  setShouldBgmPlay,
+  summary,
 }: ResultsDialogProps) {
-	const level = useLevel();
-	const setLevel = useSetLevel();
-	const sound = useSound();
-	const battle = useBattle();
-	return (
-		<Dialog.Root
-			open={open}
-			onOpenChange={(e) => setOpen(e.open)}
-			size="sm"
-			placement="center"
-			onExitComplete={() => {
-				if (summary.killedNow) setLevel(level + 1);
-				setOpen(false);
-			}}
-		>
-			<Portal>
-				<Dialog.Backdrop />
-				<Dialog.Positioner>
-					<Dialog.Content rounded="xl">
-						<Dialog.Header>
-							<Dialog.Title>けっか発表</Dialog.Title>
-							<Dialog.CloseTrigger asChild>
-								<CloseButton size="sm" />
-							</Dialog.CloseTrigger>
-						</Dialog.Header>
+  const level = useLevel();
+  const setLevel = useSetLevel();
+  const sound = useSound();
+  const battle = useBattle();
 
-						<Dialog.Body>
-							<HStack gap="6" wrap="wrap">
-								<Stat.Root>
-									<Stat.Label>時間</Stat.Label>
-									<Stat.ValueText fontSize="2xl">{summary.timeSec}s</Stat.ValueText>
-								</Stat.Root>
-								{!battle && (
-									<Stat.Root>
-										<Stat.Label>ヒントを使った問題数</Stat.Label>
-										<Stat.ValueText fontSize="2xl">{summary.usedHintCount}</Stat.ValueText>
-									</Stat.Root>
-								)}
+  return (
+    <Dialog.Root
+      open={open}
+      onOpenChange={(e) => setOpen(e.open)}
+      size="sm"
+      placement="center"
+      onExitComplete={() => {
+        if (summary.killedNow) setLevel(level + 1);
+        setOpen(false);
+      }}
+    >
+      <Portal>
+        <Dialog.Backdrop />
+        <Dialog.Positioner>
+          <Dialog.Content rounded="xl">
+            <Dialog.Header display="flex" alignItems="center" gap="2">
+              <Dialog.Title flex="1">けっか発表</Dialog.Title>
 
-								<Stat.Root>
-									<Stat.Label>まちがえた問題数</Stat.Label>
-									<Stat.ValueText fontSize="2xl">{summary.mistakeProblemCount}</Stat.ValueText>
-								</Stat.Root>
-							</HStack>
-							{summary.killedNow && (
-								<Box>
-									レベルが{level}から{level + 1}に上がった
-								</Box>
-							)}
-						</Dialog.Body>
+              {/* ✅ Trigger 側に asChild。CloseButton は素のまま */}
+              <Dialog.CloseTrigger asChild>
+                <CloseButton size="sm" />
+              </Dialog.CloseTrigger>
+            </Dialog.Header>
 
-						<Dialog.Footer gap="2">
-							<Button
-								colorPalette="blue"
-								onClick={() => {
-									if (sound) setShouldBgmPlay(false);
-									onRetry();
-								}}
-							>
-								もう一度やる
-							</Button>
-							<Dialog.ActionTrigger asChild>
-								<Button
-									variant="outline"
-									onClick={() => {
-										if (sound) setShouldBgmPlay(true);
-									}}
-								>
-									とじる
-								</Button>
-							</Dialog.ActionTrigger>
-						</Dialog.Footer>
-					</Dialog.Content>
-				</Dialog.Positioner>
-			</Portal>
-		</Dialog.Root>
-	);
+            <Dialog.Body>
+              <HStack gap="6" wrap="wrap">
+                <Stat.Root>
+                  <Stat.Label>時間</Stat.Label>
+                  <Stat.ValueText fontSize="2xl">
+                    {summary.timeSec}s
+                  </Stat.ValueText>
+                </Stat.Root>
+
+                {!battle && (
+                  <Stat.Root>
+                    <Stat.Label>ヒントを使った問題数</Stat.Label>
+                    <Stat.ValueText fontSize="2xl">
+                      {summary.usedHintCount}
+                    </Stat.ValueText>
+                  </Stat.Root>
+                )}
+
+                <Stat.Root>
+                  <Stat.Label>まちがえた問題数</Stat.Label>
+                  <Stat.ValueText fontSize="2xl">
+                    {summary.mistakeProblemCount}
+                  </Stat.ValueText>
+                </Stat.Root>
+              </HStack>
+
+              {summary.killedNow && (
+                <Box>
+                  レベルが{level}から{level + 1}に上がった
+                </Box>
+              )}
+            </Dialog.Body>
+
+            <Dialog.Footer gap="2">
+              <Button
+                colorPalette="blue"
+                onClick={() => {
+                  if (sound) setShouldBgmPlay(false);
+                  onRetry();
+                }}
+              >
+                もう一度やる
+              </Button>
+
+              {/* ActionTrigger も asChild の向きを逆に（Chakra が親） */}
+              <Button
+                variant="outline"
+                onClick={() => {
+                  if (sound) setShouldBgmPlay(true);
+                  setOpen(false); // これで十分に閉じられる
+                }}
+              >
+                とじる
+              </Button>
+            </Dialog.Footer>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Portal>
+    </Dialog.Root>
+  );
 }

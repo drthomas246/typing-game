@@ -1,7 +1,7 @@
 import type { Story, StoryDefault } from "@ladle/react";
 import { Box, Button, HStack, VStack, Code, Separator } from "@chakra-ui/react";
 import React, { useMemo, useState } from "react";
-import HeaderArea from "@/components/typing/HeaderArea/index";
+import { HeaderArea } from "@/components/typing/HeaderArea/index";
 import PageProvider from "@/contexts/PageProvider";
 
 // PageContext から「コンテキスト」と「hooks」を同一モジュールから import

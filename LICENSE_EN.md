@@ -1,6 +1,6 @@
 © 2025 Yamahara Yoshihiro
 
-All rights of the software “Kotoba no Maou to Eigo no Yuusha” (“The Word Demon and the English Hero”)
+All rights of the software “Kotoba no Maou to Eigo no Yuusha” (“The Demon King of Words and the Hero of English”)
 belong to Yamahara Yoshihiro.
 
 [Usage Terms]

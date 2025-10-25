@@ -157,7 +157,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -215,7 +215,7 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Heading, HStack, Text } from "@chakra-ui/react";
 import { flushSync } from "react-dom";
-import HeaderControls from "@/components/typing/HeaderArea/HeaderControls";
+import { HeaderControls } from "@/components/typing/HeaderArea/HeaderControls";
 import { useSetPage, useSound } from "@/contexts/PageContext";
 import type { HeaderAreaProps } from "@/types/index";
 &nbsp;
@@ -232,61 +232,61 @@ import type { HeaderAreaProps } from "@/types/index";
  * @param props.onOpen - 設定モーダルを開くためのコールバック関数。
  * @returns レンダリングされたヘッダーエリア。
  */
-export default function HeaderArea({
-	title,
-	start,
-	stop,
-	state,
-	setShouldPlay,
-	onOpen,
+export function HeaderArea({
+  title,
+  start,
+  stop,
+  state,
+  setShouldPlay,
+  onOpen,
 }: HeaderAreaProps) {
-	const setPage = useSetPage();
-	const sound = useSound();
+  const setPage = useSetPage();
+  const sound = useSound();
 &nbsp;
-	const handleStart = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >		setShouldPlay(false);</span>
-<span class="cstat-no" title="statement not covered" >		start();</span>
-<span class="cstat-no" title="statement not covered" >	};</span>
+  const handleStart = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    setShouldPlay(false);</span>
+<span class="cstat-no" title="statement not covered" >    start();</span>
+<span class="cstat-no" title="statement not covered" >  };</span>
 &nbsp;
-	const handleEscape = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >		stop("escape");</span>
-<span class="cstat-no" title="statement not covered" >	};</span>
+  const handleEscape = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    stop("escape");</span>
+<span class="cstat-no" title="statement not covered" >  };</span>
 &nbsp;
-	return (
-		&lt;HStack justify="space-between" h="40px"&gt;
-			&lt;Heading size="lg"&gt;
-				&lt;Text as="span" color="#1E90FF"&gt;
-					ことば
-				&lt;/Text&gt;
-				の
-				&lt;Text as="span" color="#E60033" fontWeight="bold"&gt;
-					魔王
-				&lt;/Text&gt;
-				と
-				&lt;Text as="span" color="#228B22"&gt;
-					えいご
-				&lt;/Text&gt;
-				の
-				&lt;Text as="span" color="#FFD700"&gt;
-					勇者
-				&lt;/Text&gt;{" "}
-				～{title}～
-			&lt;/Heading&gt;
-			&lt;HeaderControls
-				started={state.started}
-				finished={state.finished}
-				onStart={handleStart}
-				onEscape={handleEscape}
-				onOpenSettings={onOpen}
-				onBack={<span class="fstat-no" title="function not covered" >() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >					if (sound) {</span>
-<span class="cstat-no" title="statement not covered" >						flushSync(() =&gt; setShouldPlay(false));</span>
-<span class="cstat-no" title="statement not covered" >					}</span>
-<span class="cstat-no" title="statement not covered" >					setPage(0);</span>
-<span class="cstat-no" title="statement not covered" >				}}</span>
-			/&gt;
-		&lt;/HStack&gt;
-	);
+  return (
+    &lt;HStack justify="space-between" h="40px"&gt;
+      &lt;Heading size="lg"&gt;
+        &lt;Text as="span" color="#1E90FF"&gt;
+          ことば
+        &lt;/Text&gt;
+        の
+        &lt;Text as="span" color="#E60033" fontWeight="bold"&gt;
+          魔王
+        &lt;/Text&gt;
+        と
+        &lt;Text as="span" color="#228B22"&gt;
+          えいご
+        &lt;/Text&gt;
+        の
+        &lt;Text as="span" color="#FFD700"&gt;
+          勇者
+        &lt;/Text&gt;{" "}
+        ～{title}～
+      &lt;/Heading&gt;
+      &lt;HeaderControls
+        started={state.started}
+        finished={state.finished}
+        onStart={handleStart}
+        onEscape={handleEscape}
+        onOpenSettings={onOpen}
+        onBack={<span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          if (sound) {</span>
+<span class="cstat-no" title="statement not covered" >            flushSync(() =&gt; setShouldPlay(false));</span>
+<span class="cstat-no" title="statement not covered" >          }</span>
+<span class="cstat-no" title="statement not covered" >          setPage(0);</span>
+<span class="cstat-no" title="statement not covered" >        }}</span>
+      /&gt;
+    &lt;/HStack&gt;
+  );
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -295,7 +295,7 @@ export default function HeaderArea({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-24T08:45:14.366Z
+                at 2025-10-25T22:13:36.580Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

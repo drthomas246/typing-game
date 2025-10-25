@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 /manual
+/typedocs
 .gitignore
 
 # Editor directories and files

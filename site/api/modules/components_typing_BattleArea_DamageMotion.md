@@ -4,4 +4,4 @@
 
 ### Functions
 
-- [default](../functions/components_typing_BattleArea_DamageMotion.default.md)
+- [DamageMotion](../functions/components_typing_BattleArea_DamageMotion.DamageMotion.md)

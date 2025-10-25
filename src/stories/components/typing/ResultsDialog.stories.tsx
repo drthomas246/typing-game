@@ -11,7 +11,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React, { useMemo, useState } from "react";
-import ResultsDialog from "@/components/typing/ResultsDialog";
+import { ResultsDialog } from "@/components/typing/ResultsDialog";
 
 // ==== PageContext の最小モック ====
 // ResultsDialog は useBattle / useLevel / useSetLevel / useSound を使うため、

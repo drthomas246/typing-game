@@ -4,4 +4,4 @@
 
 ### Functions
 
-- [default](../functions/pages_TypingPage.default.md)
+- [TypingPage](../functions/pages_TypingPage.TypingPage.md)

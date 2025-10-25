@@ -7,7 +7,7 @@ hero:
       alt: ことばの魔王とえいごの勇者
   name: <span class="text-4xl leading-6 hero-name">ことばの魔王<br />と<br />えいごの勇者</span>
   text: <span class="text-3xl">The Demon King of Words<br />and<br />the Hero of English</span>
-  tagline: English learning app for students
+  tagline: 英語学習アプリケーション
   actions:
     - theme: brand
       text: Introduction

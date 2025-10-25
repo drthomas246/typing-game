@@ -4,4 +4,4 @@
 
 ### Functions
 
-- [default](../functions/components_typing_BattleArea_EnemyHpBar.default.md)
+- [EnemyHpBar](../functions/components_typing_BattleArea_EnemyHpBar.EnemyHpBar.md)

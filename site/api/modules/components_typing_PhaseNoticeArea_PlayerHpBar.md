@@ -4,4 +4,4 @@
 
 ### Functions
 
-- [default](../functions/components_typing_PhaseNoticeArea_PlayerHpBar.default.md)
+- [PlayerHpBar](../functions/components_typing_PhaseNoticeArea_PlayerHpBar.PlayerHpBar.md)

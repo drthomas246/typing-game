@@ -4,4 +4,4 @@
 
 ### Functions
 
-- [default](../functions/components_typing_BattleArea_QuestionPanel.default.md)
+- [QuestionPanel](../functions/components_typing_BattleArea_QuestionPanel.QuestionPanel.md)

@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95.34% </span>
+                <span class="strong">94.23% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>41/43</span>
+                <span class='fraction'>49/52</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">40% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/5</span>
+                <span class='fraction'>1/4</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95.34% </span>
+                <span class="strong">94.23% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>41/43</span>
+                <span class='fraction'>49/52</span>
             </div>
         
             
@@ -125,7 +125,16 @@
 <a name='L60'></a><a href='#L60'>60</a>
 <a name='L61'></a><a href='#L61'>61</a>
 <a name='L62'></a><a href='#L62'>62</a>
-<a name='L63'></a><a href='#L63'>63</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -144,18 +153,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -181,12 +189,22 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Image } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import type { EnemyLayerProps } from "@/types/index";
@@ -206,48 +224,57 @@ const MotionImg = motion.img;
  * @param props.onVanishDone - 消滅アニメーションが完了したときに呼び出されるコールバック関数。
  * @returns レンダリングされた背景と敵キャラクターのレイヤー。
  */
-export default function EnemyLayer({
-	backgroundImg,
-	enemyImg,
-	vanishId,
-	vanished,
-	onVanishDone,
+export function EnemyLayer({
+  backgroundImg,
+  enemyImg,
+  vanishId,
+  vanished,
+  onVanishDone,
 }: EnemyLayerProps) {
-	return (
-		&lt;&gt;
-			{/* 背景画像 */}
-			&lt;Image src={backgroundImg} alt="Background" fit="cover" w="100%" h="100%" /&gt;
-			{!vanished &amp;&amp; (
-				&lt;MotionImg
-					key={`monster-${vanishId}`}
-					src={enemyImg}
-					alt="Enemy"
-					style={{
-						position: "absolute",
-						top: 0,
-						left: 0,
-						width: "100%",
-						height: "100%",
-						objectFit: "contain",
-					}}
-					initial={{ opacity: 1, scale: 1, x: 0 }}
-					animate={{
-						opacity: vanishId &gt; <span class="branch-0 cbranch-no" title="branch not covered" >0 ? [1, 1, 0] : 1</span>,
-						x: vanishId &gt; <span class="branch-0 cbranch-no" title="branch not covered" >0 ? [0, -20, 20, -18, 18, -15, 15, -10, 10, -5, 5, 0] : 0</span>,
-						scale: vanishId &gt; <span class="branch-0 cbranch-no" title="branch not covered" >0 ? 0.95 : 1</span>,
-					}}
-					transition={{
-						opacity: { duration: 1.2, ease: "easeOut", times: [0, 0.6, 1] },
-						x: { duration: 1.2, ease: "easeInOut" },
-						scale: { duration: 1.2, ease: "easeOut" },
-					}}
-					onAnimationComplete={<span class="fstat-no" title="function not covered" >() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >						if (vanishId &gt; 0) onVanishDone();</span>
-<span class="cstat-no" title="statement not covered" >					}}</span>
-				/&gt;
-			)}
-		&lt;/&gt;
-	);
+  return (
+    &lt;&gt;
+      {/* 背景画像 */}
+      &lt;Image
+        src={backgroundImg}
+        alt="Background"
+        fit="cover"
+        w="100%"
+        h="100%"
+      /&gt;
+      {!vanished &amp;&amp; (
+        &lt;MotionImg
+          key={`monster-${vanishId}`}
+          src={enemyImg}
+          alt="Enemy"
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "contain",
+          }}
+          initial={{ opacity: 1, scale: 1, x: 0 }}
+          animate={{
+            opacity: vanishId &gt; <span class="branch-0 cbranch-no" title="branch not covered" >0 ? [1, 1, 0] : 1</span>,
+            x:
+              vanishId &gt; <span class="branch-0 cbranch-no" title="branch not covered" >0</span>
+<span class="cstat-no" title="statement not covered" >                ? [0, -20, 20, -18, 18, -15, 15, -10, 10, -5, 5, 0]</span>
+                : 0,
+            scale: vanishId &gt; <span class="branch-0 cbranch-no" title="branch not covered" >0 ? 0.95 : 1</span>,
+          }}
+          transition={{
+            opacity: { duration: 1.2, ease: "easeOut", times: [0, 0.6, 1] },
+            x: { duration: 1.2, ease: "easeInOut" },
+            scale: { duration: 1.2, ease: "easeOut" },
+          }}
+          onAnimationComplete={<span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            if (vanishId &gt; 0) onVanishDone();</span>
+<span class="cstat-no" title="statement not covered" >          }}</span>
+        /&gt;
+      )}
+    &lt;/&gt;
+  );
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -256,7 +283,7 @@ export default function EnemyLayer({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-24T08:45:14.366Z
+                at 2025-10-25T22:13:36.580Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

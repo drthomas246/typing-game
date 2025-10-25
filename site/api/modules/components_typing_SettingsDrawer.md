@@ -4,4 +4,4 @@
 
 ### Functions
 
-- [default](../functions/components_typing_SettingsDrawer.default.md)
+- [SettingsDrawer](../functions/components_typing_SettingsDrawer.SettingsDrawer.md)

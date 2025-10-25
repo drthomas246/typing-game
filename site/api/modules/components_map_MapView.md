@@ -4,4 +4,4 @@
 
 ### Functions
 
-- [default](../functions/components_map_MapView.default.md)
+- [MapView](../functions/components_map_MapView.MapView.md)

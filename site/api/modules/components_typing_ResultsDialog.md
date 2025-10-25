@@ -4,4 +4,4 @@
 
 ### Functions
 
-- [default](../functions/components_typing_ResultsDialog.default.md)
+- [ResultsDialog](../functions/components_typing_ResultsDialog.ResultsDialog.md)

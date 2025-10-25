@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">38.63% </span>
+                <span class="strong">40% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>17/44</span>
+                <span class='fraction'>18/45</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">38.63% </span>
+                <span class="strong">40% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>17/44</span>
+                <span class='fraction'>18/45</span>
             </div>
         
             
@@ -127,7 +127,8 @@
 <a name='L62'></a><a href='#L62'>62</a>
 <a name='L63'></a><a href='#L63'>63</a>
 <a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -143,6 +144,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -152,7 +154,6 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -186,6 +187,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -207,53 +209,54 @@ import type { InputCaptureProps } from "@/types/index";
  * @param props.handleSpace - Spaceキーを処理するかどうか。デフォルトは `true`。
  * @param props.handleTab - Tabキーを処理するかどうか。デフォルトは `true`。
  */
-export default function InputCapture({
-	onKey,
-	enabled = true,
-	handleEnter = true,
-	handleBackspace = true,
-	handleSpace = true,
-	handleTab = true,
+export function InputCapture({
+  onKey,
+  enabled = true,
+  handleEnter = true,
+  handleBackspace = true,
+  handleSpace = true,
+  handleTab = true,
 }: InputCaptureProps) {
-	useEffect(() =&gt; {
-		if (!enabled) <span class="branch-0 cbranch-no" title="branch not covered" >return;</span>
+  useEffect(() =&gt; {
+    if (!enabled) <span class="branch-0 cbranch-no" title="branch not covered" >return;</span>
 &nbsp;
-		const handler = <span class="fstat-no" title="function not covered" >(e: KeyboardEvent) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >			if (!enabled) return;</span>
+    const handler = <span class="fstat-no" title="function not covered" >(e: KeyboardEvent) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      if (!enabled) return;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >			if (handleTab &amp;&amp; e.key === "Tab") {</span>
-<span class="cstat-no" title="statement not covered" >				onKey("\t", e);</span>
-<span class="cstat-no" title="statement not covered" >				e.preventDefault();</span>
-<span class="cstat-no" title="statement not covered" >				return;</span>
-<span class="cstat-no" title="statement not covered" >			}</span>
-<span class="cstat-no" title="statement not covered" >			if (handleSpace &amp;&amp; (e.key === " " || e.code === "Space")) {</span>
-<span class="cstat-no" title="statement not covered" >				onKey(" ", e);</span>
-<span class="cstat-no" title="statement not covered" >				e.preventDefault();</span>
-<span class="cstat-no" title="statement not covered" >				return;</span>
-<span class="cstat-no" title="statement not covered" >			}</span>
-<span class="cstat-no" title="statement not covered" >			if (e.key.length === 1) {</span>
-<span class="cstat-no" title="statement not covered" >				onKey(e.key, e);</span>
-<span class="cstat-no" title="statement not covered" >				e.preventDefault();</span>
-<span class="cstat-no" title="statement not covered" >				return;</span>
-<span class="cstat-no" title="statement not covered" >			}</span>
-<span class="cstat-no" title="statement not covered" >			if (handleBackspace &amp;&amp; e.key === "Backspace") {</span>
-<span class="cstat-no" title="statement not covered" >				onKey("\b", e);</span>
-<span class="cstat-no" title="statement not covered" >				e.preventDefault();</span>
-<span class="cstat-no" title="statement not covered" >				return;</span>
-<span class="cstat-no" title="statement not covered" >			}</span>
-<span class="cstat-no" title="statement not covered" >			if (handleEnter &amp;&amp; e.key === "Enter") {</span>
-<span class="cstat-no" title="statement not covered" >				onKey("\n", e);</span>
-<span class="cstat-no" title="statement not covered" >				e.preventDefault();</span>
-<span class="cstat-no" title="statement not covered" >				return;</span>
-<span class="cstat-no" title="statement not covered" >			}</span>
-<span class="cstat-no" title="statement not covered" >		};</span>
+<span class="cstat-no" title="statement not covered" >      if (handleTab &amp;&amp; e.key === "Tab") {</span>
+<span class="cstat-no" title="statement not covered" >        onKey("\t", e);</span>
+<span class="cstat-no" title="statement not covered" >        e.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >        return;</span>
+<span class="cstat-no" title="statement not covered" >      }</span>
+<span class="cstat-no" title="statement not covered" >      if (handleSpace &amp;&amp; (e.key === " " || e.code === "Space")) {</span>
+<span class="cstat-no" title="statement not covered" >        onKey(" ", e);</span>
+<span class="cstat-no" title="statement not covered" >        e.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >        return;</span>
+<span class="cstat-no" title="statement not covered" >      }</span>
+<span class="cstat-no" title="statement not covered" >      if (e.key.length === 1) {</span>
+<span class="cstat-no" title="statement not covered" >        onKey(e.key, e);</span>
+<span class="cstat-no" title="statement not covered" >        e.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >        return;</span>
+<span class="cstat-no" title="statement not covered" >      }</span>
+<span class="cstat-no" title="statement not covered" >      if (handleBackspace &amp;&amp; e.key === "Backspace") {</span>
+<span class="cstat-no" title="statement not covered" >        onKey("\b", e);</span>
+<span class="cstat-no" title="statement not covered" >        e.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >        return;</span>
+<span class="cstat-no" title="statement not covered" >      }</span>
+<span class="cstat-no" title="statement not covered" >      if (handleEnter &amp;&amp; e.key === "Enter") {</span>
+<span class="cstat-no" title="statement not covered" >        onKey("\n", e);</span>
+<span class="cstat-no" title="statement not covered" >        e.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >        return;</span>
+<span class="cstat-no" title="statement not covered" >      }</span>
+<span class="cstat-no" title="statement not covered" >    };</span>
 &nbsp;
-		window.addEventListener("keydown", handler, { capture: true });
+    window.addEventListener("keydown", handler, { capture: true });
 &nbsp;
-		return () =&gt; window.removeEventListener("keydown", handler, { capture: true });
-	}, [onKey, enabled, handleEnter, handleBackspace, handleSpace, handleTab]);
+    return () =&gt;
+      window.removeEventListener("keydown", handler, { capture: true });
+  }, [onKey, enabled, handleEnter, handleBackspace, handleSpace, handleTab]);
 &nbsp;
-	return null;
+  return null;
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -262,7 +265,7 @@ export default function InputCapture({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-24T08:45:14.366Z
+                at 2025-10-25T22:13:36.580Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

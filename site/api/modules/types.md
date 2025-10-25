@@ -37,6 +37,7 @@
 - [JudgeResult](../types/types.JudgeResult.md)
 - [LearningPhase](../types/types.LearningPhase.md)
 - [MapPoint](../types/types.MapPoint.md)
+- [MapViewFixedViewportProps](../types/types.MapViewFixedViewportProps.md)
 - [PhaseNoticeProps](../types/types.PhaseNoticeProps.md)
 - [PlayerHpBarProps](../types/types.PlayerHpBarProps.md)
 - [QuestionPanelProps](../types/types.QuestionPanelProps.md)

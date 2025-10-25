@@ -1,5 +1,5 @@
 ---
-title: 💡 開発方針（Design Philosophy）
+title: 💡 開発方針
 ---
 - 学び × 遊び × 挑戦 の三位一体設計
 - Type-Safe & Modular を徹底した拡張性のある設計

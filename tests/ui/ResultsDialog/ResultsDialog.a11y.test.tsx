@@ -1,47 +1,49 @@
-// tests/ui/ResultsDialog/ResultsDialog.a11y.test.tsx
-import { screen } from "@testing-library/react";
+import { act, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
-import { beforeEach, describe, expect, it, vi } from "vitest";
-import ResultsDialog from "@/components/typing/ResultsDialog";
+import type React from "react";
+import { describe, expect, it } from "vitest";
+import { ResultsDialog } from "@/components/typing/ResultsDialog";
 import { renderWithProviders } from "../../utils/renderWithProviders";
 
+// --- Portal無効化モック ---
+// （テスト実行中だけ、Ark UIのPortalを単なる子出力に置き換える）
+vi.mock("@ark-ui/react", async () => {
+  const actual = await vi.importActual<any>("@ark-ui/react");
+  const PassthroughPortal = ({ children }: { children?: React.ReactNode }) => (
+    <>{children}</>
+  );
+  return { ...actual, Portal: PassthroughPortal };
+});
+
 describe("ResultsDialog has no a11y violations", () => {
-  beforeEach(() => {
-    vi.useRealTimers(); // FakeTimersの影響を遮断
-  });
-
   it("no obvious issues", async () => {
-    const setOpen = vi.fn();
-    const onRetry = vi.fn();
-
-    const summary = {
-      timeSec: 30,
-      usedHintCount: 0,
-      mistakeProblemCount: 2,
-      killedNow: true,
-    } as const;
-
-    const { container } = renderWithProviders(
+    // --- コンポーネント描画 ---
+    renderWithProviders(
       <ResultsDialog
         open
-        setOpen={setOpen}
-        onRetry={onRetry}
+        setOpen={() => {}}
+        onRetry={() => {}}
         setShouldBgmPlay={() => {}}
-        summary={summary}
+        summary={{
+          timeSec: 30,
+          usedHintCount: 0,
+          mistakeProblemCount: 2,
+          killedNow: true,
+        }}
       />,
-      { kind: "real" }, // Chakra/Portal/Context依存を満たす
+      { kind: "real" }, // Chakra/Portalなどの依存を満たす
     );
 
-    // dialogが描画されてからaxeに渡す
-    await screen.findByRole("dialog");
+    // --- ダイアログが出るまで待つ ---
+    const dialog = await screen.findByRole("dialog");
 
-    // ✅ どちらか一方の書き方を選択
-    // 1) matcher拡張済みならこちら
-    // const results = await axe(container);
-    // expect(results).toHaveNoViolations();
+    // --- axeによるa11y検査をactで安全に実行 ---
+    let results: Awaited<ReturnType<typeof axe>>;
+    await act(async () => {
+      results = await axe(dialog);
+    });
 
-    // 2) 拡張なしでも動く素直な判定
-    const results = await axe(container);
-    expect(results.violations).toHaveLength(0);
-  });
+    // --- アクセシビリティ違反がないことを確認 ---
+    expect(results!.violations).toHaveLength(0);
+  }, 15000); // モーダル描画が重いので余裕を持たせる
 });

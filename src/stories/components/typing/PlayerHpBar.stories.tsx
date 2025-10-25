@@ -11,7 +11,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React, { useMemo, useState } from "react";
-import PlayerHpBar from "@/components/typing/PhaseNoticeArea/PlayerHpBar";
+import { PlayerHpBar } from "@/components/typing/PhaseNoticeArea/PlayerHpBar";
 import { UserLevelContext } from "@/contexts/PageContext";
 
 export default {

@@ -1,0 +1,51 @@
+---
+title: License
+---
+## ことばの魔王とえいごの勇者
+
+© 2025 Yamahara Yoshihiro
+
+本ソフトウェア「ことばの魔王とえいごの勇者」（以下「本ソフト」）の著作権は、
+Yamahara Yoshihiroに帰属します。
+
+【利用条件】
+- 個人での使用（学習・研究・非営利目的）は自由に行うことができます。
+- 改変したコードや派生作品を**公開しない場合**は、事前連絡を必要としません。
+- 改変したコードや派生作品を**公開または配布する場合**は、
+  原作者Yamahara Yoshihiroへの連絡と、
+  クレジット表記（例：「Original by Yamahara Yoshihiro」）を
+  **必ず明記**してください。
+- 商用利用（販売・広告収益・法人利用など）を行う場合は、
+  **事前に原作者の許可を得ること**が必要です。
+
+【禁止事項】
+- 作者を偽る行為、またはクレジットを削除した再配布
+- 公序良俗に反する用途での使用
+
+【免責事項】
+本ソフトは「現状のまま」提供されるものであり、
+作者は本ソフトの使用または使用不能により生じたいかなる損害についても責任を負いません。
+
+## Kotoba no Maou to Eigo no Yuusha
+
+© 2025 Yamahara Yoshihiro
+
+All rights of the software “Kotoba no Maou to Eigo no Yuusha” (“The Demon King of Words and the Hero of English”)
+belong to Yamahara Yoshihiro.
+
+[Usage Terms]
+- Personal use (for study, research, or non-commercial purposes) is freely permitted.
+- Modifications or derivative works that are **not made public** do not require prior notice.
+- If you **publish or distribute** modified or derivative works,
+  you must contact the original author (Yamahara Yoshihiro) in advance and
+  clearly state credit such as:
+  “Original by Yamahara Yoshihiro”.
+- Commercial use (sales, monetized distribution, or corporate use) requires **prior permission** from the author.
+
+[Prohibited Acts]
+- Misrepresentation of authorship or redistribution without credit
+- Use in any context contrary to public order or morality
+
+[Disclaimer]
+This software is provided “as is,” without warranty of any kind.
+The author assumes no liability for any damages arising from its use.

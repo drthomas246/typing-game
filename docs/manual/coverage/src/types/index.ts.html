@@ -781,7 +781,23 @@
 <a name='L716'></a><a href='#L716'>716</a>
 <a name='L717'></a><a href='#L717'>717</a>
 <a name='L718'></a><a href='#L718'>718</a>
-<a name='L719'></a><a href='#L719'>719</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L719'></a><a href='#L719'>719</a>
+<a name='L720'></a><a href='#L720'>720</a>
+<a name='L721'></a><a href='#L721'>721</a>
+<a name='L722'></a><a href='#L722'>722</a>
+<a name='L723'></a><a href='#L723'>723</a>
+<a name='L724'></a><a href='#L724'>724</a>
+<a name='L725'></a><a href='#L725'>725</a>
+<a name='L726'></a><a href='#L726'>726</a>
+<a name='L727'></a><a href='#L727'>727</a>
+<a name='L728'></a><a href='#L728'>728</a>
+<a name='L729'></a><a href='#L729'>729</a>
+<a name='L730'></a><a href='#L730'>730</a>
+<a name='L731'></a><a href='#L731'>731</a>
+<a name='L732'></a><a href='#L732'>732</a>
+<a name='L733'></a><a href='#L733'>733</a>
+<a name='L734'></a><a href='#L734'>734</a>
+<a name='L735'></a><a href='#L735'>735</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1499,11 +1515,31 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { Tooltip as ChakraTooltip, IconButtonProps } from "@chakra-ui/react";
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type {
+  Tooltip as ChakraTooltip,
+  IconButtonProps,
+} from "@chakra-ui/react";
 import type { useAnimation } from "framer-motion";
 import type { Howl } from "howler";
+import type { Stage as KonvaStage } from "konva/lib/Stage";
 import type { ThemeProviderProps } from "next-themes";
-&nbsp;
+import type { PropsWithChildren } from "react";
 /**
  * アプリ全体で共有する型定義をまとめたモジュール。
  */
@@ -1518,18 +1554,18 @@ export type ColorModeButtonProps = Omit&lt;IconButtonProps, "aria-label"&gt;;
  * カスタムTooltipコンポーネントのプロパティインターフェース。
  */
 export interface TooltipProps extends ChakraTooltip.RootProps {
-	/** ツールチップの矢印を表示するかどうか。 */
-	showArrow?: boolean;
-	/** ポータルを使用してレンダリングするかどうか。 */
-	portalled?: boolean;
-	/** ポータルのターゲットとなるDOM要素のRef。 */
-	portalRef?: React.RefObject&lt;HTMLElement&gt;;
-	/** ツールチップに表示するコンテンツ。 */
-	content: React.ReactNode;
-	/** ツールチップの内容コンポーネントに渡すプロパティ。 */
-	contentProps?: ChakraTooltip.ContentProps;
-	/** ツールチップを無効にするかどうか。 */
-	disabled?: boolean;
+  /** ツールチップの矢印を表示するかどうか。 */
+  showArrow?: boolean;
+  /** ポータルを使用してレンダリングするかどうか。 */
+  portalled?: boolean;
+  /** ポータルのターゲットとなるDOM要素のRef。 */
+  portalRef?: React.RefObject&lt;HTMLElement&gt;;
+  /** ツールチップに表示するコンテンツ。 */
+  content: React.ReactNode;
+  /** ツールチップの内容コンポーネントに渡すプロパティ。 */
+  contentProps?: ChakraTooltip.ContentProps;
+  /** ツールチップを無効にするかどうか。 */
+  disabled?: boolean;
 }
 &nbsp;
 /**
@@ -1546,157 +1582,157 @@ export type ColorMode = "light" | "dark";
  * カスタム`useColorMode`フックの戻り値インターフェース。
  */
 export interface UseColorModeReturn {
-	/** 現在のカラーモード。 */
-	colorMode: ColorMode;
-	/** カラーモードを設定する関数。 */
-	setColorMode: (colorMode: ColorMode) =&gt; void;
-	/** カラーモードを切り替える関数。 */
-	toggleColorMode: () =&gt; void;
+  /** 現在のカラーモード。 */
+  colorMode: ColorMode;
+  /** カラーモードを設定する関数。 */
+  setColorMode: (colorMode: ColorMode) =&gt; void;
+  /** カラーモードを切り替える関数。 */
+  toggleColorMode: () =&gt; void;
 }
 &nbsp;
 /**
  * キーボード入力キャプチャコンポーネントのプロパティ。
  */
 export type InputCaptureProps = {
-	/** キー入力時のコールバック関数。文字と元のKeyboardEventを渡す。 */
-	onKey: (ch: string, e: KeyboardEvent) =&gt; void;
-	/** 入力キャプチャを有効にするかどうか。 */
-	enabled?: boolean;
-	/** Enterキーの入力を処理するかどうか。 */
-	handleEnter?: boolean;
-	/** Backspaceキーの入力を処理するかどうか。 */
-	handleBackspace?: boolean;
-	/** Spaceキーの入力を処理するかどうか。 */
-	handleSpace?: boolean;
-	/** Tabキーの入力を処理するかどうか。 */
-	handleTab?: boolean;
+  /** キー入力時のコールバック関数。文字と元のKeyboardEventを渡す。 */
+  onKey: (ch: string, e: KeyboardEvent) =&gt; void;
+  /** 入力キャプチャを有効にするかどうか。 */
+  enabled?: boolean;
+  /** Enterキーの入力を処理するかどうか。 */
+  handleEnter?: boolean;
+  /** Backspaceキーの入力を処理するかどうか。 */
+  handleBackspace?: boolean;
+  /** Spaceキーの入力を処理するかどうか。 */
+  handleSpace?: boolean;
+  /** Tabキーの入力を処理するかどうか。 */
+  handleTab?: boolean;
 };
 &nbsp;
 /**
  * タイピング結果ダイアログのプロパティ。
  */
 export type ResultsDialogProps = {
-	/** ダイアログが開いているかどうか。 */
-	open: boolean;
-	/** ダイアログの開閉状態を設定する関数。 */
-	setOpen: (v: boolean) =&gt; void;
-	/** リトライボタンが押されたときのコールバック。 */
-	onRetry: () =&gt; void;
-	/** BGM再生状態を設定する関数。 */
-	setShouldBgmPlay: React.Dispatch&lt;React.SetStateAction&lt;boolean | undefined&gt;&gt;;
-	/** タイピングの結果概要。 */
-	summary: {
-		/** 完了までにかかった時間（秒）。 */
-		timeSec: number;
-		/** 使用したヒントの回数。 */
-		usedHintCount: number;
-		/** ミスをした問題の数。 */
-		mistakeProblemCount: number;
-		/** バトルモードで敵を倒した（Killed）かどうか。 */
-		killedNow: boolean;
-	};
+  /** ダイアログが開いているかどうか。 */
+  open: boolean;
+  /** ダイアログの開閉状態を設定する関数。 */
+  setOpen: (v: boolean) =&gt; void;
+  /** リトライボタンが押されたときのコールバック。 */
+  onRetry: () =&gt; void;
+  /** BGM再生状態を設定する関数。 */
+  setShouldBgmPlay: React.Dispatch&lt;React.SetStateAction&lt;boolean | undefined&gt;&gt;;
+  /** タイピングの結果概要。 */
+  summary: {
+    /** 完了までにかかった時間（秒）。 */
+    timeSec: number;
+    /** 使用したヒントの回数。 */
+    usedHintCount: number;
+    /** ミスをした問題の数。 */
+    mistakeProblemCount: number;
+    /** バトルモードで敵を倒した（Killed）かどうか。 */
+    killedNow: boolean;
+  };
 };
 &nbsp;
 /**
  * 質問と回答のペアのインターフェース。
  */
 export interface QAPair {
-	/** 日本語の質問文。 */
-	ja: string;
-	/** 英語の回答文（タイピング対象）。 */
-	en: string;
-	/** 質問に関連する画像のパス。 */
-	img?: string;
+  /** 日本語の質問文。 */
+  ja: string;
+  /** 英語の回答文（タイピング対象）。 */
+  en: string;
+  /** 質問に関連する画像のパス。 */
+  img?: string;
 }
 &nbsp;
 /**
  * 一文字のタイピング判定結果の型。
  */
 export type JudgeResult = {
-	/** 入力が正しかったか。 */
-	ok: boolean;
-	/** 期待されていた文字。 */
-	expected: string;
-	/** 実際に入力された文字。 */
-	received: string;
+  /** 入力が正しかったか。 */
+  ok: boolean;
+  /** 期待されていた文字。 */
+  expected: string;
+  /** 実際に入力された文字。 */
+  received: string;
 };
 &nbsp;
 /**
  * 音声読み上げ（Speech Synthesis）のオプション。
  */
 export type SpeakOpts = {
-	/** 言語コード（例: 'ja-JP'）。 */
-	lang?: string;
-	/** 読み上げ速度（0.1〜10）。 */
-	rate?: number;
-	/** ピッチ（高さ）（0〜2）。 */
-	pitch?: number;
-	/** 使用する声のヒント。 */
-	voiceHint?: string;
-	/** 重複読み上げを防止する期間（ミリ秒）。 */
-	dedupeMs?: number;
-	/** 重複防止を無効にするか。 */
-	noDedupe?: boolean;
+  /** 言語コード（例: 'ja-JP'）。 */
+  lang?: string;
+  /** 読み上げ速度（0.1〜10）。 */
+  rate?: number;
+  /** ピッチ（高さ）（0〜2）。 */
+  pitch?: number;
+  /** 使用する声のヒント。 */
+  voiceHint?: string;
+  /** 重複読み上げを防止する期間（ミリ秒）。 */
+  dedupeMs?: number;
+  /** 重複防止を無効にするか。 */
+  noDedupe?: boolean;
 };
 &nbsp;
 /**
  * タイピングエンジンの動作オプション。
  */
 export interface EngineOptions {
-	/** エンジンティックの間隔（ミリ秒）。 */
-	tickMs?: number;
+  /** エンジンティックの間隔（ミリ秒）。 */
+  tickMs?: number;
 &nbsp;
-	/** バトルモードを有効にするか。 */
-	battleMode?: boolean;
-	/** プレイヤーの最大HP。 */
-	playerMaxHp?: number;
-	/** 敵の最大HP。 */
-	enemyMaxHp?: number;
-	/** ミス1回あたりのダメージ量。 */
-	damagePerMiss?: number;
-	/** 1文完了あたりのダメージ量。 */
-	damagePerSentence?: number;
+  /** バトルモードを有効にするか。 */
+  battleMode?: boolean;
+  /** プレイヤーの最大HP。 */
+  playerMaxHp?: number;
+  /** 敵の最大HP。 */
+  enemyMaxHp?: number;
+  /** ミス1回あたりのダメージ量。 */
+  damagePerMiss?: number;
+  /** 1文完了あたりのダメージ量。 */
+  damagePerSentence?: number;
 &nbsp;
-	/** 全体的なサウンドを有効にするか。 */
-	sound?: boolean;
+  /** 全体的なサウンドを有効にするか。 */
+  sound?: boolean;
 &nbsp;
-	/** BGMを有効にするか。 */
-	bgm?: boolean;
-	/** BGMファイルのソースパス。 */
-	bgmSrc?: string;
-	/** BGMの音量。 */
-	bgmVolume?: number;
+  /** BGMを有効にするか。 */
+  bgm?: boolean;
+  /** BGMファイルのソースパス。 */
+  bgmSrc?: string;
+  /** BGMの音量。 */
+  bgmVolume?: number;
 &nbsp;
-	/** 効果音（SFX）を有効にするか。 */
-	sfx?: boolean;
-	/** 効果音の音量。 */
-	sfxVolume?: number;
-	/** 斬撃効果音のソースパス。 */
-	sfxSlashSrc?: string;
-	/** パンチ効果音のソースパス。 */
-	sfxPunchSrc?: string;
-	/** 敗北効果音のソースパス。 */
-	sfxDefeatSrc?: string;
-	/** 逃走効果音のソースパス。 */
-	sfxEscapeSrc?: string;
-	/** 転倒効果音のソースパス。 */
-	sfxFallDownSrc?: string;
-	/** レベルアップ効果音のソースパス。 */
-	sfxLevelUpSrc?: string;
-	/** キー入力効果音のソースパス。 */
-	sfxKeyOnSrc?: string;
+  /** 効果音（SFX）を有効にするか。 */
+  sfx?: boolean;
+  /** 効果音の音量。 */
+  sfxVolume?: number;
+  /** 斬撃効果音のソースパス。 */
+  sfxSlashSrc?: string;
+  /** パンチ効果音のソースパス。 */
+  sfxPunchSrc?: string;
+  /** 敗北効果音のソースパス。 */
+  sfxDefeatSrc?: string;
+  /** 逃走効果音のソースパス。 */
+  sfxEscapeSrc?: string;
+  /** 転倒効果音のソースパス。 */
+  sfxFallDownSrc?: string;
+  /** レベルアップ効果音のソースパス。 */
+  sfxLevelUpSrc?: string;
+  /** キー入力効果音のソースパス。 */
+  sfxKeyOnSrc?: string;
 &nbsp;
-	/** 学習フェーズ後に復習フェーズ（Learn Then Recall）を行うか。 */
-	learnThenRecall?: boolean;
+  /** 学習フェーズ後に復習フェーズ（Learn Then Recall）を行うか。 */
+  learnThenRecall?: boolean;
 &nbsp;
-	/** 問題をランダムな順序にするか。 */
-	randomOrder?: boolean;
-	/** 乱数シード。 */
-	seed?: number;
-	/** 正解1文字あたりのダメージ量（敵へのダメージ？）。 */
-	damagePerHit?: number;
-	/** 学習モードを有効にするか。 */
-	learningMode?: boolean;
+  /** 問題をランダムな順序にするか。 */
+  randomOrder?: boolean;
+  /** 乱数シード。 */
+  seed?: number;
+  /** 正解1文字あたりのダメージ量（敵へのダメージ？）。 */
+  damagePerHit?: number;
+  /** 学習モードを有効にするか。 */
+  learningMode?: boolean;
 }
 &nbsp;
 import type { useTypingEngine } from "@/hooks/typingEngine/useTypingEngine";
@@ -1709,26 +1745,26 @@ export type EngineLike = ReturnType&lt;typeof useTypingEngine&gt;;
  * アプリケーションのユーザー設定。
  */
 export type Settings = {
-	/** 使用する言語。 */
-	language: string;
-	/** 学習フェーズ後に復習フェーズを行うか。 */
-	learnThenRecall: boolean;
+  /** 使用する言語。 */
+  language: string;
+  /** 学習フェーズ後に復習フェーズを行うか。 */
+  learnThenRecall: boolean;
 };
 &nbsp;
 /**
  * 設定ドロワーコンポーネントのプロパティ。
  */
 export type SettingsDrawerProps = {
-	/** ドロワーが開いているかどうか。 */
-	open: boolean;
-	/** ドロワーを閉じる関数。 */
-	onClose: () =&gt; void;
-	/** 現在の設定オブジェクト。 */
-	settings: Settings;
-	/** 設定が変更されたときのコールバック。 */
-	onChange: (s: Settings) =&gt; void;
-	/** 制御対象のタイピングエンジンインスタンス。 */
-	engine?: EngineLike;
+  /** ドロワーが開いているかどうか。 */
+  open: boolean;
+  /** ドロワーを閉じる関数。 */
+  onClose: () =&gt; void;
+  /** 現在の設定オブジェクト。 */
+  settings: Settings;
+  /** 設定が変更されたときのコールバック。 */
+  onChange: (s: Settings) =&gt; void;
+  /** 制御対象のタイピングエンジンインスタンス。 */
+  engine?: EngineLike;
 };
 &nbsp;
 /**
@@ -1736,8 +1772,8 @@ export type SettingsDrawerProps = {
  * 画像のデコード完了を待つために使用される。
  */
 export type DecodableImage = HTMLImageElement &amp; {
-	/** 画像のデコード完了を待つPromiseを返すメソッド。 */
-	decode?: () =&gt; Promise&lt;void&gt;;
+  /** 画像のデコード完了を待つPromiseを返すメソッド。 */
+  decode?: () =&gt; Promise&lt;void&gt;;
 };
 &nbsp;
 /**
@@ -1754,16 +1790,16 @@ export type Controls = ReturnType&lt;typeof useAnimation&gt;;
  * マップ上のクリック可能なポイントのデータ構造。
  */
 export type MapPoint = {
-	/** ページ遷移に使用される一意のID。 */
-	id: number;
-	/** マップ上のX座標。 */
-	x: number;
-	/** マップ上のY座標。 */
-	y: number;
-	/** 問題のタイトル。 */
-	title: string;
-	/** 関連する質問と回答のペアの配列。 */
-	QA: QAPair[];
+  /** ページ遷移に使用される一意のID。 */
+  id: number;
+  /** マップ上のX座標。 */
+  x: number;
+  /** マップ上のY座標。 */
+  y: number;
+  /** 問題のタイトル。 */
+  title: string;
+  /** 関連する質問と回答のペアの配列。 */
+  QA: QAPair[];
 };
 &nbsp;
 /**
@@ -1775,331 +1811,331 @@ export type LearningPhase = "study" | "recall";
  * タイピングエンジンの状態インターフェース。
  */
 export interface EngineState {
-	/** エンジンが開始されているか。 */
-	started: boolean;
-	/** エンジンが終了（勝利/敗北/エスケープ）したか。 */
-	finished: boolean;
-	/** 開始時刻のタイムスタンプ。 */
-	startAt?: number;
-	/** 勝利したか。 */
-	victory?: boolean;
+  /** エンジンが開始されているか。 */
+  started: boolean;
+  /** エンジンが終了（勝利/敗北/エスケープ）したか。 */
+  finished: boolean;
+  /** 開始時刻のタイムスタンプ。 */
+  startAt?: number;
+  /** 勝利したか。 */
+  victory?: boolean;
 &nbsp;
-	/** 現在の問題のインデックス。 */
-	index: number;
-	/** 現在の日本語の質問。 */
-	questionJa: string;
-	/** 現在の英語の回答（タイピング対象）。 */
-	answerEn: string;
-	/** 現在の質問に関連する画像パス。 */
-	questionImg?: string;
+  /** 現在の問題のインデックス。 */
+  index: number;
+  /** 現在の日本語の質問。 */
+  questionJa: string;
+  /** 現在の英語の回答（タイピング対象）。 */
+  answerEn: string;
+  /** 現在の質問に関連する画像パス。 */
+  questionImg?: string;
 &nbsp;
-	/** ユーザーが現在入力した文字列。 */
-	typed: string;
-	/** 各文字が正しく入力されたかを示す真偽値の配列。 */
-	correctMap: boolean[];
-	/** 正しい入力の総数。 */
-	hits: number;
-	/** エラー入力の総数。 */
-	errors: number;
+  /** ユーザーが現在入力した文字列。 */
+  typed: string;
+  /** 各文字が正しく入力されたかを示す真偽値の配列。 */
+  correctMap: boolean[];
+  /** 正しい入力の総数。 */
+  hits: number;
+  /** エラー入力の総数。 */
+  errors: number;
 &nbsp;
-	/** ヒントが表示されているか。 */
-	showHint: boolean;
-	/** ヒントの段階（0: なし, 1: 1文字目, 2: 全文）。 */
-	hintStep: 0 | 1 | 2;
-	/** 現在の学習フェーズ。 */
-	learningPhase: LearningPhase;
-	/** 現在の問題でミスをしたか。 */
-	problemHasMistake: boolean;
-	/** 現在の問題でヒントを使用したか。 */
-	problemUsedHint: boolean;
+  /** ヒントが表示されているか。 */
+  showHint: boolean;
+  /** ヒントの段階（0: なし, 1: 1文字目, 2: 全文）。 */
+  hintStep: 0 | 1 | 2;
+  /** 現在の学習フェーズ。 */
+  learningPhase: LearningPhase;
+  /** 現在の問題でミスをしたか。 */
+  problemHasMistake: boolean;
+  /** 現在の問題でヒントを使用したか。 */
+  problemUsedHint: boolean;
 &nbsp;
-	/** プレイヤーの現在のHP。 */
-	playerHp: number;
-	/** 敵の現在のHP。 */
-	enemyHp: number;
-	/** プレイヤーの最大HP。 */
-	playerMaxHp: number;
-	/** 敵の最大HP。 */
-	enemyMaxHp: number;
+  /** プレイヤーの現在のHP。 */
+  playerHp: number;
+  /** 敵の現在のHP。 */
+  enemyHp: number;
+  /** プレイヤーの最大HP。 */
+  playerMaxHp: number;
+  /** 敵の最大HP。 */
+  enemyMaxHp: number;
 &nbsp;
-	/** 現在のコンボ数。 */
-	combo: number;
-	/** 問題の解答回数（周回数）。 */
-	playCount: number;
-	/** アプリ全体でのヒント使用総回数。 */
-	usedHintCount: number;
-	/** アプリ全体でのミスをした問題の総数。 */
-	mistakeProblemCount: number;
+  /** 現在のコンボ数。 */
+  combo: number;
+  /** 問題の解答回数（周回数）。 */
+  playCount: number;
+  /** アプリ全体でのヒント使用総回数。 */
+  usedHintCount: number;
+  /** アプリ全体でのミスをした問題の総数。 */
+  mistakeProblemCount: number;
 }
 &nbsp;
 /**
  * タイピングエンジンの状態を更新するためのアクション。
  */
 export type Action =
-	| {
-			type: "START";
-			payload: {
-				now: number;
-				playerMaxHp: number;
-				enemyMaxHp: number;
-				learning: boolean;
-				playCount: number;
-			};
-	  }
-	| { type: "STOP"; payload: { victory?: boolean } }
-	| { type: "FINISH"; payload: { victory: boolean } }
-	| {
-			type: "LOAD_PAIR";
-			payload: { index: number; pair: QAPair; learning: boolean };
-	  }
-	| { type: "TYPE_CHAR"; payload: { key: string; ok: boolean } }
-	| { type: "BACKSPACE" }
-	| { type: "SET_PHASE"; payload: { phase: LearningPhase; showHint: boolean } }
-	| {
-			type: "SET_HINT_STEP";
-			payload: { step: 0 | 1 | 2; showHint?: boolean; markUsedHint?: boolean };
-	  }
-	| { type: "MARK_USED_HINT" }
-	| {
-			type: "SYNC_LEARNING_TOGGLE";
-			payload: { learning: boolean; learnThenRecall: boolean };
-	  }
-	| { type: "TALLY_QUESTION" }
-	| { type: "DAMAGE_PLAYER"; payload: { amount: number } }
-	| { type: "DAMAGE_ENEMY"; payload: { amount: number } };
+  | {
+      type: "START";
+      payload: {
+        now: number;
+        playerMaxHp: number;
+        enemyMaxHp: number;
+        learning: boolean;
+        playCount: number;
+      };
+    }
+  | { type: "STOP"; payload: { victory?: boolean } }
+  | { type: "FINISH"; payload: { victory: boolean } }
+  | {
+      type: "LOAD_PAIR";
+      payload: { index: number; pair: QAPair; learning: boolean };
+    }
+  | { type: "TYPE_CHAR"; payload: { key: string; ok: boolean } }
+  | { type: "BACKSPACE" }
+  | { type: "SET_PHASE"; payload: { phase: LearningPhase; showHint: boolean } }
+  | {
+      type: "SET_HINT_STEP";
+      payload: { step: 0 | 1 | 2; showHint?: boolean; markUsedHint?: boolean };
+    }
+  | { type: "MARK_USED_HINT" }
+  | {
+      type: "SYNC_LEARNING_TOGGLE";
+      payload: { learning: boolean; learnThenRecall: boolean };
+    }
+  | { type: "TALLY_QUESTION" }
+  | { type: "DAMAGE_PLAYER"; payload: { amount: number } }
+  | { type: "DAMAGE_ENEMY"; payload: { amount: number } };
 &nbsp;
 /**
  * バトルアリーナコンポーネントのプロパティ。
  */
 export type BattleArenaProps = {
-	/** アリーナのDOM要素への参照。 */
-	ref: React.RefObject&lt;HTMLDivElement | null&gt;;
-	/** 敵キャラクターの画像パス。 */
-	enemyImg: string;
-	/** 背景画像のパス。 */
-	backgroundImg: string;
-	/** 敵へのダメージアニメーションのトリガーID。 */
-	hurtId: number;
-	/** 敵の消滅アニメーションのトリガーID。 */
-	vanishId: number;
-	/** 敵が消滅した状態か。 */
-	vanished: boolean;
-	/** 消滅アニメーション完了時のコールバック。 */
-	onVanishDone: () =&gt; void;
-	/** 斬撃アニメーションのトリガーID。 */
-	slashId: number;
-	/** アリーナ内に表示する子要素。 */
-	children?: React.ReactNode;
-	/** 質問のテキスト。 */
-	questionText: string;
-	/** 質問の画像パス。 */
-	questionImg: string | undefined;
-	/** エンジンの現在の状態。 */
-	state: EngineState;
-	/** 敵のHPのパーセンテージ（0.0〜1.0）。 */
-	enemyHpPct: number;
-	/** アリーナのDOM要素そのものの参照。 */
-	arenaRef: React.RefObject&lt;HTMLDivElement&gt;;
+  /** アリーナのDOM要素への参照。 */
+  ref: React.RefObject&lt;HTMLDivElement | null&gt;;
+  /** 敵キャラクターの画像パス。 */
+  enemyImg: string;
+  /** 背景画像のパス。 */
+  backgroundImg: string;
+  /** 敵へのダメージアニメーションのトリガーID。 */
+  hurtId: number;
+  /** 敵の消滅アニメーションのトリガーID。 */
+  vanishId: number;
+  /** 敵が消滅した状態か。 */
+  vanished: boolean;
+  /** 消滅アニメーション完了時のコールバック。 */
+  onVanishDone: () =&gt; void;
+  /** 斬撃アニメーションのトリガーID。 */
+  slashId: number;
+  /** アリーナ内に表示する子要素。 */
+  children?: React.ReactNode;
+  /** 質問のテキスト。 */
+  questionText: string;
+  /** 質問の画像パス。 */
+  questionImg: string | undefined;
+  /** エンジンの現在の状態。 */
+  state: EngineState;
+  /** 敵のHPのパーセンテージ（0.0〜1.0）。 */
+  enemyHpPct: number;
+  /** アリーナのDOM要素そのものの参照。 */
+  arenaRef: React.RefObject&lt;HTMLDivElement&gt;;
 };
 &nbsp;
 /**
  * ヘッダー制御コンポーネントのプロパティ。
  */
 export type HeaderControlsProps = {
-	/** エンジンが開始されているか。 */
-	started: boolean;
-	/** エンジンが終了しているか。 */
-	finished: boolean;
-	/** 開始ボタンが押されたときのコールバック。 */
-	onStart: () =&gt; void;
-	/** 逃走（エスケープ）ボタンが押されたときのコールバック。 */
-	onEscape: () =&gt; void;
-	/** 設定を開くボタンが押されたときのコールバック。 */
-	onOpenSettings: () =&gt; void;
-	/** 戻るボタンが押されたときのコールバック。 */
-	onBack: () =&gt; void;
+  /** エンジンが開始されているか。 */
+  started: boolean;
+  /** エンジンが終了しているか。 */
+  finished: boolean;
+  /** 開始ボタンが押されたときのコールバック。 */
+  onStart: () =&gt; void;
+  /** 逃走（エスケープ）ボタンが押されたときのコールバック。 */
+  onEscape: () =&gt; void;
+  /** 設定を開くボタンが押されたときのコールバック。 */
+  onOpenSettings: () =&gt; void;
+  /** 戻るボタンが押されたときのコールバック。 */
+  onBack: () =&gt; void;
 };
 &nbsp;
 /**
  * 学習フェーズ通知コンポーネントのプロパティ。
  */
 export type PhaseNoticeProps = {
-	/** Learn Then Recallモードが有効か。 */
-	learnThenRecall: boolean;
-	/** 現在の学習フェーズ。 */
-	phase?: "study" | "recall";
+  /** Learn Then Recallモードが有効か。 */
+  learnThenRecall: boolean;
+  /** 現在の学習フェーズ。 */
+  phase?: "study" | "recall";
 };
 &nbsp;
 /**
  * プレイヤーHPバーコンポーネントのプロパティ。
  */
 export type PlayerHpBarProps = {
-	/** 現在のHP。 */
-	current: number;
-	/** 最大HP。 */
-	max: number;
-	/** HPのパーセンテージ（0.0〜1.0）。 */
-	pct: number;
+  /** 現在のHP。 */
+  current: number;
+  /** 最大HP。 */
+  max: number;
+  /** HPのパーセンテージ（0.0〜1.0）。 */
+  pct: number;
 };
 &nbsp;
 /**
  * 画像が収まる矩形領域の型。
  */
 export type ContainRect = {
-	/** X座標。 */
-	x: number;
-	/** Y座標。 */
-	y: number;
-	/** 幅。 */
-	w: number;
-	/** 高さ。 */
-	h: number;
+  /** X座標。 */
+  x: number;
+  /** Y座標。 */
+  y: number;
+  /** 幅。 */
+  w: number;
+  /** 高さ。 */
+  h: number;
 };
 &nbsp;
 /**
  * マップ上のクリックポイントコンポーネントのプロパティ。
  */
 export type ClickPointProps = {
-	/** マップポイントのデータ。 */
-	point: MapPoint;
-	/** 表示領域の矩形情報。 */
-	containRect?: ContainRect;
-	/** ツールチップを表示するかどうか。 */
-	showTooltip?: boolean;
-	/** クリック時のコールバック。 */
-	onClick?: () =&gt; void;
+  /** マップポイントのデータ。 */
+  point: MapPoint;
+  /** 表示領域の矩形情報。 */
+  containRect?: ContainRect;
+  /** ツールチップを表示するかどうか。 */
+  showTooltip?: boolean;
+  /** クリック時のコールバック。 */
+  onClick?: () =&gt; void;
 };
 &nbsp;
 /**
  * タイトルコンポーネントのプロパティ。
  */
 export type TitleProps = {
-	/** 表示領域の矩形情報。 */
-	containRect?: ContainRect;
+  /** 表示領域の矩形情報。 */
+  containRect?: ContainRect;
 };
 &nbsp;
 /**
  * 回答パネルコンポーネントのプロパティ。
  */
 export type AnswerPanelProps = {
-	/** ユーザーが現在入力した文字列。 */
-	typed: string;
-	/** 各文字の正誤を示す配列。 */
-	correctMap: boolean[];
-	/** 正しい回答文字列。 */
-	answer: string;
-	/** ヒントが表示されているか。 */
-	showHint: boolean;
-	/** エンジンの現在の状態。 */
-	state: EngineState;
-	/** キー入力処理関数。 */
-	inputOnKey: (key: string) =&gt; void;
-	/** 結果ダイアログが開いているか。 */
-	resultOpen: boolean;
-	/** タイピングエンジンインスタンス。 */
-	engine: EngineLike;
+  /** ユーザーが現在入力した文字列。 */
+  typed: string;
+  /** 各文字の正誤を示す配列。 */
+  correctMap: boolean[];
+  /** 正しい回答文字列。 */
+  answer: string;
+  /** ヒントが表示されているか。 */
+  showHint: boolean;
+  /** エンジンの現在の状態。 */
+  state: EngineState;
+  /** キー入力処理関数。 */
+  inputOnKey: (key: string) =&gt; void;
+  /** 結果ダイアログが開いているか。 */
+  resultOpen: boolean;
+  /** タイピングエンジンインスタンス。 */
+  engine: EngineLike;
 };
 &nbsp;
 /**
  * 回答入力表示コンポーネントのプロパティ。
  */
 export type AnswerInputViewProps = {
-	/** ユーザーが現在入力した文字列。 */
-	typed: string;
-	/** 各文字の正誤を示す配列。 */
-	correctMap: boolean[];
-	/** 正しい回答文字列。 */
-	answer: string;
-	/** ヒントが表示されているか。 */
-	showHint: boolean;
+  /** ユーザーが現在入力した文字列。 */
+  typed: string;
+  /** 各文字の正誤を示す配列。 */
+  correctMap: boolean[];
+  /** 正しい回答文字列。 */
+  answer: string;
+  /** ヒントが表示されているか。 */
+  showHint: boolean;
 };
 &nbsp;
 /**
  * ダメージアニメーションコンポーネントのプロパティ。
  */
 export type DamageMotionProps = {
-	/** アリーナのDOM要素への参照。 */
-	arenaRef: HTMLDivElement | null;
-	/** 斬撃アニメーションのトリガーID。 */
-	slashId: number;
-	/** ダメージアニメーションのトリガーID。 */
-	hurtId: number;
+  /** アリーナのDOM要素への参照。 */
+  arenaRef: HTMLDivElement | null;
+  /** 斬撃アニメーションのトリガーID。 */
+  slashId: number;
+  /** ダメージアニメーションのトリガーID。 */
+  hurtId: number;
 };
 &nbsp;
 /**
  * 敵HPバーコンポーネントのプロパティ。
  */
 export type EnemyHpBarProps = {
-	/** 現在のHP。 */
-	current: number;
-	/** 最大HP。 */
-	max: number;
-	/** HPのパーセンテージ（0.0〜1.0）。 */
-	pct: number;
+  /** 現在のHP。 */
+  current: number;
+  /** 最大HP。 */
+  max: number;
+  /** HPのパーセンテージ（0.0〜1.0）。 */
+  pct: number;
 };
 &nbsp;
 /**
  * 敵レイヤーコンポーネントのプロパティ。
  */
 export type EnemyLayerProps = {
-	/** 背景画像のパス。 */
-	backgroundImg: string;
-	/** 敵キャラクターの画像パス。 */
-	enemyImg: string;
-	/** 敵の消滅アニメーションのトリガーID。 */
-	vanishId: number;
-	/** 敵が消滅した状態か。 */
-	vanished: boolean;
-	/** 消滅アニメーション完了時のコールバック。 */
-	onVanishDone: () =&gt; void;
+  /** 背景画像のパス。 */
+  backgroundImg: string;
+  /** 敵キャラクターの画像パス。 */
+  enemyImg: string;
+  /** 敵の消滅アニメーションのトリガーID。 */
+  vanishId: number;
+  /** 敵が消滅した状態か。 */
+  vanished: boolean;
+  /** 消滅アニメーション完了時のコールバック。 */
+  onVanishDone: () =&gt; void;
 };
 &nbsp;
 /**
  * 質問パネルコンポーネントのプロパティ。
  */
 export type QuestionPanelProps = {
-	/** 質問のテキスト。 */
-	questionText: string;
-	/** 質問の画像パス。 */
-	questionImg?: string | null;
+  /** 質問のテキスト。 */
+  questionText: string;
+  /** 質問の画像パス。 */
+  questionImg?: string | null;
 };
 &nbsp;
 /**
  * タイトルオーバーレイコンポーネントのプロパティ。
  */
 export type TitleOverlayProps = {
-	/** タイトル画像のソースパス。 */
-	src: string;
-	/** 表示されているか。 */
-	visible: boolean;
-	/** アニメーション制御オブジェクト。 */
-	animateCtrl: Controls;
+  /** タイトル画像のソースパス。 */
+  src: string;
+  /** 表示されているか。 */
+  visible: boolean;
+  /** アニメーション制御オブジェクト。 */
+  animateCtrl: Controls;
 };
 &nbsp;
 /**
  * スライドオーバーレイコンポーネントのプロパティ。
  */
 export type SlideOverlayProps = {
-	/** スライドの方向。 */
-	side: "top" | "bottom" | "left" | "right";
-	/** オーバーレイ画像のソースパス。 */
-	src: string;
-	/** 表示されているか。 */
-	visible: boolean;
-	/** アニメーション制御オブジェクト。 */
-	animateCtrl: Controls;
+  /** スライドの方向。 */
+  side: "top" | "bottom" | "left" | "right";
+  /** オーバーレイ画像のソースパス。 */
+  src: string;
+  /** 表示されているか。 */
+  visible: boolean;
+  /** アニメーション制御オブジェクト。 */
+  animateCtrl: Controls;
 };
 &nbsp;
 /**
  * タイピング文字の正誤を判定する関数の型。
  */
 export type JudgeFn = (
-	/** 正しい回答文字列。 */
-	answer: string,
-	/** 現在のカーソル位置（文字インデックス）。 */
-	cursor: number,
-	/** 入力されたキー。 */
-	key: string,
+  /** 正しい回答文字列。 */
+  answer: string,
+  /** 現在のカーソル位置（文字インデックス）。 */
+  cursor: number,
+  /** 入力されたキー。 */
+  key: string,
 ) =&gt; { ok: boolean };
 &nbsp;
 /**
@@ -2111,112 +2147,124 @@ export type HowlOrNull = Howl | null;
  * サウンド制御オブジェクトの型。
  */
 export type SoundCtl = {
-	/** BGMを再生する関数。 */
-	playBgm: () =&gt; void;
-	/** BGMを停止する関数。 */
-	stopBgm: () =&gt; void;
-	/** 各種効果音の制御オブジェクト。 */
-	sfx: {
-		/** 斬撃効果音を再生する関数。 */
-		slash: () =&gt; void;
-		/** パンチ効果音を再生する関数。 */
-		punch: () =&gt; void;
-		/** 敗北効果音を再生する関数。 */
-		defeat: () =&gt; void;
-		/** 逃走効果音を再生する関数。 */
-		escape: () =&gt; void;
-		/** 転倒効果音を再生する関数。 */
-		fallDown: () =&gt; void;
-		/** レベルアップ効果音を再生する関数。 */
-		levelUp: () =&gt; void;
-		/** キー入力効果音を再生する関数。 */
-		keyOn: () =&gt; void;
-	};
+  /** BGMを再生する関数。 */
+  playBgm: () =&gt; void;
+  /** BGMを停止する関数。 */
+  stopBgm: () =&gt; void;
+  /** 各種効果音の制御オブジェクト。 */
+  sfx: {
+    /** 斬撃効果音を再生する関数。 */
+    slash: () =&gt; void;
+    /** パンチ効果音を再生する関数。 */
+    punch: () =&gt; void;
+    /** 敗北効果音を再生する関数。 */
+    defeat: () =&gt; void;
+    /** 逃走効果音を再生する関数。 */
+    escape: () =&gt; void;
+    /** 転倒効果音を再生する関数。 */
+    fallDown: () =&gt; void;
+    /** レベルアップ効果音を再生する関数。 */
+    levelUp: () =&gt; void;
+    /** キー入力効果音を再生する関数。 */
+    keyOn: () =&gt; void;
+  };
 };
 &nbsp;
 /**
  * `useHowlerBgm`フックのオプション。
  */
 export type useHowlerBgmOpts = {
-	/** BGMのソースパス。 */
-	src: string;
-	/** デフォルトの音量。 */
-	defaultVolume?: number;
-	/** ループ再生するか。 */
-	loop?: boolean;
+  /** BGMのソースパス。 */
+  src: string;
+  /** デフォルトの音量。 */
+  defaultVolume?: number;
+  /** ループ再生するか。 */
+  loop?: boolean;
 };
 &nbsp;
 /**
  * シーケンス中のビジュアル要素の表示状態。
  */
 export type useSequenceVisuals = {
-	/** タイトル画像が表示されているか。 */
-	title: boolean;
-	/** 上部オーバーレイが表示されているか。 */
-	top: boolean;
-	/** 下部オーバーレイが表示されているか。 */
-	bottom: boolean;
-	/** 右部オーバーレイが表示されているか。 */
-	right: boolean;
-	/** 左部オーバーレイが表示されているか。 */
-	left: boolean;
+  /** タイトル画像が表示されているか。 */
+  title: boolean;
+  /** 上部オーバーレイが表示されているか。 */
+  top: boolean;
+  /** 下部オーバーレイが表示されているか。 */
+  bottom: boolean;
+  /** 右部オーバーレイが表示されているか。 */
+  right: boolean;
+  /** 左部オーバーレイが表示されているか。 */
+  left: boolean;
 };
 &nbsp;
 /**
  * タイピングページコンポーネントのプロパティ。
  */
 export type TypingPageProps = {
-	/** 使用する質問と回答のペアの配列。 */
-	QA: QAPair[];
-	/** ページのタイトル。 */
-	title: string;
-	/** サウンドが有効かどうか。 */
-	sound: boolean | undefined;
+  /** 使用する質問と回答のペアの配列。 */
+  QA: QAPair[];
+  /** ページのタイトル。 */
+  title: string;
+  /** サウンドが有効かどうか。 */
+  sound: boolean | undefined;
 };
 &nbsp;
 /**
  * アプリケーションのメインコンポーネントのプロパティ。
  */
 export type AppProps = {
-	/** 過去に一度アプリをプレイしたことがあるかどうかのフラグ。 */
-	played?: boolean;
+  /** 過去に一度アプリをプレイしたことがあるかどうかのフラグ。 */
+  played?: boolean;
 };
 &nbsp;
 /**
  * ヘッダー領域コンポーネントのプロパティ。
  */
 export type HeaderAreaProps = {
-	/** 表示するタイトル。 */
-	title: string;
-	/** タイピングを開始する関数。 */
-	start: () =&gt; void;
-	/** タイピングを停止する関数。 */
-	stop: (reason?: "escape" | "user" | "dead" | "victory") =&gt; void;
-	/** エンジンの現在の状態。 */
-	state: EngineState;
-	/** BGM再生状態を設定する関数。 */
-	setShouldPlay: React.Dispatch&lt;React.SetStateAction&lt;boolean | undefined&gt;&gt;;
-	/** 現在の設定オブジェクト。 */
-	settings: Settings;
-	/** 設定ドロワーを開く関数。 */
-	onOpen: () =&gt; void;
+  /** 表示するタイトル。 */
+  title: string;
+  /** タイピングを開始する関数。 */
+  start: () =&gt; void;
+  /** タイピングを停止する関数。 */
+  stop: (reason?: "escape" | "user" | "dead" | "victory") =&gt; void;
+  /** エンジンの現在の状態。 */
+  state: EngineState;
+  /** BGM再生状態を設定する関数。 */
+  setShouldPlay: React.Dispatch&lt;React.SetStateAction&lt;boolean | undefined&gt;&gt;;
+  /** 現在の設定オブジェクト。 */
+  settings: Settings;
+  /** 設定ドロワーを開く関数。 */
+  onOpen: () =&gt; void;
 };
 &nbsp;
 /**
  * マップのタイルデータ。
  */
 export type Tile = {
-	/** 画像のソースパス。 */
-	src: string;
-	/** タイルのX座標。 */
-	x: number;
-	/** タイルのY座標。 */
-	y: number;
-	/** タイルの幅。 */
-	w: number;
-	/** タイルの高さ。 */
-	h: number;
+  /** 画像のソースパス。 */
+  src: string;
+  /** タイルのX座標。 */
+  x: number;
+  /** タイルのY座標。 */
+  y: number;
+  /** タイルの幅。 */
+  w: number;
+  /** タイルの高さ。 */
+  h: number;
 };
+&nbsp;
+export type MapViewFixedViewportProps = PropsWithChildren&lt;{
+  tiles: ReadonlyArray&lt;Tile&gt;;
+  points: ReadonlyArray&lt;MapPoint&gt;;
+  worldSize: { width: number; height: number };
+  /** 初期表示（world中心）。既定：右下寄り */
+  initialCenter?: { x: number; y: number };
+  showTooltip: boolean;
+  stageRef: React.RefObject&lt;KonvaStage | null&gt;;
+  /** 黒帯を無くすには cover を使う */
+  mode?: "cover" | "contain";
+}&gt;;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -2224,7 +2272,7 @@ export type Tile = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-24T08:45:14.366Z
+                at 2025-10-25T22:13:36.580Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -4,4 +4,4 @@
 
 ### Functions
 
-- [default](../functions/components_typing_BattleArea_EnemyLayer.default.md)
+- [EnemyLayer](../functions/components_typing_BattleArea_EnemyLayer.EnemyLayer.md)

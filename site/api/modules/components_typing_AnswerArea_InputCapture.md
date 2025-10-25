@@ -4,4 +4,4 @@
 
 ### Functions
 
-- [default](../functions/components_typing_AnswerArea_InputCapture.default.md)
+- [InputCapture](../functions/components_typing_AnswerArea_InputCapture.InputCapture.md)

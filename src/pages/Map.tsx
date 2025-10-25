@@ -1,6 +1,6 @@
 import type { Stage as KonvaStage } from "konva/lib/Stage";
 import type { PropsWithChildren } from "react";
-import MapView from "@/components/map/MapView";
+import { MapView } from "@/components/map/MapView";
 import { tiles, worldSize } from "@/components/map/mapData";
 import { TYPING_ROUTE_POINTS } from "@/data/points";
 

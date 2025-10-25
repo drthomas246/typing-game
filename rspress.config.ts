@@ -34,7 +34,7 @@ export default defineConfig({
     nextPageText: "次のページ",
     footer: {
       message:
-        '<p>CopyRight 2025 <a href="https://www.hobofoto.work">Dr?Thomas</a></p>',
+        '<p>Copyright 2025 <a href="https://www.hobofoto.work/">Dr?Thomas</a></p>',
     },
   },
 
