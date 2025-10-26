@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunktyping_game=self.webpackChunktyping_game||[]).push([["2586"],{9534:function(e,t,n){n.r(t),n.d(t,{default:()=>s});var r=n(5893);function s(e){let{src:t,title:n}=e;return(0,r.jsx)("iframe",{src:t,width:"100%",className:"compornents-iframe compornents-iframe-story",title:n})}}}]);
