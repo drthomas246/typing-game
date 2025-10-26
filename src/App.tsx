@@ -1,9 +1,15 @@
 import { Box } from "@chakra-ui/react";
 import { Howler } from "howler";
 import type { Stage as KonvaStage } from "konva/lib/Stage";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  Suspense,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { Circle } from "react-konva";
-
 import { ConsentDialog } from "@/components/ui/ConsentDialog";
 import { SlideOverlay } from "@/components/visuals/SlideOverlay";
 import { TitleOverlay } from "@/components/visuals/TitleOverlay";
@@ -19,8 +25,11 @@ import { useHowlerOneShot } from "@/hooks/useHowlerOneShot";
 import { useSequence } from "@/hooks/useSequence";
 import { useSpeech } from "@/hooks/useSpeech";
 import MapPage from "@/pages/Map";
-import { TypingPage } from "@/pages/TypingPage";
 import type { AppProps, MapPoint } from "@/types/index";
+
+const TypingPage = React.lazy(() =>
+  import("@/pages/TypingPage").then((m) => ({ default: m.TypingPage })),
+);
 
 /**
  * HowlerのAudioContextが停止状態（suspended）の場合、ユーザー操作に応じて再開（resume）します。
@@ -183,11 +192,13 @@ export function App({ played = true }: AppProps): React.ReactElement {
           )}
         </Box>
       ) : (
-        <TypingPage
-          QA={TYPING_ROUTE_POINTS[page - 1].QA}
-          title={TYPING_ROUTE_POINTS[page - 1].title}
-          sound={isBgmOn} // BGMのオン/オフ状態を渡す
-        />
+        <Suspense fallback={<div>Loading...</div>}>
+          <TypingPage
+            QA={TYPING_ROUTE_POINTS[page - 1].QA}
+            title={TYPING_ROUTE_POINTS[page - 1].title}
+            sound={isBgmOn} // BGMのオン/オフ状態を渡す
+          />
+        </Suspense>
       )}
     </>
   );

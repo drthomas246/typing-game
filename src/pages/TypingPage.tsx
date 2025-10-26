@@ -1,5 +1,5 @@
 import { Container, Stack, useDisclosure } from "@chakra-ui/react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
 
 import { App } from "@/App";
 import { AnswerArea } from "@/components/typing/AnswerArea/index";
@@ -8,8 +8,6 @@ import { BattleArea } from "@/components/typing/BattleArea/index";
 import { HeaderArea } from "@/components/typing/HeaderArea";
 import { PhaseNotice } from "@/components/typing/PhaseNoticeArea/PhaseNotice";
 import { PlayerHpBar } from "@/components/typing/PhaseNoticeArea/PlayerHpBar";
-import { ResultsDialog } from "@/components/typing/ResultsDialog";
-import { SettingsDrawer } from "@/components/typing/SettingsDrawer";
 import {
   useBattle,
   useLevel,
@@ -21,6 +19,17 @@ import { useTypingEngine } from "@/hooks/typingEngine/useTypingEngine";
 import { useBgm } from "@/hooks/typingPage/useBgm";
 import { useRandomAssets } from "@/hooks/typingPage/useRandomAssets";
 import type { Settings, TypingPageProps } from "@/types/index";
+
+const ResultsDialog = lazy(() =>
+  import("@/components/typing/ResultsDialog").then((m) => ({
+    default: m.ResultsDialog,
+  })),
+);
+const SettingsDrawer = lazy(() =>
+  import("@/components/typing/SettingsDrawer").then((m) => ({
+    default: m.SettingsDrawer,
+  })),
+);
 
 /**
  * タイピングバトル画面全体を構成するページコンポーネント。
@@ -170,30 +179,32 @@ export function TypingPage({ QA, title }: TypingPageProps) {
               engine={engine}
             />
           </Stack>
-
-          <SettingsDrawer
-            open={settingsDisc.open}
-            onClose={settingsDisc.onClose}
-            settings={settings}
-            onChange={setSettings}
-            engine={engine}
-          />
-
-          <ResultsDialog
-            open={resultOpen}
-            setOpen={setResultOpen}
-            onRetry={() => {
-              setResultOpen(false);
-              engine.start();
-            }}
-            setShouldBgmPlay={setShouldPlay}
-            summary={{
-              timeSec: engine.actualTimeSec,
-              usedHintCount: engine.state.usedHintCount,
-              mistakeProblemCount: engine.state.mistakeProblemCount,
-              killedNow: engine.state.enemyHp === 0 && battle !== true,
-            }}
-          />
+          <Suspense fallback={<div>Loading...</div>}>
+            <SettingsDrawer
+              open={settingsDisc.open}
+              onClose={settingsDisc.onClose}
+              settings={settings}
+              onChange={setSettings}
+              engine={engine}
+            />
+          </Suspense>
+          <Suspense fallback={<div>Loading...</div>}>
+            <ResultsDialog
+              open={resultOpen}
+              setOpen={setResultOpen}
+              onRetry={() => {
+                setResultOpen(false);
+                engine.start();
+              }}
+              setShouldBgmPlay={setShouldPlay}
+              summary={{
+                timeSec: engine.actualTimeSec,
+                usedHintCount: engine.state.usedHintCount,
+                mistakeProblemCount: engine.state.mistakeProblemCount,
+                killedNow: engine.state.enemyHp === 0 && battle !== true,
+              }}
+            />
+          </Suspense>
         </Container>
       ) : (
         <App played={false} />

@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">53.69% </span>
+                <span class="strong">52.94% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>80/149</span>
+                <span class='fraction'>81/153</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">53.69% </span>
+                <span class="strong">52.94% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>80/149</span>
+                <span class='fraction'>81/153</span>
             </div>
         
             
@@ -257,16 +257,23 @@
 <a name='L192'></a><a href='#L192'>192</a>
 <a name='L193'></a><a href='#L193'>193</a>
 <a name='L194'></a><a href='#L194'>194</a>
-<a name='L195'></a><a href='#L195'>195</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L195'></a><a href='#L195'>195</a>
+<a name='L196'></a><a href='#L196'>196</a>
+<a name='L197'></a><a href='#L197'>197</a>
+<a name='L198'></a><a href='#L198'>198</a>
+<a name='L199'></a><a href='#L199'>199</a>
+<a name='L200'></a><a href='#L200'>200</a>
+<a name='L201'></a><a href='#L201'>201</a>
+<a name='L202'></a><a href='#L202'>202</a>
+<a name='L203'></a><a href='#L203'>203</a>
+<a name='L204'></a><a href='#L204'>204</a>
+<a name='L205'></a><a href='#L205'>205</a>
+<a name='L206'></a><a href='#L206'>206</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -277,9 +284,22 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -442,6 +462,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -454,9 +476,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Box } from "@chakra-ui/react";
 import { Howler } from "howler";
 import type { Stage as KonvaStage } from "konva/lib/Stage";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  Suspense,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { Circle } from "react-konva";
-&nbsp;
 import { ConsentDialog } from "@/components/ui/ConsentDialog";
 import { SlideOverlay } from "@/components/visuals/SlideOverlay";
 import { TitleOverlay } from "@/components/visuals/TitleOverlay";
@@ -472,8 +500,11 @@ import { useHowlerOneShot } from "@/hooks/useHowlerOneShot";
 import { useSequence } from "@/hooks/useSequence";
 import { useSpeech } from "@/hooks/useSpeech";
 import MapPage from "@/pages/Map";
-import { TypingPage } from "@/pages/TypingPage";
 import type { AppProps, MapPoint } from "@/types/index";
+&nbsp;
+const TypingPage = React.lazy(() =&gt;
+<span class="cstat-no" title="statement not covered" >  import("@/pages/TypingPage").then((m) =&gt; ({ default: m.TypingPage })),</span>
+);
 &nbsp;
 /**
  * HowlerのAudioContextが停止状態（suspended）の場合、ユーザー操作に応じて再開（resume）します。
@@ -636,11 +667,13 @@ export function App({ played = true }: AppProps): React.ReactElement {
           )}
 <span class="branch-0 cbranch-no" title="branch not covered" >        &lt;/Box&gt;</span>
       ) : (
-<span class="cstat-no" title="statement not covered" >        &lt;TypingPage</span>
-<span class="cstat-no" title="statement not covered" >          QA={TYPING_ROUTE_POINTS[page - 1].QA}</span>
-<span class="cstat-no" title="statement not covered" >          title={TYPING_ROUTE_POINTS[page - 1].title}</span>
-<span class="cstat-no" title="statement not covered" >          sound={isBgmOn} // BGMのオン/オフ状態を渡す</span>
-<span class="cstat-no" title="statement not covered" >        /&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;Suspense fallback={&lt;div&gt;Loading...&lt;/div&gt;}&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;TypingPage</span>
+<span class="cstat-no" title="statement not covered" >            QA={TYPING_ROUTE_POINTS[page - 1].QA}</span>
+<span class="cstat-no" title="statement not covered" >            title={TYPING_ROUTE_POINTS[page - 1].title}</span>
+<span class="cstat-no" title="statement not covered" >            sound={isBgmOn} // BGMのオン/オフ状態を渡す</span>
+<span class="cstat-no" title="statement not covered" >          /&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;/Suspense&gt;</span>
       )}
     &lt;/&gt;
   );
@@ -652,7 +685,7 @@ export function App({ played = true }: AppProps): React.ReactElement {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-25T22:36:18.607Z
+                at 2025-10-25T23:42:57.120Z
             </div>
         <script src="../prettify.js"></script>
         <script>

@@ -15,5 +15,17 @@ export default defineConfig({
     ),
     react(),
   ],
-  build: { outDir: "./docs" },
+  build: {
+    outDir: "./docs",
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          react: ["react", "react-dom"],
+          chakra: ["@chakra-ui/react", "@emotion/react", "@emotion/styled"],
+          framer: ["framer-motion"],
+          howler: ["howler"],
+        },
+      },
+    },
+  },
 });
