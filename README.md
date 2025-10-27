@@ -203,7 +203,7 @@ npm run dev
 
 ---
 
-## 🖼️ スクリーンショット例（Screenshots）
+## 🖼️ スクリーンショット（Screenshots）
 
 <table style="table-layout: fixed; width: 100%;">
   <colgroup>

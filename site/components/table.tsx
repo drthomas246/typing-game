@@ -7,7 +7,7 @@ export default function Table() {
     <table>
       <tr>
         <th>バトル画面</th>
-        <th>結果画面</th>
+        <th>けっか画面</th>
         <th>マップ画面</th>
       </tr>
       <tr>
